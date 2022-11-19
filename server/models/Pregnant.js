@@ -11,7 +11,7 @@ const pregnantSchema = new Schema({
         unique:true
     } ,
     
-    name: {
+    namesurname: {
         type: String,
         required:true,
     } ,

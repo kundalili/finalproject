@@ -1,33 +1,5 @@
-const User = require('../models/User')
-
-module.exports.register = async (req, res) => {
-
-    const {email, username, password} = req.body;
-
-
-    try {
-        console.log("🚀 ~ register here: ", req.body)
-
-        const {email, username, password, type} = req.body;
-
-        if (!email || !username || !password || !type ) {
-            console.log("data", req.body)
-            res.send({success: false, error: 'validation failed, email-username-password-type can not be empty'})
-
-            return
-        }
-        
-        const userCreated = await User.create( req.body)
-        console.log("🚀 ~ userCreated", userCreated)
-        res.send({success: true})
-
-    } catch (error) {
-        console.log("Error: 1", error.message)
-        res.send({success: false, error: error.message})
-
-    }
-  
-}
+const Midwife = require('../models/Midwife')
+const User = require('../models/Midwife')
 
 module.exports.list = async (req, res) => {
 
@@ -51,25 +23,40 @@ module.exports.list = async (req, res) => {
  module.exports.edit = async (req, res) => {
      try {
         
-         console.log("🚀 ~ edit here: ", req.body)
+        const {userId, namesurname, service, 
+            city, language, availability, since, about} = req.body
 
-         const {username, email, password} = req.body;
+        console.log("🚀 ~ edit here: ", req.body)
 
-         if (!(email || !username || !password )) {
-             res.send({success: false, error: 'validation failed'})
-
+        if (!userId) {
+             res.send({success: false, error: 'Can not edit without a UserId'})
              return
          }
 
-         const user = await User.findByIdAndUpdate(req.body._id, {email, username, password}, {new: true})
-         console.log("🚀 ~ user", user)
+        const filter = { userId: userId};
+        const update = {};
+
+        if (userId) update.userId=userId
+        if (namesurname) update.namesurname=namesurname
+        if (service) update.service=service
+        if (city) update.city=city
+        if (language) update.language=language
+        if (since) update.since=since
+        if (about) update.about=about
+        if (availability) update.availability=availability
+  
+    
+        let user = await Midwife.findOneAndUpdate(filter, update, {
+        new: true,
+        upsert: true // Make this update into an upsert
+        });
 
          if (!user) {
-             res.send({success: false, error: 'user not found'})
+             res.send({success: false, error: 'user can not updated'})
              return
          }
        
-         res.send({success: true})
+         res.send({success: true, user: user})
      } catch (error) {
     
          console.log("🚀 ~ Error in edit", error.message)
