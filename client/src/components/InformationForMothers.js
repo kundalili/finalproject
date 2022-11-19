@@ -12,7 +12,6 @@ export default function InformationForMothers() {
             <li>Receive definite responses and feel well cared for</li>
         </ul>
         <Registration />
-
     </div>
   )
 }
