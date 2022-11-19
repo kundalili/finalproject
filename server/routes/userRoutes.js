@@ -7,7 +7,4 @@ router.post('/register', userController.register)
 router.get('/list', userController.list)
 router.put('/edit', userController.edit)
 
-
-
-
 module.exports =  router;

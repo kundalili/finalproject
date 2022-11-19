@@ -33,9 +33,23 @@ module.exports.list = async (req, res) => {
 
     try {
         
-        console.log("🚀 ~ list here: ")
+        const {_id, username, email, type, namesurname, service, 
+            city, language, availability, since, about, duedate} = req.body
+        
+        let query = {}
+        let querymidwife = {}
+        let querypregnant = {}
 
-        const users = await User.find()
+        if (_id) query._id=_id
+        if (username) query.username=username
+        if (email) query.email=email
+        if (type) query.type=type
+
+        const users = await User.find(query)   
+        
+        
+
+       
         console.log("🚀 ~ users", users)
        
         res.send({success: true, users})

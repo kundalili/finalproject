@@ -6,12 +6,11 @@ const {Schema} = mongoose
 const midwifeSchema = new Schema({
 
     userId: {
-        type: String,
-        required:true,
-        unique:true
-    } ,
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     
-    name: {
+    namesurname: {
         type: String,
         required:true,
     } ,
