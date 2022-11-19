@@ -6,10 +6,11 @@ import Registration from './components/Registration';
 import LoginLayout from './layouts/LoginLayout'
 import UserLayout from './layouts/UserLayout'
 import Login from './components/Login'
-import Profile from './components/Profile'
+import MidwifeProfile from './components/Midwife/MidwifeProfile'
 import App from './App';
-import InformationForMidwifes from './components/InformationForMidwifes'
-import InformationForMothers from './components/InformationForMothers'
+import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
+import InformationForUsers from './components/User/InformationForUsers'
+import DashboardMidwife from './components/Midwife/DashboardMidwife';
 
 
 
@@ -25,12 +26,16 @@ root.render(
                 <Routes>
                     <Route element={<LoginLayout />} />
                     <Route path='/login' element={<Login />} />
+                    <Route path='/register' element={<Registration />} />
+                    <Route element={<UserLayout />}>
+                    <Route path='/posts' element={< DashboardMidwife/>} />
+                </Route>
                 </Routes>
                 <Routes>
                     <Route path='/midwifes' element={<InformationForMidwifes />} />
                 </Routes>
                 <Routes>
-                    <Route path='/mothers' element={<InformationForMothers />} />
+                    <Route path='/mothers' element={<InformationForUsers />} />
                 </Routes>
 
             </BrowserRouter>
