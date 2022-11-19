@@ -8,11 +8,11 @@ module.exports.register = async (req, res) => {
     try {
         console.log("🚀 ~ register here: ", req.body)
 
-        const {email, username, password} = req.body;
+        const {email, username, password, type} = req.body;
 
-        if (!email || !username || !password ) {
+        if (!email || !username || !password || !type ) {
             console.log("data", req.body)
-            res.send({success: false, error: 'validation failed'})
+            res.send({success: false, error: 'validation failed, email-username-password-type can not be empty'})
 
             return
         }
