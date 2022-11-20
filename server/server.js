@@ -10,6 +10,10 @@ app.use(express.json())
 
 
 app.use('/user', require('./routes/userRoutes'))
+app.use('/user/0', require('./routes/midwifeRoutes'))
+app.use('/user/1', require('./routes/pregnantRoutes'))
+app.use('/message', require('./routes/messageRoutes'))
+
 
 const port = process.env.PORT || 5001
 app.listen(port, () => console.log('Server Started',port))

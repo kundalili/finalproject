@@ -22,8 +22,8 @@ export default function Registration() {
         username:'',
         email:'',
         password:'',
-        type:''
-    
+        type:0
+
       })
     
       const handleRegister = async () => {
