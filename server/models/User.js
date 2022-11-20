@@ -22,7 +22,7 @@ const userSchema = new Schema({
     
     type: {
         type: Object,
-        required: true,
+        required: false,
     }
 
 })
