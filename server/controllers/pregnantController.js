@@ -1,46 +1,31 @@
-//Change everything
-
+const Pregnant = require('../models/Pregnant')
 const User = require('../models/User')
-
-module.exports.register = async (req, res) => {
-
-    const {email, username, password} = req.body;
-
-
-    try {
-        console.log("🚀 ~ register here: ", req.body)
-
-        const {email, username, password} = req.body;
-
-        if (!email || !username || !password ) {
-            console.log("data", req.body)
-            res.send({success: false, error: 'validation failed'})
-
-            return
-        }
-        
-        const userCreated = await User.create( req.body)
-        console.log("🚀 ~ userCreated", userCreated)
-        res.send({success: true})
-
-    } catch (error) {
-        console.log("Error: 1", error.message)
-        res.send({success: false, error: error.message})
-
-    }
-  
-}
 
 module.exports.list = async (req, res) => {
 
     try {
         
-        console.log("🚀 ~ list here: ")
+        const {userId, username, namesurname, service, 
+            city, language, duedate} = req.body
+        
+        let query = {}
+        let queryuser = {}
 
-        const users = await User.find()
-        console.log("🚀 ~ users", users)
+        if (username) queryuser.username=username
+        if (userId) query.userId=userId
+        if (namesurname) query.namesurname=namesurname
+        if (service) query.service=service
+        if (city) query.city=city
+        if (language) query.language=language
+        if (duedate) query.duedate=duedate
+        
+        const user = await Pregnant.find(query)
+                    .populate({
+                        path: 'userId',
+                        select: '_uid username email photo'
+                    })
        
-        res.send({success: true, users})
+        res.send({success: true, user})
     } catch (error) {
     
         console.log("🚀 ~ Error in list users", error.message)
@@ -53,25 +38,40 @@ module.exports.list = async (req, res) => {
  module.exports.edit = async (req, res) => {
      try {
         
-         console.log("🚀 ~ edit here: ", req.body)
+        const {userId, namesurname, service, connected,
+            city, language, availability, duedate} = req.body
 
-         const {username, email, password} = req.body;
+        console.log("🚀 ~ edit here: ", req.body)
 
-         if (!(email || !username || !password )) {
-             res.send({success: false, error: 'validation failed'})
-
+        if (!userId) {
+             res.send({success: false, error: 'Can not edit without a UserId'})
              return
          }
 
-         const user = await User.findByIdAndUpdate(req.body._id, {email, username, password}, {new: true})
-         console.log("🚀 ~ user", user)
+        const filter = { userId: userId};
+        const update = {};
+
+        if (userId) update.userId=userId
+        if (namesurname) update.namesurname=namesurname
+        if (service) update.service=service
+        if (city) update.city=city
+        if (language) update.language=language
+        if (duedate) update.duedate=duedate
+        if (connected) update.connected=connected
+        if (availability) update.availability=availability
+  
+    
+        let user = await Pregnant.findOneAndUpdate(filter, update, {
+            new: true,
+            upsert: true // Make this update into an upsert
+        });
 
          if (!user) {
-             res.send({success: false, error: 'user not found'})
+             res.send({success: false, error: 'user can not updated'})
              return
          }
        
-         res.send({success: true})
+         res.send({success: true, user: user})
      } catch (error) {
     
          console.log("🚀 ~ Error in edit", error.message)

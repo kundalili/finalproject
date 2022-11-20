@@ -10,8 +10,8 @@ export default function Registration() {
     const [data, setData] = useState({
         username:'',
         email:'',
-        password:''
-    
+        password:'',
+        type:0
       })
     
       const handleRegister = async () => {
