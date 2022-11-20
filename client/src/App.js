@@ -16,7 +16,7 @@ function App() {
       <Header />      
       <Home />
       <Registration />
-      <DashboardMidwife />
+      {/* <DashboardMidwife /> */}
       <Footer />
 
      
