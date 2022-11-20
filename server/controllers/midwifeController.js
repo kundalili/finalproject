@@ -1,16 +1,34 @@
 const Midwife = require('../models/Midwife')
-const User = require('../models/Midwife')
+const User = require('../models/User')
 
 module.exports.list = async (req, res) => {
 
     try {
         
-        console.log("🚀 ~ list here: ")
+        const {userId, username, namesurname, service, 
+            city, language, availability, since, about} = req.body
+        
+        let query = {}
+        let queryuser = {}
 
-        const users = await User.find()
-        console.log("🚀 ~ users", users)
+        if (username) queryuser.username=username
+        if (userId) query.userId=userId
+        if (namesurname) query.namesurname=namesurname
+        if (service) query.service=service
+        if (city) query.city=city
+        if (language) query.language=language
+        if (availability) query.availability=availability
+        if (since) query.since=since
+        if (about) query.about=about
+
+
+        const user = await Midwife.find(query)
+                    .populate({
+                        path: 'userId',
+                        select: '_uid username email photo'
+                    })
        
-        res.send({success: true, users})
+        res.send({success: true, user})
     } catch (error) {
     
         console.log("🚀 ~ Error in list users", error.message)
@@ -19,6 +37,7 @@ module.exports.list = async (req, res) => {
         
     }
 }
+
 
  module.exports.edit = async (req, res) => {
      try {
@@ -47,8 +66,8 @@ module.exports.list = async (req, res) => {
   
     
         let user = await Midwife.findOneAndUpdate(filter, update, {
-        new: true,
-        upsert: true // Make this update into an upsert
+            new: true,
+            upsert: true // Make this update into an upsert
         });
 
          if (!user) {
