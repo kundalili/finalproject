@@ -92,8 +92,9 @@ module.exports.list = async (req, res) => {
         
      }
 
+}
 
-     module.exports.login = async (req, res) => {
+module.exports.login = async (req, res) => {
 
         try {
             
@@ -124,5 +125,4 @@ module.exports.list = async (req, res) => {
             res.send({success: false, error: error.message})
             
         }
-    }
- }
+}

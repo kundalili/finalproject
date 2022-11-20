@@ -19,7 +19,7 @@ module.exports.send = async (req, res) => {
         res.send({success: true})
 
     } catch (error) {
-        console.log("Error: 1", error.message)
+        console.log("Error: creating message", error.message)
         res.send({success: false, error: error.message})
 
     }
@@ -28,25 +28,72 @@ module.exports.send = async (req, res) => {
 
 module.exports.list = async (req, res) => {
 
+
+    console.log("🚀 ~ message list: ", req.body)
+    
     try {
         
-        const {from, to, text,  date} = req.body
-        
-        let query = {}
-
-        if (from) query.from=from
-        if (to) query.to=to
-        if (text) query.text=text
-        if (date) query.date=date
-
-        const messages = await Message.find(query)   
+        const messages = await Message.find(req.body).
+                                        populate({
+                                            path: 'from',
+                                            select: '_uid username email photo'
+                                        }
+                                        )  
 
         console.log("🚀 ~ messages", messages)
        
         res.send({success: true, messages})
     } catch (error) {
     
-        console.log("🚀 ~ Error in list users", error.message)
+        console.log("🚀 ~ Error in list messages", error.message)
+
+        res.send({success: false, error: error.message})
+        
+    }
+}
+
+module.exports.group = async (req, res) => {
+
+
+    console.log("🚀 ~ message group: ", req.body)
+    
+    try {
+        
+        const messages = await Message.find(req.body).
+                                        populate({
+                                            path: 'from',
+                                            select: '_uid username email photo'
+                                        }
+                                        )  
+
+        console.log("🚀 ~ messages", messages)
+       
+        res.send({success: true, messages})
+    } catch (error) {
+    
+        console.log("🚀 ~ Error in list messages", error.message)
+
+        res.send({success: false, error: error.message})
+        
+    }
+}
+
+
+module.exports.delete = async (req, res) => {
+
+
+    console.log("🚀 ~ message will be deleted: ", req.body)
+    
+    try {
+        
+        const messages = await Message.findOneAndDelete(req.body)   
+
+        console.log("🚀 ~ messages", messages)
+       
+        res.send({success: true, messages})
+    } catch (error) {
+    
+        console.log("🚀 ~ Error in delete messages", error.message)
 
         res.send({success: false, error: error.message})
         
