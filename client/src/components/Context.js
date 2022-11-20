@@ -1,54 +1,31 @@
-import { createContext,  useReducer } from "react";
+import { createContext, useReducer } from "react"
 
-export const AppContext = createContext();
+export const AppContext = createContext()
 
-console.log(Context)
+export default function ContextProvider({children}) {
 
- export default function Context({children}) {
+    const reducer = (state, action) => {
 
-   const reducer = (state, action) => {
-     switch (action.type) {
+        switch (action.type) {
 
-
-
-        case ('add'):
-          return{
-            // ...state,
-            // recipes: [...state.recipes, action.payload]
-          }
-
+            case ('login'):
+                return {
+                    ...state,
+                    user: action.payload
+                }
+               
+          
             default:
-             return state
+                return
+        }
+    }
 
+    const [state, dispatch] = useReducer(reducer, {
+        user: {},
+        posts: []
+    })
 
-  }
- }
- const [globalRecipes, dispatchRecipes] = useReducer(reducer,{
- 
-    recipes:{
-      title: '',
-      ingredients: '',
-      method: '',
-      category: '',
-      cookingTime: '',
-      rating: ''
-
-   },
- 
-
-
-  })
- 
-
-
-
-//the initial value in the state needs to be the data (clean Data)
-   // getData()
-   // const [recipes setRecipe] = useState([])
-
-    return <AppContext.Provider value={{globalRecipes, dispatchRecipes}}>
-
-         {children}
-
+    return <AppContext.Provider value={{state, dispatch}}>
+        {children}
     </AppContext.Provider>
 }

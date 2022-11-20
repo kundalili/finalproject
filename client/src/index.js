@@ -11,7 +11,7 @@ import App from './App';
 import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
 import InformationForUsers from './components/User/InformationForUsers'
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
-
+import Profile from './components/Profile';
 
 
 
@@ -20,23 +20,26 @@ root.render(
             
             
             <BrowserRouter>
-                <Routes element={<App />}>
-                    <Route path='/' element={<App />} />
-                </Routes>
-                <Routes>
-                    <Route element={<LoginLayout />} />
-                    <Route path='/login' element={<Login />} />
-                    <Route path='/register' element={<Registration />} />
-                    <Route element={<UserLayout />}>
-                    <Route path='/posts' element={< DashboardMidwife/>} />
-                </Route>
-                </Routes>
-                <Routes>
-                    <Route path='/midwifes' element={<InformationForMidwifes />} />
-                </Routes>
-                <Routes>
-                    <Route path='/mothers' element={<InformationForUsers />} />
-                </Routes>
+                    <Routes element={<App />}>
+                        <Route>
+                            <Route path='/' element={<App />} />
+                        </Route>
+                        <Route>
+                            <Route element={<LoginLayout />} />
+                            <Route path='/login' element={<Login />} />
+                            <Route path='/register' element={<Registration />} />
+                        </Route>
+                        <Route element={<UserLayout />}>
+                            <Route path='/user' element={< Profile/>} />
+                        </Route>
+                        <Route path='/midwifes' element={<InformationForMidwifes />} />
+                        <Route>
+                            <Route path='/mothers' element={<InformationForUsers />} />
+                        </Route>
+                        <Route>
+                            <Route path='/user' element={<Profile />} />
+                        </Route>
+                    </Routes>
 
             </BrowserRouter>
 
