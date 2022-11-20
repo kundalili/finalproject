@@ -3,7 +3,7 @@ const {Schema} = mongoose
 
 
 
-const message = new Schema({
+const messageSchema = new Schema({
 
     from: {
         type: String,
@@ -20,6 +20,11 @@ const message = new Schema({
         required:true
     },
 
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now 
+    }
 
  })
 
