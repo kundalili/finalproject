@@ -23,7 +23,7 @@ export default function Footer() {
         <Button className='h-[55px]' variant="outlined">Subscribe</Button>
         </div>
         <div className="socialIcons flex justify-center items-center gap-[10px] p-[10px]">
-                <SocialIcon network="twitter" bgColor="#FFFFFF" className="sm-icon p-[10px]" />
+                <SocialIcon network="twitter" bgColor="#FFFFFF" className="sm-icon p-[10px] hover:text-blue-700" />
                 <SocialIcon network="facebook" bgColor="#FFFFFF" className="sm-icon p-[10px]" />
                 <SocialIcon network="instagram" bgColor="#FFFFFF" className="sm-icon p-[10px]"/>
             </div>

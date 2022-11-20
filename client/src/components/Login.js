@@ -4,6 +4,9 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import { useState } from 'react';
 import Header from './Header'
+import { useNavigate } from 'react-router-dom'
+
+
 
 
 export default function Login(props) {
@@ -11,7 +14,8 @@ export default function Login(props) {
   const [data, setData] = useState({
     username:'',
     email:'',
-    password:''
+    password:'',
+    type:0
 
   })
 
