@@ -6,13 +6,13 @@ const {Schema} = mongoose
 const messageSchema = new Schema({
 
     from: {
-        type: String,
-        required:true
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     } ,
 
     to: {
-        type: String,
-        required:true
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     },
 
     text: {
