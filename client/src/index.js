@@ -12,13 +12,13 @@ import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
 import InformationForUsers from './components/User/InformationForUsers'
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
 import Profile from './components/Profile';
-
+import ContextProvider from './components/Context';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-            
-            
+    <ContextProvider>
+  
             <BrowserRouter>
                     <Routes element={<App />}>
                         <Route>
@@ -42,6 +42,8 @@ root.render(
                     </Routes>
 
             </BrowserRouter>
+            </ContextProvider>
+
 
     
        
