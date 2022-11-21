@@ -2,7 +2,8 @@ import React from 'react'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 import axios from 'axios'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { AppContext } from './Context'
 import Header from './Header'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,6 +11,10 @@ import { useNavigate } from 'react-router-dom'
 
 
 export default function Login(props) {
+
+  const navigate = useNavigate()
+  const {dispatch} = useContext(AppContext)
+
 
   const [data, setData] = useState({
     username:'',
@@ -22,17 +27,20 @@ export default function Login(props) {
   const handleLogin = async () => {
 
     if ((!data.email && !data.username) || !data.password) {
-      alert ('Please fill in the fields')
-      return
-  }
+        alert('Please fill in the fields!')
+        return
+    }
 
-    const response =  await axios.post(
-        '/user/login', data
-    )
-    console.log("🚀 Login",  response)
+    const response = await axios.post('/user/login', data)
+    console.log("🚀 ~ response", response)
 
-    
-
+    if (response.data.success) {
+        dispatch({
+            type: 'login',
+            payload: {...response.data.user}
+        })
+        navigate('/user')
+    }
 
   }
   return (

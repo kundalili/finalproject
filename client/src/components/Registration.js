@@ -1,8 +1,4 @@
 import React from 'react'
-import { useState, useContext } from 'react';
-import { AppContext } from './Context'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -14,14 +10,15 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-
-
+import { useState, useContext } from 'react';
+import { AppContext } from './Context'
+import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 
 export default function Registration() {
 
   // const {dispatch} = useContext(AppContext)
   const navigate = useNavigate()
-
 
     const [data, setData] = useState({
         username:'',
@@ -30,22 +27,13 @@ export default function Registration() {
         type:0
 
       })
-    console.log("🚀 setData", setData)
     
       const handleRegistration = async () => {
         const response = await axios.post('/user/register', data)
         console.log('response is', response)
         navigate('/user')
-      //   if (response.data.success) {
-      //     dispatch({
-      //         type: 'login',
-      //         payload: {...response.data.user}
-      //     })
-      //     navigate('/user')
-      // }
       }
-
-      
+  
   return (
     <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
         <h1 className='text-[1.5rem] p-[10px] text-center'>You haven't used INA before? Create a profile here.</h1>
@@ -57,15 +45,12 @@ export default function Registration() {
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              >
+              name="row-radio-buttons-group">
                 <FormControlLabel value={0} onChange={e => setData({...data, type: e.target.value})} control={<Radio />} label="Midwife" />
                 <FormControlLabel value={1} onChange={e => setData({...data, type: e.target.value})} control={<Radio />} label="Mother" />
-
             </RadioGroup>
         </FormControl>
         <Button className='' variant="outlined" onClick={handleRegistration}>Register</Button>  
-    
     </div>
   )
 }

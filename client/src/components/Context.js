@@ -13,7 +13,6 @@ export default function ContextProvider({children}) {
                     ...state,
                     user: action.payload
                 }
-               
           
             default:
                 return
@@ -22,7 +21,6 @@ export default function ContextProvider({children}) {
 
     const [state, dispatch] = useReducer(reducer, {
         user: {},
-        posts: []
     })
 
     return <AppContext.Provider value={{state, dispatch}}>
