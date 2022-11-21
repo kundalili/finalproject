@@ -33,12 +33,16 @@ module.exports.list = async (req, res) => {
     
     try {
         
-        const messages = await Message.find(req.body).
-                                        populate({
+        const messages = await Message.find(req.body)
+                                        .populate({
                                             path: 'from',
                                             select: '_uid username email photo'
-                                        }
-                                        )  
+                                            })  
+                                        .populate({
+                                            path: 'to',
+                                            select: '_uid username email photo'
+                                            })  
+
 
         console.log("🚀 ~ messages", messages)
        
@@ -59,12 +63,8 @@ module.exports.group = async (req, res) => {
     
     try {
         
-        const messages = await Message.find(req.body).
-                                        populate({
-                                            path: 'from',
-                                            select: '_uid username email photo'
-                                        }
-                                        )  
+        const messages = await Message.aggregate(req.body)
+
 
         console.log("🚀 ~ messages", messages)
        
