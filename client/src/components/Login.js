@@ -34,7 +34,7 @@ export default function Login(props) {
     const response = await axios.post('/user/login', data)
     console.log("🚀 ~ response", response)
 
-    if ((response.data.success) &&  data.type===0 ) 
+    if ((response.data.success) && data.type===0 ) 
     
     {
         dispatch({
@@ -43,9 +43,12 @@ export default function Login(props) {
         })
 
         navigate('/user')
-    } else if ((response.data.success) &&  data.type===1) {
+
+    } else if ((response.data.success) && data.type===1) {
       navigate('/pregnant')
+
     } else {
+
       return alert('something went wrong')
     }
 
