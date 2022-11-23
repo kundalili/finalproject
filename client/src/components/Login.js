@@ -6,8 +6,8 @@ import { useState, useContext } from 'react';
 import { AppContext } from './Context'
 import Header from './Header'
 import { useNavigate } from 'react-router-dom'
-
-
+import PregnantProfile from './Pregnant/PregnantProfile';
+import MidwifeProfile from './Midwife/MidwifeProfile'
 
 
 export default function Login(props) {
@@ -20,7 +20,7 @@ export default function Login(props) {
     username:'',
     email:'',
     password:'',
-    type:0
+    type:''
 
   })
 
@@ -34,20 +34,26 @@ export default function Login(props) {
     const response = await axios.post('/user/login', data)
     console.log("🚀 ~ response", response)
 
-    if (response.data.success) {
+    if ((response.data.success) &&  data.type===0 ) 
+    
+    {
         dispatch({
             type: 'login',
             payload: {...response.data.user}
         })
+
         navigate('/user')
+    } else if ((response.data.success) &&  data.type===1) {
+      navigate('/pregnant')
+    } else {
+      return alert('something went wrong')
     }
 
   }
   return (
       <>
         <Header />
-        <h1 className='text-[1.5rem] p-[10px] text-center'>You have used ammely before? Log in here.</h1>
-
+        
         <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
             <div className='flex justify-center items-center gap-[10px]'>
                 <TextField placeholder='Type your username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Name" variant="outlined" />
@@ -56,7 +62,7 @@ export default function Login(props) {
             </div>
             <TextField placeholder='Type your password' value={data.password} onChange={e => setData({...data, password: e.target.value})} id="outlined-basic" label="Password" variant="outlined" />
             <Button className='' variant="outlined" onClick={handleLogin}>Login</Button>
-          
+        
         </div>  
       </>
         )

@@ -4,7 +4,7 @@ import Header from '../Header'
 
 
 
-export default function InformationForMothers() {
+export default function InformationForPregnant() {
   return (
     <div>
     <Header />
