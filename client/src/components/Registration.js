@@ -17,8 +17,9 @@ import axios from 'axios'
 
 export default function Registration() {
 
-  // const {dispatch} = useContext(AppContext)
+  const {dispatch} = useContext(AppContext)
   const navigate = useNavigate()
+
 
     const [data, setData] = useState({
         username:'',
@@ -31,8 +32,17 @@ export default function Registration() {
       const handleRegistration = async () => {
         const response = await axios.post('/user/register', data)
         console.log('response is', response)
-        navigate('/user')
-      }
+        if ((response.data.success) &&  data.type===0 ) {
+          dispatch({
+              type: 'login',
+              payload: {...response.data.user}
+          })
+          navigate('/user')
+      } else {
+        navigate('/pregnant')
+      }      }
+
+      
   
   return (
     <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
