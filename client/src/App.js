@@ -3,9 +3,10 @@ import { InaContext } from './components/Context'
 import Header from './components/Header';
 import Registration from './components/Registration';
 import MidwifeList from './components/MidwifeList';
-import Home from './components/Home';
+import Body from './components/Body';
 import Footer from './components/Footer';
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
+import Information from './components/Information';
 // import ManageAccount from './components/ManageAccount';
 
 function App() {
@@ -14,8 +15,9 @@ function App() {
   return (
     <div className="App">
       <Header />      
-      <Home />
+      <Body />
       <Registration />
+      <Information />
       {/* <DashboardMidwife /> */}
       <Footer />
 
