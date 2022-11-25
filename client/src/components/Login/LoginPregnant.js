@@ -3,11 +3,9 @@ import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button';
 import axios from 'axios'
 import { useState, useContext } from 'react';
-import { AppContext } from './Context'
-import Header from './Header'
+import { AppContext } from '../Context'
+import Header from '../Header'
 import { useNavigate } from 'react-router-dom'
-import PregnantProfile from './Pregnant/PregnantProfile';
-import MidwifeProfile from './Midwife/MidwifeProfile'
 
 
 export default function Login(props) {
@@ -20,38 +18,29 @@ export default function Login(props) {
     username:'',
     email:'',
     password:'',
-    type:''
+    type:1
 
   })
 
   const handleLogin = async () => {
 
     if ((!data.email && !data.username) || !data.password) {
-        alert('Please fill in the fields!')
+        alert('Please fill out the fields!')
         return
     }
 
     const response = await axios.post('/user/login', data)
     console.log("🚀 ~ response", response)
 
-    if ((response.data.success) && data.type===0 ) 
-    
-    {
+    if (response.data.success) {
         dispatch({
             type: 'login',
             payload: {...response.data.user}
         })
 
-        navigate('/user')
+        navigate('/profilepreg')
 
-    } else if ((response.data.success) && data.type===1) {
-      navigate('/pregnant')
-
-    } else {
-
-      return alert('something went wrong')
     }
-
   }
   return (
       <>

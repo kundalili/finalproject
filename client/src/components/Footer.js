@@ -16,10 +16,12 @@ export default function Footer() {
     height: '83vh', width: '100vw'}} >      
     <footer className='h-[500px]'>
     <div className='newsletter h-[210px] flex flex-row justify-center items-center'>
-      <form className=''>
-          <button type="submit" className='ml-[-40px] mb-[30px]'>
+      <button></button>
+    <form className=''>
             <input type="text" className="text-center w-[212px] py-2.5 h-[68px] outline-none rounded-full p-[10px] placeholder-coral" placeholder="Subscribe to Newsletter" />
-          </button>
+      </form>
+      <form className=''>
+            <input type="text" className="text-center w-[212px] py-2.5 h-[68px] outline-none rounded-full p-[10px] placeholder-coral" placeholder="Subscribe to Newsletter" />
       </form>
       </div>
       <div className='flex justify-center'>

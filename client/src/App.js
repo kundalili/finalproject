@@ -1,7 +1,6 @@
 import './App.css'; 
-import { InaContext } from './components/Context'
+import { AppContext } from './components/Context'
 import Header from './components/Header';
-import Registration from './components/Registration';
 import MidwifeList from './components/MidwifeList';
 import Body from './components/Body';
 import Footer from './components/Footer';
@@ -16,7 +15,6 @@ function App() {
     <div className="App">
       <Header />      
       <Body />
-      <Registration />
       <Information />
       {/* <DashboardMidwife /> */}
       <Footer />

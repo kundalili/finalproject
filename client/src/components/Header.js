@@ -2,7 +2,6 @@ import React from 'react'
 import Button from '@mui/material/Button';
 import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Login from './Login'
 import logo from '../assets/ina_blue.svg'
 import menu from '../assets/menu.svg'
 import magnifier from '../assets/search.svg'
@@ -26,7 +25,7 @@ export default function Header() {
   return (
     <div>
 
-        <ul className="flex justify-around items-center gap-[10px] p-[30px]" >
+        <ul className="flex flex-wrap justify-around items-center gap-[10px] p-[30px]" >
             {/* <Link to='/'>
                 <HomeOutlinedIcon className='cursor-pointer hover:text-blue-700'/>
             </Link> */}
@@ -43,14 +42,11 @@ export default function Header() {
             </form>
             </div>
             <div>
-                <img src={menu} alt='menu'/>
+                {/* <img src={menu} alt='menu'/> */}
             </div>
 
-            <Link to='/mothers' className='cursor-pointer hover:text-blue-700'>For mothers</Link>
-            <Link to='/midwifes' className='cursor-pointer hover:text-blue-700'>For midwifes</Link>
-            <Link  to='/regmidwife'>
-                <Button className='' variant="outlined" onClick={handleRegister}>Login</Button>
-            </Link>
+            <Link to='/registerpreg' className='cursor-pointer hover:text-blue-700'>For mothers</Link>
+            <Link to='/registermid' className='cursor-pointer hover:text-blue-700'>For midwifes</Link>
             <Link  to='/'>
                 <LogoutIcon className='cursor-pointer hover:text-blue-700'/>
             </Link> 
