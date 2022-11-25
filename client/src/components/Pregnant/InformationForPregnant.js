@@ -1,5 +1,4 @@
 import React from 'react'
-import Registration from '../Registration'
 import Header from '../Header'
 
 
@@ -24,7 +23,6 @@ export default function InformationForPregnant() {
             <li>6. Open and already processed requests are displayed with the appropriate status. This way you can keep track.</li>
       </ol>
       </div>
-      <Registration />
     </div>
       )
 }

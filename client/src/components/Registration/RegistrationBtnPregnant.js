@@ -1,10 +1,12 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 export default function RegistrationBtnPregnant() {
   return (
     <div className='bg-white'>
         <div className='flex flex-col justify-center items-center my-[30px]'>
             <form className=''>
+            <Link to='/registerpreg'>
                 <button type="submit" 
                     className='cursor-pointer 
                     border-2 border-vividBlue 
@@ -15,12 +17,12 @@ export default function RegistrationBtnPregnant() {
                     h-[68px] 
                     outline-none 
                     rounded-full 
-                    hover:bg-lightBlue 
                     hover:text-white
-                    hover:border-lightBlue 
-                    hover:border-2'>
+                    hover:bg-vividBlue 
+                    hover:border-vividBlue'>
                     Looking for a Midwife?
                 </button>
+              </Link>
             </form>
         </div>
     </div>

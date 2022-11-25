@@ -2,18 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Registration from './components/Registration';
 import LoginLayout from './layouts/LoginLayout'
 import UserLayout from './layouts/UserLayout'
-import Login from './components/Login'
 import MidwifeProfile from './components/Midwife/MidwifeProfile'
 import App from './App';
 import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
 import InformationForPregnant from './components/Pregnant/InformationForPregnant';
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
-import Profile from './components/Profile';
 import ContextProvider from './components/Context';
 import PregnantProfile from './components/Pregnant/PregnantProfile';
+import RegistrationMidwife from './components/Registration/RegistrationMidwife';
+import RegistrationPregnant from './components/Registration/RegistrationPregnant';
+import LoginMidwife from './components/Login/LoginMidwife'
+import LoginPregnant from './components/Login/LoginPregnant'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -26,18 +27,18 @@ root.render(
                         </Route>
                         <Route>
                             <Route element={<LoginLayout />} />
-                            <Route path='/login' element={<Login />} />
-                            <Route path='/register' element={<Registration />} />
+                            <Route path='/loginmid' element={<LoginMidwife />} />
+                            <Route path='/loginpreg' element={<LoginPregnant />} />
+                            <Route path='/registermid' element={<RegistrationMidwife />} />
+                            <Route path='/registerpreg' element={<RegistrationPregnant />} />
                         </Route>
                         <Route element={<UserLayout />}>
-                            <Route path='/user' element={< Profile/>} />
+                            <Route path='/profilemid' element={< MidwifeProfile/>} />
+                            <Route path='/profilepreg' element={< PregnantProfile/>} />
                         </Route>
-                        <Route path='/midwifes' element={<InformationForMidwifes />} />
+                        <Route path='/infomid' element={<InformationForMidwifes />} />
                         <Route>
-                            <Route path='/mothers' element={<InformationForPregnant />} />
-                        </Route>
-                        <Route>
-                            <Route path='/pregnant' element={<PregnantProfile />} />
+                            <Route path='/infopreg' element={<InformationForPregnant />} />
                         </Route>
                     </Routes>
             </BrowserRouter>

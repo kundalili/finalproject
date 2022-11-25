@@ -1,12 +1,10 @@
 import {Outlet} from 'react-router-dom'
-import Login from '../components/Login'
-function LoginLayout() {
+import Header from '../components/Header';
+
+function LoginLayout(props) {
     return (
-        <div className='flex items-center 
-        w-full
-        justify-center gap-[20px] min-h-[100vh] 
-        flex-col'>
-            <Login />
+        <div>
+            <Header />
             <Outlet />
         </div>
     );
