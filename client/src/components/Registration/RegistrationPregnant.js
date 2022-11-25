@@ -40,22 +40,36 @@ export default function RegistrationPregnant() {
             <TextField placeholder='Type your username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Name" variant="outlined" />
             <TextField placeholder='Type your email' value={data.email} onChange={e => setData({...data, email: e.target.value})} id="outlined-basic" label="Email" variant="outlined" />
             <TextField placeholder='Type your password' value={data.password} onChange={e => setData({...data, password: e.target.value})} id="outlined-basic" label="Password" variant="outlined" />
-            <Button className='' variant="outlined" onClick={handleRegistration}>Registration</Button>  
+            <button  type="submit"
+                          className='cursor-pointer 
+                          border-2 border-vividBlue 
+                          text-vividBlue 
+                          font-semibold 
+                          hover:border-2
+                          text-center w-[312px] 
+                          h-[68px] 
+                          outline-none 
+                          rounded-full 
+                          hover:text-white
+                          hover:bg-vividBlue 
+                          hover:border-vividBlue'
+                          variant="outlined" onClick={handleRegistration}>REGISTRATION
+                          </button>  
                 <h3 className='text-[2rem]'>Do you have already an account?</h3>
                     <Link to='/loginpreg'>
                         <button  type="submit"
-                          className='bg-vividBlue 
-                          text-white 
+                          className='cursor-pointer 
+                          border-2 border-vividBlue 
+                          text-vividBlue 
                           font-semibold 
-                          text-center 
-                          w-[312px] 
-                          mt-[30px] 
+                          hover:border-2
+                          text-center w-[312px] 
                           h-[68px] 
                           outline-none 
-                          rounded-full
-                          hover:bg-lightBlue  
-                          hover:border-lightBlue 
-                          hover:border-2'>
+                          rounded-full 
+                          hover:text-white
+                          hover:bg-vividBlue 
+                          hover:border-vividBlue'>
                           LOGIN
                           </button>
                       </Link>  
