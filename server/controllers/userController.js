@@ -195,6 +195,7 @@ module.exports.emailConfirm = async (req, res) => {
         
     }
 }
+
 module.exports.forgotPassword = async (req, res) => {
 
     try {
