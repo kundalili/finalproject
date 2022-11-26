@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios'
 import { useState, useContext } from 'react';
 import { AppContext } from '../Context'
-import Header from '../Header'
+import Header from '../NavigationBar/Header'
 import { useNavigate } from 'react-router-dom'
 
 

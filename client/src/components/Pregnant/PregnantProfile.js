@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useState, useContext } from 'react';
 import { AppContext } from '../Context'
 import { useNavigate } from 'react-router-dom'
-import Header from '../Header';
+import Header from '../NavigationBar/Header';
 import Language from '../ProfileDetails/Language';
 
 
