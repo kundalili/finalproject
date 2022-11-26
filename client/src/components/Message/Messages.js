@@ -2,7 +2,7 @@ import {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
 //import { response } from 'express'
-import MessageGroupCard from './MessageGroupCard'
+import MessageCard from './MessageCard'
 import MessageList from './MessageList'
 
 
@@ -48,13 +48,14 @@ export default function Messages (){
 
                 
         function msgTotals(){
-            let tmpmsg ={from:0, to:0, unread:0}
+            let tmpmsg ={from:0, to:0, unread:msglist.length}
             tmpmsg.unread= query==={to:state.user._id, status:0}?msglist.length:tmpmsg.unread
             msggroup.forEach((item)=>{
+                console.log("message numbers", item.from, item.to, msglist.length )
                 tmpmsg.from+=item.from
                 tmpmsg.to+=item.to
             })
-            setMsg(msg)
+            setMsg(tmpmsg)
         }
 
         function newPost(){
@@ -79,17 +80,20 @@ export default function Messages (){
         }
         
         console.log("msggroup result", msggroup)
+        console.log("msglist", msglist)
+        
 
         return (
             <div className='flex flex-row'>
                 <div >
                     <div className='flex-col border-double' >
-                        <MessageGroupCard user={state.user} msg={msg} cb={handleUserClick}/>
+                        <MessageCard user={state.user} msg={msg} cb={handleUserClick}/>
                     </div>
-
+                    <hr/>
+                    <hr/>
                     <div className= 'border-solid'>
                     { 
-                        msggroup.map(item =><MessageGroupCard key={item.userId} user={item} msg={{from:item.to, to:item.from, unread:item.unread} } 
+                        msggroup.map(item =><MessageCard key={item.userId} user={item} msg={{from:item.to, to:item.from, unread:item.unread} } 
                                                                 cb={handleOtherUserClick}/>)
                     }
                     </div>
@@ -99,7 +103,7 @@ export default function Messages (){
                     {
                         
                         msglist.length>0?
-                            msglist.map(item => <MessageList key={item.userId} post={item} cb={newPost}/>)
+                            msglist.map(item => <MessageList key={item._id} item={item} cb={newPost}/>)
                             :
                             <p> No Record to List</p>
                     }

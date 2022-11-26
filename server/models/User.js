@@ -35,8 +35,15 @@ const userSchema = new Schema({
         type: Array,
         required: false,
         default:[]
+    },
+    
+    verified: {
+        type: Boolean,
+        default: false,
+    },
+    resetToken: {
+        type: String
     }
-
 })
 
 module.exports = mongoose.model('User', userSchema)
