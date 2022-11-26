@@ -44,23 +44,22 @@ module.exports.list = async (req, res) => {
         
         if (!req.body.hasOwnProperty('_id')) {
             console.log(req.body)
-            res.send({success: false, messages:["_uid is a must"]})
+            res.send({success: false, messages:["_id is a must"]})
         } else {
 
-                const {userId, name, service, 
+                const {_id, name, service, 
                     city, language, availability, since, about} = req.body
 
                 console.log("🚀 ~ edit here: ", req.body)
 
-                if (!userId) {
+                if (!_id) {
                     res.send({success: false, error: 'Can not edit without a UserId'})
                     return
                 }
 
-                const filter = { userId: userId};
+                const filter = { userId: _id};
                 const update = {};
 
-                if (userId) update.userId=userId
                 if (name) update.name=name
                 if (service) update.service=service
                 if (city) update.city=city

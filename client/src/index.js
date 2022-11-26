@@ -16,8 +16,10 @@ import RegistrationMidwife from './components/Registration/RegistrationMidwife';
 import RegistrationPregnant from './components/Registration/RegistrationPregnant';
 import LoginMidwife from './components/Login/LoginMidwife'
 import LoginPregnant from './components/Login/LoginPregnant'
-
-
+import EmailConfirm from './components/EmailConfirm'
+import ForgotPass from './components/ForgotPass'
+import ChangePass from './components/ChangePass'
+import ProtectedRoutes from './components/ProtectedRoutes'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,19 +35,23 @@ root.render(
                             <Route path='/loginpreg' element={<LoginPregnant />} />
                             <Route path='/registermid' element={<RegistrationMidwife />} />
                             <Route path='/registerpreg' element={<RegistrationPregnant />} />
+                            <Route path='/emailconfirm/:token' element={<EmailConfirm />} />
+                            <Route path='/forgotpassword' element={<ForgotPass />} />
+                            <Route path='/changepassword/:token' element={<ChangePass />} />
+                    </Route>
+                        <Route element={<ProtectedRoutes />}> 
+                            <Route element={<UserLayout />}>
+                                <Route path='/profilemid' element={< MidwifeProfile/>} />
+                                <Route path='/profilepreg' element={< PregnantProfile/>} />
+                            </Route>
+                            <Route path='/infomid' element={<InformationForMidwifes />} />
+                            <Route>
+                                <Route path='/infopreg' element={<InformationForPregnant />} />
+                            </Route>
+                            <Route>
+                                <Route path='/message' element={<Messages />} />
+                            </Route>
                         </Route>
-                        <Route element={<UserLayout />}>
-                            <Route path='/profilemid' element={< MidwifeProfile/>} />
-                            <Route path='/profilepreg' element={< PregnantProfile/>} />
-                        </Route>
-                        <Route path='/infomid' element={<InformationForMidwifes />} />
-                        <Route>
-                            <Route path='/infopreg' element={<InformationForPregnant />} />
-                        </Route>
-                        <Route>
-                            <Route path='/message' element={<Messages />} />
-                        </Route>
-
                     </Routes>
             </BrowserRouter>
             </ContextProvider>   

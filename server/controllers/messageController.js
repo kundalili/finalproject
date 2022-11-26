@@ -175,7 +175,7 @@ module.exports.group = async (req, res) => {
 module.exports.delete = async (req, res) => {
 
 
-    console.log("🚀 ~ message will be deleted: ", req.body)
+    console.log("🚀 ~ message will be deleted: ", req.body._id)
     
     try {
         
