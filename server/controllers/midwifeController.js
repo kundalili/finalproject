@@ -39,54 +39,53 @@ module.exports.list = async (req, res) => {
 }
 
 
- module.exports.edit = async (req, res) => {
-     try {
-        
-        if (!req.body.hasOwnProperty('_id')) {
-            console.log(req.body)
-            res.send({success: false, messages:["_uid is a must"]})
-        } else {
+module.exports.edit = async (req, res) => {
+    try {
 
-                const {userId, name, service, 
-                    city, language, availability, since, about} = req.body
+       if (!req.body.hasOwnProperty('_id')) {
+           console.log(req.body)
+           res.send({success: false, messages:["_uid is a must"]})
+       } else {
 
-                console.log("🚀 ~ edit here: ", req.body)
+               const {_id, name, service, 
+                   city, language, availability, since, about} = req.body
 
-                if (!userId) {
-                    res.send({success: false, error: 'Can not edit without a UserId'})
-                    return
-                }
+               console.log("🚀 ~ edit here: ", req.body)
 
-                const filter = { userId: userId};
-                const update = {};
+               if (!_id) {
+                   res.send({success: false, error: 'Can not edit without a UserId'})
+                   return
+               }
 
-                if (userId) update.userId=userId
-                if (name) update.name=name
-                if (service) update.service=service
-                if (city) update.city=city
-                if (language) update.language=language
-                if (since) update.since=since
-                if (about) update.about=about
-                if (availability) update.availability=availability
-        
-            
-                let user = await Midwife.findOneAndUpdate(filter, update, {
-                    new: true,
-                    upsert: true // Make this update into an upsert
-                });
+               const filter = { userId: _id};
+               const update = {};
 
-                if (!user) {
-                    res.send({success: false, error: 'user can not updated'})
-                    return
-                }
-            
-                res.send({success: true, user: user})
-        }
-     } catch (error) {
-    
-         console.log("🚀 ~ Error in edit", error.message)
+               if (name) update.name=name
+               if (service) update.service=service
+               if (city) update.city=city
+               if (language) update.language=language
+               if (since) update.since=since
+               if (about) update.about=about
+               if (availability) update.availability=availability
 
-         res.send({success: false, error: error.message})
-        
-     }
- }
+
+               let user = await Midwife.findOneAndUpdate(filter, update, {
+                   new: true,
+                   upsert: true // Make this update into an upsert
+               });
+
+               if (!user) {
+                   res.send({success: false, error: 'user can not updated'})
+                   return
+               }
+
+               res.send({success: true, user: user})
+       }
+    } catch (error) {
+
+        console.log("🚀 ~ Error in edit", error.message)
+
+        res.send({success: false, error: error.message})
+
+    }
+}

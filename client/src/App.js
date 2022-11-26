@@ -1,6 +1,6 @@
 import './App.css'; 
 import { AppContext } from './components/Context'
-import Header from './components/Header';
+import Header from './components/NavigationBar/Header';
 import MidwifeList from './components/MidwifeList';
 import Body from './components/Body';
 import Footer from './components/Footer';

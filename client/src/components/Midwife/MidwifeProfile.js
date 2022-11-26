@@ -13,6 +13,20 @@ import Availability from './Availability';
 
 
 export default function Profile() {
+    const services = [
+        'Prenatal examinations',
+        'Postpartum care',
+        'Breastfeeding- and nutrition-advicey',
+        'Attending midwife',
+        'Trauma processing',
+        'Prenatal acupuncture',
+        'Risk support',
+        'Miscarriage',
+        'Scream- and sleep-counseling'
+      ];
+      
+    const [selectedservice, setSelectedservice] = useState([]);
+
   
 const {state, dispatch} = useContext(AppContext)
 const [edited, setEdited] = useState(false);
@@ -53,7 +67,11 @@ const handleImageChange = (e) => {
     const config = {
         Headers: {'content-type': 'multipart/form-data'}
     } 
-    const response = await axios.patch('/user/0/edit', formdata, config)
+    console.log("🚀 data", data)
+
+
+    const response = await axios.put('/user/0/edit', data)
+
     console.log("🚀 response", response)
 
     if (response.data.success) {
@@ -126,17 +144,16 @@ const handleImageChange = (e) => {
                 minRows={10}
                 placeholder="Tell me more about you..."
                 style={{ width: 350 }}
-                value={data.sinc} 
+                value={data.since} 
                 onChange={e => setData({...data, about: e.target.value})}/>
                 </div>
-              <Services value={data.since} 
-                  onChange={e => setData({...data, service: e.target.service})}/>
+              <Services services={services} selectedservice={selectedservice} setSelectedservice={setSelectedservice} />
               <Availability value={data.availability} 
-                  onChange={e => setData({...data, availability: e.target.availability})}/>
+                  onChange={e => setData({...data, availability: e.target.value})}/>
               <City value={data.city} 
-                  onChange={e => setData({...data, city: e.target.city})}/>
+                  onChange={e => setData({...data, city: e.target.value})}/>
               <Language value={data.language} 
-                  onChange={e => setData({...data, language: e.target.language})} />
+                  onChange={e => setData({...data, language: e.target.value})} />
               <label className='cursor-pointer 
                     border-2 border-vividBlue 
                     text-vividBlue 

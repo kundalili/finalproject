@@ -5,7 +5,7 @@ import { AppContext } from '../Context'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-import Header from '../Header';
+import Header from '../NavigationBar/Header';
 import RegistrationBtnMidwife from './RegistrationBtnMidwife';
 
 export default function RegistrationMidwife() {
