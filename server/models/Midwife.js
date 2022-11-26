@@ -10,7 +10,7 @@ const midwifeSchema = new Schema({
         ref: 'User'
     },
     
-    namesurname: {
+    name: {
         type: String,
         required:true,
     } ,
@@ -20,7 +20,7 @@ const midwifeSchema = new Schema({
     },
 
     city: {
-        type: Array
+        type: String
     },
 
     language: {
@@ -36,11 +36,11 @@ const midwifeSchema = new Schema({
     },
 
     about: {
-        type: Array
+        type: String
     },
 
     since: {
-        type: Date
+        type: Number
     },  
 
 

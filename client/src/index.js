@@ -10,11 +10,13 @@ import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
 import InformationForPregnant from './components/Pregnant/InformationForPregnant';
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
 import ContextProvider from './components/Context';
+
 import PregnantProfile from './components/Pregnant/PregnantProfile';
 import RegistrationMidwife from './components/Registration/RegistrationMidwife';
 import RegistrationPregnant from './components/Registration/RegistrationPregnant';
 import LoginMidwife from './components/Login/LoginMidwife'
 import LoginPregnant from './components/Login/LoginPregnant'
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -40,6 +42,10 @@ root.render(
                         <Route>
                             <Route path='/infopreg' element={<InformationForPregnant />} />
                         </Route>
+                        <Route>
+                            <Route path='/message' element={<Messages />} />
+                        </Route>
+
                     </Routes>
             </BrowserRouter>
             </ContextProvider>   

@@ -3,8 +3,10 @@ import { AppContext } from './Context'
 import Service from './Midwife/Service';
 import { useState, useContext } from 'react';
 import axios from 'axios';
+
 import { TextField, Box, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Checkbox}  from '@mui/material'
 import { alignProperty } from '@mui/material/styles/cssUtils';
+
 
 
 
@@ -12,13 +14,14 @@ export default function Profile() {
   const {state, dispatch} = useContext(AppContext)
 
   const [data, setData] = useState({...state.user})
-  console.log(data)
+  
+  console.log("state and data",state, data)
 
   const handleSave = async () => {
 
     const formdata = new FormData()
     
-    console.log("🚀 ~ data", data)
+    console.log("🚀 ~ data and state", data, state)
 
     Object.entries(data).forEach(item => formdata.set(item[0], item[1]))
 
@@ -195,6 +198,7 @@ export default function Profile() {
           <input type="checkbox" id="june" name="june"></input>
           <label for="january">June</label>
         </div> */}
+
     </div>
         
     
