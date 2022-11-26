@@ -47,6 +47,9 @@ export default function Header() {
 
             <Link to='/registerpreg' className='cursor-pointer hover:text-blue-700'>For mothers</Link>
             <Link to='/registermid' className='cursor-pointer hover:text-blue-700'>For midwifes</Link>
+            <div>
+                <Link to='/message'>MESSAGES</Link>
+            </div>
             <Link  to='/'>
                 <LogoutIcon className='cursor-pointer hover:text-blue-700'/>
             </Link> 
