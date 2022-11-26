@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import Header from '../Header';
+import RegistrationBtnMidwife from './RegistrationBtnMidwife';
 
 export default function RegistrationMidwife() {
     const {dispatch} = useContext(AppContext)

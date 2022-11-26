@@ -6,7 +6,7 @@ import { useState, useContext } from 'react';
 import { AppContext } from '../Context'
 import { useNavigate } from 'react-router-dom'
 import Header from '../Header';
-import Language from './Language';
+import Language from '../ProfileDetails/Language';
 
 
 
