@@ -13,29 +13,15 @@ const MenuProps = {
   },
 };
 
+export default function Services(props) {
+ 
 
-const services = [
-  'Prenatal examinations',
-  'Postpartum care',
-  'Breastfeeding- and nutrition-advicey',
-  'Attending midwife',
-  'Trauma processing',
-  'Prenatal acupuncture',
-  'Risk support',
-  'Miscarriage',
-  'Scream- and sleep-counseling'
-];
-
-export default function Services() {
-
-  const [selectedservice, setSelectedservice] = useState([]);
-  const [selected, setSelected] = useState()
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setSelectedservice(typeof value === 'string' ? value.split(',') : value,)
+    props.setSelectedservice(typeof value === 'string' ? value.split(',') : value,)
   }
   
   return (
@@ -46,18 +32,18 @@ export default function Services() {
         labelId="demo-multiple-name-label"
         id="demo-multiple-name"
         multiple
-        value={selectedservice}
+        value={props.selectedservices}
         onChange={handleChange}
         input={<OutlinedInput label="Services" />}
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {services.map((service) => (
+        {props.services.map((service) => (
           <MenuItem
             key={service}
             value={service}
           >
-            <Checkbox checked={selectedservice.indexOf(service) > -1} />
+            <Checkbox checked={props.selectedservice.indexOf(service) > -1} />
               <ListItemText primary={service} />
           
           </MenuItem>
