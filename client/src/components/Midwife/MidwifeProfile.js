@@ -151,11 +151,10 @@ const handleImageChange = (e) => {
                     hover:border-vividBlue flex justify-center items-center'>
                     <input  className='hidden' onChange={handleImageChange} type='file'/>
                     Select an image
-                {/* </button> */}
             </label>
             <img className='w-[300px] h-[300px] rounded-full object-cover' 
                 src={imgUrl} alt=''/>
-          
+        
           </div>
         </>
   )
