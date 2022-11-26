@@ -2,24 +2,26 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Registration from './components/Registration';
 import LoginLayout from './layouts/LoginLayout'
 import UserLayout from './layouts/UserLayout'
-import Login from './components/Login'
 import MidwifeProfile from './components/Midwife/MidwifeProfile'
 import App from './App';
 import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
-import InformationForUsers from './components/User/InformationForUsers'
+import InformationForPregnant from './components/Pregnant/InformationForPregnant';
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
-import Profile from './components/Profile';
 import ContextProvider from './components/Context';
-import Messages from './components/Message/Messages';
+
+import PregnantProfile from './components/Pregnant/PregnantProfile';
+import RegistrationMidwife from './components/Registration/RegistrationMidwife';
+import RegistrationPregnant from './components/Registration/RegistrationPregnant';
+import LoginMidwife from './components/Login/LoginMidwife'
+import LoginPregnant from './components/Login/LoginPregnant'
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ContextProvider>
-  
             <BrowserRouter>
                     <Routes element={<App />}>
                         <Route>
@@ -27,38 +29,24 @@ root.render(
                         </Route>
                         <Route>
                             <Route element={<LoginLayout />} />
-                            <Route path='/login' element={<Login />} />
-                            <Route path='/register' element={<Registration />} />
+                            <Route path='/loginmid' element={<LoginMidwife />} />
+                            <Route path='/loginpreg' element={<LoginPregnant />} />
+                            <Route path='/registermid' element={<RegistrationMidwife />} />
+                            <Route path='/registerpreg' element={<RegistrationPregnant />} />
                         </Route>
                         <Route element={<UserLayout />}>
-                            <Route path='/user' element={< Profile/>} />
+                            <Route path='/profilemid' element={< MidwifeProfile/>} />
+                            <Route path='/profilepreg' element={< PregnantProfile/>} />
                         </Route>
-                        <Route path='/midwifes' element={<InformationForMidwifes />} />
+                        <Route path='/infomid' element={<InformationForMidwifes />} />
                         <Route>
-                            <Route path='/mothers' element={<InformationForUsers />} />
-                        </Route>
-                        <Route>
-                            <Route path='/user' element={<Profile />} />
+                            <Route path='/infopreg' element={<InformationForPregnant />} />
                         </Route>
                         <Route>
                             <Route path='/message' element={<Messages />} />
                         </Route>
 
                     </Routes>
-
             </BrowserRouter>
-            </ContextProvider>
-
-
-    
-       
-//         <BrowserRouter>
-//             <Routes>
-//                <Route>
-//             </Routes>
-//         </BrowserRouter>
+            </ContextProvider>   
 )
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals

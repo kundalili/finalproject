@@ -1,10 +1,9 @@
 import React from 'react'
-import Registration from '../Registration'
 import Header from '../Header'
 
 
 
-export default function InformationForMothers() {
+export default function InformationForPregnant() {
   return (
     <div>
     <Header />
@@ -24,7 +23,6 @@ export default function InformationForMothers() {
             <li>6. Open and already processed requests are displayed with the appropriate status. This way you can keep track.</li>
       </ol>
       </div>
-      <Registration />
     </div>
       )
 }
