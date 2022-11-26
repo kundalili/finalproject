@@ -10,7 +10,7 @@ import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
 import InformationForPregnant from './components/Pregnant/InformationForPregnant';
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
 import ContextProvider from './components/Context';
-
+import Messages from './components/Message/Messages'
 import PregnantProfile from './components/Pregnant/PregnantProfile';
 import RegistrationMidwife from './components/Registration/RegistrationMidwife';
 import RegistrationPregnant from './components/Registration/RegistrationPregnant';
