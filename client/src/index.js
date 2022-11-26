@@ -13,6 +13,7 @@ import InformationForUsers from './components/User/InformationForUsers'
 import DashboardMidwife from './components/Midwife/DashboardMidwife';
 import Profile from './components/Profile';
 import ContextProvider from './components/Context';
+import Messages from './components/Message/Messages';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -39,6 +40,10 @@ root.render(
                         <Route>
                             <Route path='/user' element={<Profile />} />
                         </Route>
+                        <Route>
+                            <Route path='/message' element={<Messages />} />
+                        </Route>
+
                     </Routes>
 
             </BrowserRouter>

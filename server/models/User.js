@@ -21,13 +21,20 @@ const userSchema = new Schema({
     },
     
     type: {
-        type: Object,
+        type: Number,
         required: true,
     },
     
     photo: {
         type: String,
         required: false,
+        default:""
+    },
+
+    fmessages: {
+        type: Array,
+        required: false,
+        default:[]
     }
 
 })

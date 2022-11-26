@@ -2,19 +2,21 @@ import React from 'react'
 import { AppContext } from './Context'
 import { useState, useContext } from 'react';
 import axios from 'axios';
+import Messages from './Message/Messages';
 
 
 export default function Profile() {
   const {state, dispatch} = useContext(AppContext)
 
   const [data, setData] = useState({...state.user})
-  console.log(data)
+  
+  console.log("state and data",state, data)
 
   const handleSave = async () => {
 
     const formdata = new FormData()
     
-    console.log("🚀 ~ data", data)
+    console.log("🚀 ~ data and state", data, state)
 
     // Object.entries(data).forEach(item => formdata.set(item[0], item[1]))
 
@@ -51,8 +53,8 @@ export default function Profile() {
         <input className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'placeholder='' value={data.email}/>
         <p>Type of User</p>
         <input className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'placeholder='' value={data.type}/>
+        <Messages />
 
-        
 
     </div>
         

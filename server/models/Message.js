@@ -20,10 +20,28 @@ const messageSchema = new Schema({
         required:true
     },
 
+    attachments :{
+        type: Array,  
+        required: true,
+        default: []
+    },
+
     date: {
         type: Date,
         required: true,
         default: Date.now 
+    },
+
+    status:{
+        type: Array,  
+        required: true,
+        default: [1,0]
+    },
+
+    flag:{
+        type: Array,  
+        required: true,
+        default: [0,0]
     }
 
  })
