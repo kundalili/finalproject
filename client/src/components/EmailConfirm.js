@@ -17,8 +17,9 @@ function EmailConfirm(props) {
 
             if (response.data.success) {
 
-                setTimeout(() => navigate('/'), 3000)
-
+                response.data.type===0
+                  ?setTimeout(() => navigate('loginmid'), 3000)
+                  :setTimeout(() => navigate('loginpreg'), 3000)
             }
         }
 

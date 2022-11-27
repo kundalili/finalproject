@@ -6,7 +6,7 @@ export default function SendMessage(props) {
     
     const {state} = useContext(AppContext)
 
-    const [users, setUsers] = useState({from:state.user._id, to:props.to})
+    const [users, setUsers] = useState({from:state.user, to:props.to})
     const [text, setText] = useState("")
 
     async function  handleSave(){
@@ -27,6 +27,7 @@ export default function SendMessage(props) {
         setUsers({from:state.user._id, to:e.target.value})
     }
 
+    console.log("props and state", props, state.user)
     return (
      <div>
        !state.user._id  
@@ -34,14 +35,13 @@ export default function SendMessage(props) {
         :<div className='w-[400px] h-[300px] absolute top-[200px] left-[200px]
             bg-slate-200  flex flex-row'>
             {
-                console.log("sender, reciver", props.from, props.to)
-                (props.from._id===props.to._id)
+                (users.from._id===users.to._id)
                     ?<input onChange={handleTo}> Select a user </input>
                     :<div className='flex flex-col'>
                         <img 
                             className='rounded-full w-[30px] h-[30px] object-cover' 
-                            src={'https://res.cloudinary.com/dgqr3qzxk/image/upload/v1668241829/' + props?.user?.photo} alt=''/>
-                        {props?.user?.username}
+                            src={'https://res.cloudinary.com/dgqr3qzxk/image/upload/v1668241829/' + users.photo} alt=''/>
+                        {users.username}
                         <label className='border-2 border-slate-500 flex items-center p-[10px]'>
                         <textarea  
                             rows="4" 
