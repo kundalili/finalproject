@@ -122,18 +122,16 @@ module.exports.login = async (req, res) => {
                 return
             }
     
-            const userFound = await User.find({
+            const userFound = await User.findOne({
                 $or: [{username: username}, {email: email}], //$or: [{username: emailOrUser}, {email: emailOrUser}]
                 verified: true                               //password: password
-            }).select('-__v -password')
-            console.log("🚀 ~ userFound", userFound)
+            }).select('-__v')
+            console.log("🚀 ~ userFound", userFound, password, userFound.password)
     
-            if (!userFound.length) {
-                res.send({success: false, error: 2})
-                return
-            }
-
+            if (!userFound) {res.send({success: false, error: 2})}
+            
             const isMatch = await bcrypt.compare(password, userFound.password)
+            
             console.log("🚀 ~ isMatch", isMatch)
     
             if (!isMatch) return res.send({success: false, error: 3})
@@ -148,7 +146,7 @@ module.exports.login = async (req, res) => {
             const user =  userFound.toObject()
             delete user.password
 
-            res.send({success: true, user: userFound[0]})
+            res.send({success: true, user: userFound})
         } catch (error) {
         
             console.log("🚀 ~ Error in Login users", error.message)

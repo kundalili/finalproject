@@ -38,7 +38,7 @@ root.render(
                             <Route path='/emailconfirm/:token' element={<EmailConfirm />} />
                             <Route path='/forgotpassword' element={<ForgotPass />} />
                             <Route path='/changepassword/:token' element={<ChangePass />} />
-                    </Route>
+                        </Route>
                         <Route element={<ProtectedRoutes />}> 
                             <Route element={<UserLayout />}>
                                 <Route path='/profilemid' element={< MidwifeProfile/>} />
