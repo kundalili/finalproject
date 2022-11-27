@@ -20,6 +20,8 @@ import EmailConfirm from './components/EmailConfirm'
 import ForgotPass from './components/ForgotPass'
 import ChangePass from './components/ChangePass'
 import ProtectedRoutes from './components/ProtectedRoutes'
+import Login from './components/Login/Login';
+import Registration from './components/Registration/Registration';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -33,6 +35,8 @@ root.render(
                             <Route element={<LoginLayout />} />
                             <Route path='/loginmid' element={<LoginMidwife />} />
                             <Route path='/loginpreg' element={<LoginPregnant />} />
+                            <Route path='/register' element={<Registration />} />
+                            <Route path='/login' element={<Login />} />
                             <Route path='/registermid' element={<RegistrationMidwife />} />
                             <Route path='/registerpreg' element={<RegistrationPregnant />} />
                             <Route path='/emailconfirm/:token' element={<EmailConfirm />} />

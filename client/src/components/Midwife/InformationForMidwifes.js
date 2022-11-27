@@ -1,5 +1,7 @@
 import React from 'react'
 import Header from '../NavigationBar/Header'
+import { Link } from 'react-router-dom'
+import MidwifeProfile from './MidwifeProfile'
 
 
 export default function InformationForMidwifes() {
@@ -21,6 +23,8 @@ export default function InformationForMidwifes() {
               <br></br>
               <li>6. Open and already processed requests are displayed with the appropriate status. This way you can keep track.</li>
         </ol>
+        <Link path='/profilemid' element={< MidwifeProfile/>}>
+        </Link> 
         </div>
     </div>
   )
