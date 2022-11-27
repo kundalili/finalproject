@@ -15,7 +15,7 @@ export default function Messages (){
         const [query, setQuery] = useState({to:state.user._id, status:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
         
-        console.log('state and msggroup is', state, msggroup)
+        console.log('Hello from Messages state and msggroup are :', state, msggroup)
 
         useEffect(() => {
             loadDatas()
@@ -36,13 +36,13 @@ export default function Messages (){
         }
         const getGroupData = async () => {
             const response = await axios.post('/message/group', groupQuery)
-            console.log("grouplist and filter", groupQuery, response)
+            // console.log("grouplist and filter", groupQuery, response)
             response.data.users.length>0?setMsggroup(response.data.users):setMsggroup([])
         }
 
         const getMsgData = async () => {
             const response = await axios.post('/message/list',query)
-            console.log("msglistttt", response, query)
+            // console.log("msglistttt", response, query)
             response.data.messages.length>0?setMsglist(response.data.messages):setMsglist([])
         }
 
@@ -51,7 +51,7 @@ export default function Messages (){
             let tmpmsg ={from:0, to:0, unread:msglist.length}
             tmpmsg.unread= query==={to:state.user._id, status:0}?msglist.length:tmpmsg.unread
             msggroup.forEach((item)=>{
-                console.log("message numbers", item.from, item.to, msglist.length )
+                //console.log("message numbers", item.from, item.to, msglist.length )
                 tmpmsg.from+=item.from
                 tmpmsg.to+=item.to
             })
@@ -79,8 +79,8 @@ export default function Messages (){
             )
         }
         
-        console.log("msggroup result", msggroup)
-        console.log("msglist", msglist)
+        // console.log("msggroup result", msggroup)
+        // console.log("msglist", msglist)
         
 
         return (

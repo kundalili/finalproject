@@ -1,7 +1,8 @@
+import { listItemClasses } from '@mui/material'
 import React from 'react'
 import {MdMarkEmailRead} from 'react-icons/md'
 export default function MessageList({item}) {
-  console.log("item",item)
+  console.log("🚀 Hello from Message Card, Props and global are :", item)
   return (
     <div>
       <MdMarkEmailRead />

@@ -30,7 +30,7 @@ module.exports.register = async (req, res) => {
         const userCreated = await User.create( req.body)
         console.log("🚀 ~ userCreated", userCreated)
 
-        const token = jwt.sign({_id: userCreated._id}, process.env.JWT_SECRET, {expiresIn: '1h'})
+        const token = jwt.sign({_id: userCreated._id}, process.env.JWT_SECRET, {expiresIn: '48h'})
 
         sendMail(token,'register')
 
@@ -60,11 +60,8 @@ module.exports.list = async (req, res) => {
         if (email) query.email=email
         if (type) query.type=type
 
-        const users = await User.find(query)   
-        
-        
-
-       
+        const users = await User.find(query).select('-password -email')   
+ 
         console.log("🚀 ~ users", users)
        
         res.send({success: true, users})
@@ -182,6 +179,7 @@ module.exports.emailConfirm = async (req, res) => {
         const decoded = jwt.verify(req.body.token, process.env.JWT_SECRET)
 
         const updatedUser = await User.findByIdAndUpdate({_id: decoded._id}, {verified: true}, {new: true})
+        
         console.log("🚀 ~ updatedUser", updatedUser)
        
         res.send({success: true})
@@ -208,7 +206,7 @@ module.exports.forgotPassword = async (req, res) => {
 
         if (!user) return res.send({success: false, errorId: 10})
 
-        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: '1h'})
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: '4h'})
         console.log("🚀 ~ token", token)
        
         sendMail(token, 'forgotpassword')
