@@ -1,0 +1,27 @@
+.NavBar .MobileNavigation {
+display:none;
+}
+
+@media (max-width: 990px) {
+    .NavBar .Navigation{
+    display:none;}
+
+
+.NavBar .MobileNavigation {
+    display: flex;
+    align-items: center;
+    background: white;
+}
+
+.NavBar nav ul {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 150px;
+    right: 0;
+    width: 100%;
+    background: #e7695b;
+
+}
+}
+

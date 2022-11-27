@@ -102,9 +102,8 @@ const handleImageChange = (e) => {
                     rounded-full 
                     hover:text-white
                     hover:bg-vividBlue 
-                    hover:border-vividBlue'>
-                    SAVE
-                </button> : <div></div> }
+                    hover:border-vividBlue'>UPDATE PROFILE                
+                    </button> : <div></div> }
         </div>
      </div>
      <div className='flex w-full justify-center items-center gap-[20px] flex-col mt-[30px]'>
@@ -147,7 +146,7 @@ const handleImageChange = (e) => {
                 value={data.since} 
                 onChange={e => setData({...data, about: e.target.value})}/>
                 </div>
-              <Services services={services} selectedservice={selectedservice} setSelectedservice={setSelectedservice} />
+              {/* <Services services={services} selectedservice={selectedservice} setSelectedservice={setSelectedservice} /> */}
               <Availability value={data.availability} 
                   onChange={e => setData({...data, availability: e.target.value})}/>
               <City value={data.city} 

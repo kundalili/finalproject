@@ -5,7 +5,7 @@ import './Header.css'
 export default function HeaderDesktop() {
   return (
     <div>
-        <nav className='DesktopNavigation'>
+        <nav className='Navigation'>
         <HeaderLinks />
         </nav>
 
