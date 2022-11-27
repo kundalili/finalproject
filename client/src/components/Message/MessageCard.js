@@ -6,7 +6,8 @@ import {SiMinutemailer} from "react-icons/si"
 import SendMessage from './SendMessage';
 
 export default function MessageCard(props) {
-    console.log("🚀 ~ Card", props)
+    
+    console.log("🚀 Hello from Message Card, Props are :", props)
     
     const {state} = useContext(AppContext)
     const [editModalOpen, setEditModalOpen] = useState(false)
