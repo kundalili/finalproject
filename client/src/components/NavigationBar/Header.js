@@ -28,9 +28,9 @@ export default function Header() {
 
   return (
     <div>
-        <nav className='navigation'>
+        <nav className='NavBar'>
           <HeaderMobile />
-          {/* <HeaderDesktop /> */}
+          <HeaderDesktop />
         </nav>
 
     </div>

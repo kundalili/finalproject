@@ -1,4 +1,5 @@
 import React from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/ina_blue.svg'
 import menu from '../../assets/menu.svg'
@@ -10,16 +11,12 @@ export default function HeaderLinks() {
   return (
     <div>
 
-    <ul className="flex flex-wrap justify-around items-center gap-[10px] p-[30px]" >
-        {/* <Link to='/'>
-            <HomeOutlinedIcon className='cursor-pointer hover:text-blue-700'/>
-        </Link> */}
+    <ul className="flex flex-wrap justify-around items-center gap-[10px] p-[30px]" > 
         <div>
             <Link to='/'><img src={logo} alt='logo'/></Link>
         </div>
         <div>
         <form className='flex flex-row pr-[50px]'>
-
                 <input type="text" className="w-[180px] py-2.5 h-[40px] outline-none border-2 border-vividBlue rounded-full p-[10px] placeholder-lightBlue" placeholder="" />
                 <button type="submit" className='ml-[-40px] mb-[30px]'>
                     <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
