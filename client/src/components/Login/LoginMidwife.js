@@ -39,7 +39,7 @@ export default function Login(props) {
             payload: {...response.data.user}
         })
 
-        navigate('/profilemid')
+        navigate('/infomid')
 
     }
 

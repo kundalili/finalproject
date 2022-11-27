@@ -38,7 +38,7 @@ export default function Login(props) {
             payload: {...response.data.user}
         })
 
-        navigate('/profilepreg')
+        navigate('/infopreg')
 
     }
   }
