@@ -43,13 +43,9 @@ root.render(
                             <Route element={<UserLayout />}>
                                 <Route path='/profilemid' element={< MidwifeProfile/>} />
                                 <Route path='/profilepreg' element={< PregnantProfile/>} />
-                            </Route>
-                            <Route path='/infomid' element={<InformationForMidwifes />} />
-                            <Route>
-                                <Route path='/infopreg' element={<InformationForPregnant />} />
-                            </Route>
-                            <Route>
                                 <Route path='/message' element={<Messages />} />
+                                <Route path='/infomid' element={<InformationForMidwifes />} />
+                                <Route path='/infopreg' element={<InformationForPregnant />} />
                             </Route>
                         </Route>
                     </Routes>
