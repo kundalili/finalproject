@@ -11,14 +11,16 @@ display:none;
     display: flex;
     align-items: center;
     background: white;
+    color: #f7cfcc;
+    font-size: 32px;
 }
+
 
 .NavBar nav  {
     display: flex;
     flex-direction: column;
     position: sticky;
     top: 250px;
-    right: 0;
     width: 250px;
     background: #e7695b;
     border-radius: 0px 30px 30px 0px;
@@ -31,5 +33,6 @@ display:none;
   color: #043bff;
 
 }
+
 }
 

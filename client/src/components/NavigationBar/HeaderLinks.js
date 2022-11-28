@@ -11,7 +11,8 @@ export default function HeaderLinks() {
   return (
     <div >
 
-    <nav  className="flex flex-wrap justify-center items-center h-[510px] gap-[10px] mb-[50px]]" > 
+    <nav  className="flex flex-wrap justify-center 
+items-center h-[510px] gap-[10px] mb-[50px]]" > 
        
         <div>
         {/* <form className='flex flex-row pr-[50px]'>
@@ -24,17 +25,20 @@ export default function HeaderLinks() {
         <div>
             <Link to='/'><img className='' src={logo} alt='logo'/></Link>
         </div>
-        <Link to='/register' className='cursor-pointer hover:text-blue-700 font-bold'>REGISTRATION</Link>
-        <Link to='/login' className='cursor-pointer hover:text-blue-700 font-bold'>LOGIN </Link>
+        <Link to='/register' className='headerLink cursor-pointer font-bold'>REGISTRATION</Link>
+        <Link to='/login' className='headerLink cursor-pointer font-bold'>LOGIN </Link>
         <div>
-            <Link className='cursor-pointer hover:text-blue-700 font-bold' to='/message'>MESSAGES</Link>
+            <Link className='headerLink cursor-pointer font-bold' to='/message'>MESSAGES</Link>
         </div>
-        <Link className='cursor-pointer hover:text-blue-700 font-bold' to='/'>LOGOUT
+        <Link className='headerLink cursor-pointer font-bold' to='/'>LOGOUT
             {/* <LogoutIcon className='cursor-pointer hover:text-blue-700'/> */}
+        </Link>  
+        <Link className='headerLink cursor-pointer font-bold' to='/'>
+        <div className='headerLink cursor-pointer font-bold'>FAQ</div>
         </Link> 
-        <div className='cursor-pointer hover:text-blue-700 font-bold'>FAQ</div>
-        <div className='cursor-pointer hover:text-blue-700 font-bold'>CONTACT</div>
-
+        <Link className='headerLink cursor-pointer font-bold' to='/'>  
+        <div className='headerLink cursor-pointer font-bold'>CONTACT</div>
+        </Link> 
     </nav>
 
 </div>

@@ -1,6 +1,8 @@
 import React from 'react'
 import Header from '../NavigationBar/Header'
 import { Link } from 'react-router-dom'
+import magnifier from '../../assets/search.svg'
+
 
 
 
@@ -8,8 +10,18 @@ export default function InformationForPregnant() {
   return (
     <div>
         <div className='flex flex-col justify-center items-center'>
+        <div>
+        <h1 className='text-[2rem] p-[10px] text-vividBlue font-semibold text-center'>Find your midwife</h1>
+
+        <form className='flex flex-row justify-center items-center pr-[50px]'>
+                <input type="text" className="w-[180px] py-2.5 h-[40px] outline-none border-2 border-vividBlue rounded-full p-[10px] placeholder-lightBlue" placeholder="" />
+                <button type="submit" className='ml-[-40px] mb-[30px]'>
+                    <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
+                </button>
+        </form>
+        </div>
             <div>
-              <h1 className='text-[2rem] p-[10px] text-center'>How does INA work?</h1>
+              <h1 className='text-[2rem] p-[10px] text-center text-vividBlue font-semibold '>How does INA work?</h1>
               <ol className='text-[1rem] p-[10px] bg-yellow-100'>
                     <li>1. Find an available midwife in your area</li>
                     <br></br>
@@ -26,7 +38,7 @@ export default function InformationForPregnant() {
               </div>
           <div className='profileBtn flex flex-col'>
           <div className=''>
-              <Link to='/profilepreg' className='cursor-pointer hover:text-blue-700 font-bold'>
+              <Link to='/profilepreg' className='cursor-pointer  font-bold'>
                 <button  type="submit"
                         className='cursor-pointer 
                         border-2 border-vividBlue 
@@ -46,7 +58,7 @@ export default function InformationForPregnant() {
             </div>
             <br></br>
             <div className=''>
-              <Link to='/message' className='cursor-pointer hover:text-blue-700 font-bold'>
+              <Link to='/message' className='cursor-pointer  font-bold'>
                 <button  type="submit"
                           className='cursor-pointer 
                           border-2 border-vividBlue 
@@ -66,7 +78,7 @@ export default function InformationForPregnant() {
             </div>
             <br></br>
             <div className=''>
-              <Link to='/logout' className='cursor-pointer hover:text-blue-700 font-bold'>
+              <Link to='/logout' className='cursor-pointer  font-bold'>
                     <button  type="submit"
                           className='cursor-pointer 
                           border-2 border-vividBlue 

@@ -33,8 +33,10 @@ export default function RegistrationMidwife() {
         } else alert(response.data.error)
     }
   return (
+    <div>
+      <Header />
     <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
-        <Header />
+        
         <h1 className='text-[1.5rem] p-[10px] text-center'>You are a midwife? </h1>
           <h3 className='text-[1rem] p-[10px] text-center'>Sign up now, easily and for free. On the largest midwife platform in Germany.</h3>
             <TextField placeholder='Type your username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Name" variant="outlined" />
@@ -74,5 +76,7 @@ export default function RegistrationMidwife() {
                     </button>
                   </Link>  
         </div>
+    </div>
+
   )
 }

@@ -20,7 +20,7 @@ export default function ContextProvider({children}) {
     }
 
     const [state, dispatch] = useReducer(reducer, {
-        user: {},
+        user: {}
     })
 
     return <AppContext.Provider value={{state, dispatch}}>
