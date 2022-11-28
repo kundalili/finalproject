@@ -5,10 +5,9 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import LoginLayout from './layouts/LoginLayout'
 import UserLayout from './layouts/UserLayout'
 import MidwifeProfile from './components/Midwife/MidwifeProfile'
+import DashboardPregnant from './components/Pregnant/DashboardPregnant'
+import DashboardMidwife from './components/Midwife/DashboardMidwife'
 import App from './App';
-import InformationForMidwifes from './components/Midwife/InformationForMidwifes'
-import InformationForPregnant from './components/Pregnant/InformationForPregnant';
-import DashboardMidwife from './components/Midwife/DashboardMidwife';
 import ContextProvider from './components/Context';
 import Messages from './components/Message/Messages'
 import PregnantProfile from './components/Pregnant/PregnantProfile';
@@ -22,37 +21,39 @@ import ChangePass from './components/ChangePass'
 import ProtectedRoutes from './components/ProtectedRoutes'
 import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
+import Logout from './components/Logout';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <ContextProvider>
-            <BrowserRouter>
-                    <Routes element={<App />}>
-                        <Route>
-                            <Route path='/' element={<App />} />
-                        </Route>
-                        <Route>
-                            <Route element={<LoginLayout />} />
-                            <Route path='/loginmid' element={<LoginMidwife />} />
-                            <Route path='/loginpreg' element={<LoginPregnant />} />
-                            <Route path='/register' element={<Registration />} />
-                            <Route path='/login' element={<Login />} />
-                            <Route path='/registermid' element={<RegistrationMidwife />} />
-                            <Route path='/registerpreg' element={<RegistrationPregnant />} />
-                            <Route path='/emailconfirm/:token' element={<EmailConfirm />} />
-                            <Route path='/forgotpassword' element={<ForgotPass />} />
-                            <Route path='/changepassword/:token' element={<ChangePass />} />
-                        </Route>
-                        <Route element={<ProtectedRoutes />}> 
-                            <Route element={<UserLayout />}>
-                                <Route path='/profilemid' element={< MidwifeProfile/>} />
-                                <Route path='/profilepreg' element={< PregnantProfile/>} />
-                                <Route path='/message' element={<Messages />} />
-                                <Route path='/infomid' element={<InformationForMidwifes />} />
-                                <Route path='/infopreg' element={<InformationForPregnant />} />
+                <BrowserRouter>
+                        <Routes element={<App />}>
+                            <Route>
+                                <Route path='/' element={<App />} />
                             </Route>
-                        </Route>
-                    </Routes>
-            </BrowserRouter>
-            </ContextProvider>   
+                            <Route>
+                                <Route element={<LoginLayout />} />
+                                <Route path='/loginmid' element={<LoginMidwife />} />
+                                <Route path='/loginpreg' element={<LoginPregnant />} />
+                                <Route path='/register' element={<Registration />} />
+                                <Route path='/login' element={<Login />} />
+                                <Route path='/logout' element={<Logout />} />
+                                <Route path='/registermid' element={<RegistrationMidwife />} />
+                                <Route path='/registerpreg' element={<RegistrationPregnant />} />
+                                <Route path='/emailconfirm/:token' element={<EmailConfirm />} />
+                                <Route path='/forgotpassword' element={<ForgotPass />} />
+                                <Route path='/changepassword/:token' element={<ChangePass />} />
+                            </Route>
+                            <Route element={<ProtectedRoutes />}> 
+                                <Route element={<UserLayout />}>
+                                    <Route path='/profilemid' element={< MidwifeProfile/>} />
+                                    <Route path='/profilepreg' element={< PregnantProfile/>} />
+                                    <Route path='/message' element={<Messages />} />
+                                    <Route path='/infomid' element={<DashboardMidwife />} />
+                                    <Route path='/infopreg' element={<DashboardPregnant />} />
+                                </Route>
+                            </Route>
+                        </Routes>
+                </BrowserRouter>
+    </ContextProvider>   
 )

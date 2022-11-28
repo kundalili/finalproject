@@ -4,7 +4,9 @@ import { useState } from 'react'
 import HeaderLinks from './HeaderLinks'
 import './Header.css'
 import menu from '../../assets/menu.svg'
-import {GrClose} from 'react-icons/gr'
+import { GrClose } from 'react-icons/gr'
+import { Link } from 'react-router-dom'
+import logo from '../../assets/ina_blue.svg'
 
 
 export default function HeaderMobile() {
@@ -26,6 +28,7 @@ export default function HeaderMobile() {
                 />
   return (
     <div>
+       
         <nav className='MobileNavigation flex items-center pb-[30px] bg-coral h-[150px]'>
             {open ? closeIcon : hamburgerIcon}
             {open && <HeaderLinks/>}    

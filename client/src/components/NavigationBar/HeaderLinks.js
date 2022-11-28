@@ -11,7 +11,7 @@ export default function HeaderLinks() {
   return (
     <div >
 
-    <nav  className="flex flex-wrap justify-center items-center gap-[10px] mb-[50px]]" > 
+    <nav  className="flex flex-wrap justify-center items-center h-[510px] gap-[10px] mb-[50px]]" > 
        
         <div>
         {/* <form className='flex flex-row pr-[50px]'>

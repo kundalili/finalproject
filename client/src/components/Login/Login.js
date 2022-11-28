@@ -26,7 +26,7 @@ export default function Login() {
         </div>
         <div className='flex flex-col justify-center items-center my-[30px]'>
             <form className=''>
-                <Link to='/loginpreg'>
+                <Link to='/loginmid'>
                 <button  type="submit"
                         className='cursor-pointer 
                         border-2 border-vividBlue 
