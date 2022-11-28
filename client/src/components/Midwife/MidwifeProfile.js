@@ -56,6 +56,7 @@ const handleImageChange = (e) => {
     formdata.set('username', data.username)
     formdata.set('email', data.email)
     formdata.set('city', data.city)
+    formdata.set('since', data.since)
     formdata.set('service', data.service)
     formdata.set('language', data.language)
     formdata.set('availability', data.availability)
