@@ -38,7 +38,6 @@ root.render(
                                 <Route path='/loginpreg' element={<LoginPregnant />} />
                                 <Route path='/register' element={<Registration />} />
                                 <Route path='/login' element={<Login_Single />} />
-                                <Route path='/logout' element={<Logout />} />
                                 <Route path='/registermid' element={<RegistrationMidwife />} />
                                 <Route path='/registerpreg' element={<RegistrationPregnant />} />
                                 <Route path='/emailconfirm/:token' element={<EmailConfirm />} />
@@ -47,6 +46,7 @@ root.render(
                             </Route>
                             <Route element={<ProtectedRoutes />}> 
                                 <Route element={<UserLayout />}>
+                                    <Route path='/logout' element={<Logout />} />
                                     <Route path='/profilemid' element={< MidwifeProfile/>} />
                                     <Route path='/profilepreg' element={< PregnantProfile/>} />
                                     <Route path='/message' element={<Messages />} />

@@ -19,39 +19,39 @@ const DEBOUNCE_DELAY = 500;
  * 6. I haven't put more time checking some minor test failures( sorry time constraint )
  */
 
-function useSearch(query) {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    if (!query) return;
-    setIsLoading(true);
-    const timeOutId = setTimeout(() => fetchData(query), 500);
-    return () => clearTimeout(timeOutId);
-  }, [query]);
+  function useSearch(query) {
+      const [isLoading, setIsLoading] = useState(false);
+      const [data, setData] = useState([]);
+      useEffect(() => {
+        if (!query) return;
+        setIsLoading(true);
+        const timeOutId = setTimeout(() => fetchData(query), 500);
+        return () => clearTimeout(timeOutId);
+      }, [query]);
 
-  function fetchData() {
-    setData([]);
-    let cancel;
-    axios({
-      method: "GET",
-      url: "http://localhost:4000/user/list",
-      params: { username: query },
-      cancelToken: new axios.CancelToken((c) => (cancel = c)),
-    })
-      .then((res) => {
-        setIsLoading(false);
-        setData(res.data);
-      })
-      .catch((e) => {
-        if (axios.isCancel(e)) return;
-      });
-    return () => cancel();
-  }
-  return { data, isLoading };
+      function fetchData() {
+        setData([]);
+        let cancel;
+        axios({
+          method: "GET",
+          url: "http://localhost:4000/user/list",
+          params: { username: query },
+          cancelToken: new axios.CancelToken((c) => (cancel = c)),
+        })
+          .then((res) => {
+            setIsLoading(false);
+            setData(res.data);
+          })
+          .catch((e) => {
+            if (axios.isCancel(e)) return;
+          });
+        return () => cancel();
+      }
+    return { data, isLoading };
 }
 
 //not so familier with bulma so not spending more time on finding classname (sorry)
-export default function App() {
+export default function UserSelect() {
   const [query, setQuery] = useState("");
   const { data, isLoading } = useSearch(query);
 

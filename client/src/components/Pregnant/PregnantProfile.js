@@ -52,7 +52,7 @@ const handleImageChange = (e) => {
     console.log("🚀 data", data)
 
 
-    const response = await axios.put('/user/0/edit', data)
+    const response = await axios.put('/user/1/edit', data)
 
     console.log("🚀 response", response)
 

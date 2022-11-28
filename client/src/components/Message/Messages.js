@@ -37,13 +37,13 @@ export default function Messages (){
         const getGroupData = async () => {
             const response = await axios.post('/message/group', groupQuery)
             // console.log("grouplist and filter", groupQuery, response)
-            response.data.users.length>0?setMsggroup(response.data.users):setMsggroup([])
+            response?.data?.users?.length>0?setMsggroup(response.data.users):setMsggroup([])
         }
 
         const getMsgData = async () => {
             const response = await axios.post('/message/list',query)
             // console.log("msglistttt", response, query)
-            response.data.messages.length>0?setMsglist(response.data.messages):setMsglist([])
+            response?.data?.messages?.length>0?setMsglist(response.data.messages):setMsglist([])
         }
 
                 

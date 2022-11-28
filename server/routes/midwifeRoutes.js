@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router();
 const {auth} = require('../middlewares/auth');
 
-const userController = require('../controllers/midwifeController')
+const midwifeController = require('../controllers/midwifeController')
 
-router.put('/edit', auth, userController.edit)
-router.get('/list', auth, userController.list)
+router.put('/edit', auth, midwifeController.edit)
+router.get('/list', auth, midwifeController.list)
 
 module.exports =  router;
