@@ -13,6 +13,7 @@ import Messages from './components/Message/Messages'
 import PregnantProfile from './components/Pregnant/PregnantProfile';
 import RegistrationMidwife from './components/Registration/RegistrationMidwife';
 import RegistrationPregnant from './components/Registration/RegistrationPregnant';
+import Login_Single from './components/Login/Login_Single'
 import LoginMidwife from './components/Login/LoginMidwife'
 import LoginPregnant from './components/Login/LoginPregnant'
 import EmailConfirm from './components/EmailConfirm'
@@ -36,7 +37,7 @@ root.render(
                                 <Route path='/loginmid' element={<LoginMidwife />} />
                                 <Route path='/loginpreg' element={<LoginPregnant />} />
                                 <Route path='/register' element={<Registration />} />
-                                <Route path='/login' element={<Login />} />
+                                <Route path='/login' element={<Login_Single />} />
                                 <Route path='/logout' element={<Logout />} />
                                 <Route path='/registermid' element={<RegistrationMidwife />} />
                                 <Route path='/registerpreg' element={<RegistrationPregnant />} />

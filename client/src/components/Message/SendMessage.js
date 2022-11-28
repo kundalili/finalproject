@@ -40,14 +40,11 @@ export default function SendMessage(props) {
     }
 
     return (
-     <div>
-       !users.from._id  
-        ?<span>From User is missing</span>
-        :<div className='w-[400px] h-[300px] absolute top-[200px] left-[200px]
+        <div className='w-[400px] h-[300px] absolute top-[200px] left-[200px]
             bg-slate-200  flex flex-row'>
             {
                 (users.from._id===users.to._id)
-                    ?<><input type="text"> Select a user </input></>
+                    ?<div><input type="text"> Select a user </input></div>
                     :<div className='flex flex-col'>
                         <img 
                             className='rounded-full w-[30px] h-[30px] object-cover' 
@@ -67,6 +64,5 @@ export default function SendMessage(props) {
                     </div>
             }
         </div>
-     </div>
     )
 }

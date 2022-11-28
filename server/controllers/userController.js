@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt')
 const SALT_ROUNDS = 10;
 const jwt = require('jsonwebtoken');
 const { sendMail } = require('../utilities/mail');
+const { listenerCount } = require('../models/User');
 
 module.exports.register = async (req, res) => {
 
@@ -14,9 +15,9 @@ module.exports.register = async (req, res) => {
 
         const {email, username, password} = req.body;
 
-        if (!email || !username || !password ) {
+        if (!email || !username || !password || !(email.includes("@")) ) {
             console.log("data", req.body)
-            res.send({success: false, error: 'validation failed'})
+            res.send({success: false, error: 'Validation failed, All fields must be filled '})
 
             return
         }
@@ -37,8 +38,9 @@ module.exports.register = async (req, res) => {
         res.send({success: true})
 
     } catch (error) {
-        console.log("Error: 1", error.message)
-        res.send({success: false, error: error.message})
+        let myerr = !error.message.startsWith ("E11000")? error.message : "username or email is already used"
+        console.log("Error: 1", myerr)
+        res.send({success: false, error: myerr})
 
     }
   
@@ -112,26 +114,26 @@ module.exports.login = async (req, res) => {
             
             console.log("🚀 ~ login here: ")
     
-            const {email, username, password} = req.body // emailOrUser, password
-    
+            let {email, username, password} = req.body // emailOrUser, password
+
             if ((!email && !username ) || !password) { // !emailOrUser || !password
                 res.send({success: false, error: 1})
                 return
             }
-    
-            const userFound = await User.findOne({
-                $or: [{username: username}, {email: email}], //$or: [{username: emailOrUser}, {email: emailOrUser}]
-                verified: true                               //password: password
-            }).select('-__v')
-            console.log("🚀 ~ userFound", userFound, password, userFound.password)
-    
-            if (!userFound) {res.send({success: false, error: 2})}
+
+            let query = (username.includes("@")) ? {email: email} : {username: username}
+
+            const userFound = await User.findOne(query).select('-__v')
+            
+            if (!userFound) return res.send({success: false, error: 2})
+             
+            if (!userFound.verified) return res.send({success: false, error: 3})
             
             const isMatch = await bcrypt.compare(password, userFound.password)
             
             console.log("🚀 ~ isMatch", isMatch)
     
-            if (!isMatch) return res.send({success: false, error: 3})
+            if (!isMatch) return res.send({success: false, error: 4})
 
             // payload, secretkey, options
             const token = jwt.sign({_id: userFound._id}, process.env.JWT_SECRET, {expiresIn: '1h'})
