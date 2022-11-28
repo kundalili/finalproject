@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
+import UserSelect from "../Selections/UserSelect"
 
 export default function SendMessage(props) {
     
@@ -44,7 +45,7 @@ export default function SendMessage(props) {
             bg-slate-200  flex flex-row'>
             {
                 (users.from._id===users.to._id)
-                    ?<div><input type="text"> Select a user </input></div>
+                    ?<div><UserSelect/></div>
                     :<div className='flex flex-col'>
                         <img 
                             className='rounded-full w-[30px] h-[30px] object-cover' 

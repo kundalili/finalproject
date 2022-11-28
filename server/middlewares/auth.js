@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-module.exports.auth = async (req, res) => {
+module.exports.auth = async (req, res, next) => {
 
     try {
         
@@ -13,7 +13,7 @@ module.exports.auth = async (req, res) => {
         
         if (!decoded._id) return res.send({success: false, errorId: 9})
 
-        next(decoded._id)
+        next()
     } catch (error) {
         
         console.log("🚀 ~ Error in auth", error.message)
