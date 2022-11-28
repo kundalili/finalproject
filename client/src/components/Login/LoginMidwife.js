@@ -51,8 +51,8 @@ export default function Login(props) {
         <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
             <div className='flex justify-center items-center gap-[10px]'>
                 <TextField placeholder='Type your username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Username" variant="outlined" />
-                  <p> OR </p>
-                <TextField placeholder='Type your email' value={data.email} onChange={e => setData({...data, email: e.target.value})} id="outlined-basic" label="Email" variant="outlined" />
+                  {/* <p> OR </p>
+                <TextField placeholder='Type your email' value={data.email} onChange={e => setData({...data, email: e.target.value})} id="outlined-basic" label="Email" variant="outlined" /> */}
             </div>
             <TextField placeholder='Type your password' value={data.password} onChange={e => setData({...data, password: e.target.value})} id="outlined-basic" label="Password" variant="outlined" />
             <button  type="submit" onClick={handleLogin}

@@ -70,8 +70,8 @@ const handleImageChange = (e) => {
   }  
   return (
     <>        
-    <div className='text-[2rem]  text-center'>MIDWIFE PAGE</div>
-     <div className="dropdown h-[100px] bg-red-300 flex justify-center items-center">
+    <div className='text-[2rem]  text-center'>PREGNANT PAGE</div>
+     <div className="flex justify-center items-center">
         <div> { edited ? <button onClick={handleSave} type="submit"
                     className='cursor-pointer 
                     border-2 border-vividBlue 
@@ -82,6 +82,7 @@ const handleImageChange = (e) => {
                     h-[68px] 
                     outline-none 
                     rounded-full 
+                    m-[20px]
                     hover:text-white
                     hover:bg-vividBlue 
                     hover:border-vividBlue'>UPDATE PROFILE                

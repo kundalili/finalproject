@@ -14,6 +14,7 @@ module.exports = {
       'softRed': '#E7695B',
       'lotionPink':'#f7cfcc',
       'darkGray':'#3E3E3E'
+      
   },},
  
   plugins: [],

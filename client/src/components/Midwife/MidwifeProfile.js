@@ -29,14 +29,14 @@ export default function Profile() {
 
   
 const {state, dispatch} = useContext(AppContext)
+
 const [edited, setEdited] = useState(false);
 const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
 const [file, setFile] = useState(null)
 
 const handleImageChange = (e) => {
 
-      console.log('file is', e.currentTarget.files[0])
-
+      console.log('my photo is', e.currentTarget.files[0])
       const url = URL.createObjectURL(e.currentTarget.files[0])
 
       setImgUrl(url)
@@ -71,7 +71,7 @@ const handleImageChange = (e) => {
     console.log("🚀 data", data)
 
 
-    const response = await axios.put('/user/0/edit', data)
+    const response = await axios.patch('/user/0/edit', data)
 
     console.log("🚀 response", response)
 
@@ -90,21 +90,22 @@ const handleImageChange = (e) => {
   return (
       <>        
     <div className='text-[2rem]  text-center'>MIDWIFE PAGE</div>
-     <div className="dropdown h-[100px] bg-red-300 flex justify-center items-center">
-        <div> { edited ?       <button onClick={handleSave} type="submit"
+     <div className="flex justify-center items-center">
+        <div> 
+            <button onClick={handleSave} type="submit"
                     className='cursor-pointer 
                     border-2 border-vividBlue 
                     text-vividBlue 
                     font-semibold 
                     hover:border-2
-                    text-center w-[312px] 
+                    text-center w-[200px] 
                     h-[68px] 
                     outline-none 
                     rounded-full 
                     hover:text-white
                     hover:bg-vividBlue 
                     hover:border-vividBlue'>UPDATE PROFILE                
-                    </button> : <div></div> }
+             </button> 
         </div>
      </div>
      <div className='flex w-full justify-center items-center gap-[20px] flex-col mt-[30px]'>
@@ -112,7 +113,7 @@ const handleImageChange = (e) => {
                   <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                   placeholder='' value={data.username} 
                   onChange={e => setData({...data, username: e.target.value})}
-                  onChange={e => setEdited(true)}
+                //   onChange={e => setEdited(true)}
                   id="outlined-basic"  label="Username" variant="standard" />
               </div>
               <div className='flex justify-center items-center'>
@@ -134,7 +135,8 @@ const handleImageChange = (e) => {
                   id="outlined-basic" label="Name" variant="standard" />
               </div>
               <div className='flex justify-center items-center'>
-                  <TextField id="outlined-basic" label="Midwife since" variant="outlined" value={data.since} 
+                  <TextField id="outlined-basic" label="Midwife since" variant="outlined" 
+                  value={data.since} 
                   onChange={e => setData({...data, since: e.target.value})}/>
               </div>
               <div>About me</div>
@@ -144,7 +146,7 @@ const handleImageChange = (e) => {
                 minRows={10}
                 placeholder="Tell me more about you..."
                 style={{ width: 350 }}
-                value={data.since} 
+                value={data.about} 
                 onChange={e => setData({...data, about: e.target.value})}/>
                 </div>
               {/* <Services services={services} selectedservice={selectedservice} setSelectedservice={setSelectedservice} /> */}
@@ -154,12 +156,12 @@ const handleImageChange = (e) => {
                   onChange={e => setData({...data, city: e.target.value})}/>
               <Language value={data.language} 
                   onChange={e => setData({...data, language: e.target.value})} />
-              <label className='cursor-pointer 
+                <label className='cursor-pointer 
                     border-2 border-vividBlue 
                     text-vividBlue 
                     font-semibold 
                     hover:border-2
-                    text-center w-[312px] 
+                    text-center w-[200px] 
                     h-[68px] 
                     outline-none 
                     rounded-full 
@@ -168,10 +170,10 @@ const handleImageChange = (e) => {
                     hover:border-vividBlue flex justify-center items-center'>
                     <input  className='hidden' onChange={handleImageChange} type='file'/>
                     Select an image
-            </label>
-            <img className='w-[300px] h-[300px] rounded-full object-cover' 
-                src={imgUrl} alt=''/>
-        
+                </label>
+                <img className='w-[300px] h-[300px] rounded-full object-cover' 
+                    src={imgUrl} alt='profile'/>
+             <button onClick={handleSave}>Save Profile</button>
           </div>
         </>
   )

@@ -15,15 +15,25 @@ export default function Footer() {
 <div style={{ backgroundImage:`url(${bg_dot})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
     height: '83vh', width: '100vw'}} >      
     <footer className='h-[500px]'>
-    <div className='newsletter h-[210px] flex flex-row justify-center items-center'>
-      <button></button>
-    <form className=''>
-            <input type="text" className="text-center w-[212px] py-2.5 h-[68px] outline-none rounded-full p-[10px] placeholder-coral" placeholder="Subscribe to Newsletter" />
-      </form>
-      <form className=''>
-            <input type="text" className="text-center w-[212px] py-2.5 h-[68px] outline-none rounded-full p-[10px] placeholder-coral" placeholder="Subscribe to Newsletter" />
-      </form>
-      </div>
+    <div className='newsletter h-[210px] flex flex-col gap-[20px] justify-center items-center'>
+          <form>
+            <input type="text" className="text-center w-[212px] py-2.5 h-[68px] outline-none rounded-md p-[10px] placeholder-coral" placeholder="Type your email" />
+            </form>
+            <button  type="submit"
+                    className='cursor-pointer 
+                    border-2 border-coral
+                    bg-white 
+                    text-coral 
+                    text-center w-[212px] 
+                    h-[68px] 
+                    rounded-full 
+                    hover:text-vividBlue
+                    hover:bg-vividBlue 
+                    hover:border-vividBlue
+                   '>
+                    Subscribe 
+                    </button>
+    </div>
       <div className='flex justify-center'>
         <img className='absolute z-1' src={mother2} alt='pregnant_yoga'/>
         <img className='socialIcon absolute z-2 w-[50px] mt-[100px]'src={facebook} alt='logo'/>

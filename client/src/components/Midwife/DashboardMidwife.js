@@ -26,7 +26,7 @@ export default function InformationForMidwifes() {
           </div>
       <div className='profileBtn flex flex-col'>
       <div className=''>
-          <Link to='/profilemid' className='cursor-pointer hover:text-blue-700 font-bold'>
+          <Link to='/profilemid' className='cursor-pointer font-bold'>
             <button  type="submit"
                     className='cursor-pointer 
                     border-2 border-vividBlue 
@@ -46,7 +46,7 @@ export default function InformationForMidwifes() {
         </div>
         <br></br>
         <div className=''>
-          <Link to='/message' className='cursor-pointer hover:text-blue-700 font-bold'>
+          <Link to='/message' className='cursor-pointer  font-bold'>
             <button  type="submit"
                       className='cursor-pointer 
                       border-2 border-vividBlue 
@@ -66,7 +66,7 @@ export default function InformationForMidwifes() {
         </div>
         <br></br>
         <div className=''>
-          <Link to='/logout' className='cursor-pointer hover:text-blue-700 font-bold'>
+          <Link to='/logout' className='cursor-pointer font-bold'>
                 <button  type="submit"
                       className='cursor-pointer 
                       border-2 border-vividBlue 
