@@ -2,10 +2,10 @@ const Message = require('../models/Message')
 const User = require('../models/User')
 const mongoose = require('mongoose');
 
-module.exports.send = async (req, res) => {
+module.exports.send = async (req, res, next) => {
 
     const {from, to, text} = req.body;
-
+    console.log("next:",next)
 
     try {
         console.log("🚀 ~ message send: ", req.body)
@@ -28,8 +28,8 @@ module.exports.send = async (req, res) => {
   
 }
 
-module.exports.list = async (req, res) => {
-    
+module.exports.list = async (req, res, next) => {
+    console.log("next:",next)
     try {
         console.log(req.body, req.body.hasOwnProperty('userId'))
 

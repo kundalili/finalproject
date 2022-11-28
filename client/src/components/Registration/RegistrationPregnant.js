@@ -29,8 +29,8 @@ export default function RegistrationPregnant() {
                 type: 'login',
                 payload: {...response.data.user}
             })
-            navigate('/profilepreg')
-        }
+            navigate('/login')
+        } else alert(response.data.error)
     }
   return (
     <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
