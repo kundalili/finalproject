@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
+
 // you should import `lodash` as a whole module
 //import lodash from "lodash";
-//import axios from "axios";
+import axios from "axios";
 
 const ITEMS_API_URL = "http://localhost:4000/user/list";
 const DEBOUNCE_DELAY = 500;
@@ -66,10 +66,11 @@ export default function App() {
     alert("selected: " + data[index]);
   }
 
+
   return (
     <div className="wrapper">
       <div className="control">
-        <div className={classnames("control", { "is-loading": isLoading })}>
+        <div className={`control ${isLoading ? 'is-loading' : ''}`}>
           <input type="text" className="input" onChange={handleSearch} />
         </div>
         {data.length > 0 && !isLoading && (
