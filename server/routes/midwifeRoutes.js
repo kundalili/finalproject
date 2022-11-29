@@ -4,7 +4,7 @@ const {auth} = require('../middlewares/auth');
 
 const midwifeController = require('../controllers/midwifeController')
 
-router.put('/edit', auth, midwifeController.edit)
+router.patch('/edit', auth, midwifeController.edit)
 router.get('/list', auth, midwifeController.list)
 
 module.exports =  router;

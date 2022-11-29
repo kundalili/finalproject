@@ -6,7 +6,7 @@ const userController = require('../controllers/userController')
 
 router.get('/logout', auth, userController.logout)
 router.get('/list', auth, userController.list)
-router.put('/edit', auth, userController.edit)
+router.patch('/edit', auth, userController.edit)
 
 router.post('/login', userController.login)
 router.post('/delete', userController.login)
