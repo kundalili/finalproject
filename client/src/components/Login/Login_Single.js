@@ -59,30 +59,34 @@ export default function Login_Single(props) {
 
   }
   return (
-      <>
-        <Header />
-        
-        <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col'>  
-            <div className='flex justify-center items-center gap-[10px]'>
-                <TextField placeholder='Type your username or email' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Username" variant="outlined" />
-            </div>
-            <TextField placeholder='Type your password' value={data.password} onChange={e => setData({...data, password: e.target.value})} id="outlined-basic" label="Password" variant="outlined" />
-            <button  type="submit" onClick={handleLogin}
-                        className='cursor-pointer 
-                        border-2 border-vividBlue 
-                        text-vividBlue 
-                        font-semibold 
-                        hover:border-2
-                        text-center w-[312px] 
-                        h-[68px] 
-                        outline-none 
-                        rounded-full 
-                        hover:text-white
-                        hover:bg-vividBlue 
-                        hover:border-vividBlue'>
-                        LOGIN
-                    </button>
-        </div>  
-      </>
+    <>
+    <Header />
+    
+    <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col bg-softBlue'>
+      <h2 className='text-4xl text-vividBlue font-bold text-center'>Do you have already an account?</h2> 
+        <div className='flex justify-center items-center gap-[10px]'>
+            <input className='h-[68px] w-[300px] text-center placeholder-softBlue text-xl' placeholder='Email/Username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Username" variant="none" />
+        </div>
+        <input className='h-[68px] w-[300px] text-center placeholder-softBlue text-xl'
+        placeholder='Password' value={data.password} onChange={e => setData({...data, password: e.target.value})} label="Password"  />
+        <button  type="submit" onClick={handleLogin}
+                    className='cursor-pointer 
+                    border-2 border-vividBlue 
+                    text-vividBlue 
+                    font-semibold 
+                    hover:border-2
+                    text-center w-[312px] 
+                    h-[68px] 
+                    outline-none 
+                    rounded-full 
+                    hover:text-white
+                    hover:bg-vividBlue 
+                    hover:border-vividBlue'>
+                    Login
+                </button>
+    </div>  
+  </>
+
         )
 }
+

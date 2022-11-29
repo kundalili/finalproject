@@ -13,7 +13,8 @@ module.exports = {
       'lightBlue':'#7B98FF',
       'softRed': '#E7695B',
       'lotionPink':'#f7cfcc',
-      'darkGray':'#3E3E3E'
+      'darkGray':'#3E3E3E',
+      'softBlue':'#b4c5ff'
       
   },},
  
