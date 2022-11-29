@@ -30,20 +30,56 @@ const userSchema = new Schema({
         required: false,
         default:""
     },
-
-    fmessages: {
-        type: Array,
-        required: false,
-        default:[]
-    },
-    
+   
     verified: {
         type: Boolean,
-        default: false,
+        default: false
     },
     resetToken: {
         type: String
+    },
+    name: {
+        type: String,
+        default:""
+    } ,
+
+    service: {
+        type: Array,
+        default:[]
+    },
+
+    city: {
+        type: String,
+        default:""
+    },
+
+    language: {
+        type: Array,
+        default:[]
+    },
+
+    photo: {
+        type: String,
+        default:""
+    },
+
+    availability: {
+        type: Array,
+        default:[]
+    },
+
+    about: {
+        type: String,
+        default:""
+    },
+
+    since: {
+        type: Number
+    },
+    duedate: {
+        type: Date
     }
+
 })
 
 module.exports = mongoose.model('User', userSchema)

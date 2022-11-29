@@ -48,9 +48,9 @@ const handleImageChange = (e) => {
 
   const handleSave = async () => {
 
-  const formdata = new FormData()
+    const formdata = new FormData()
     
-  console.log("🚀 ~ data", data)
+    console.log("🚀 ~ data", data)
 
     formdata.set('userId', data.userId)
     formdata.set('username', data.username)
@@ -71,7 +71,7 @@ const handleImageChange = (e) => {
     console.log("🚀 data", data)
 
 
-    const response = await axios.patch('/user/0/edit', data)
+    const response = await axios.patch('/user/edit', data)
 
     console.log("🚀 response", response)
 

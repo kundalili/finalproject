@@ -5,7 +5,7 @@ module.exports.list = async (req, res) => {
 
     try {
         
-        const {userId, username, name, service, 
+        const {userId, username, name, service,
             city, language, availability, since, about} = req.body
         
         let query = {}
@@ -25,7 +25,7 @@ module.exports.list = async (req, res) => {
         const user = await Midwife.find(query)
                     .populate({
                         path: 'userId',
-                        select: '_uid username email photo'
+                        select: '_id username email photo'
                     })
        
         res.send({success: true, user})
@@ -68,17 +68,22 @@ module.exports.list = async (req, res) => {
                 if (about) update.about=about
                 if (availability) update.availability=availability
         
-            
-                let user = await Midwife.findOneAndUpdate(filter, update, {
-                    new: true,
-                    upsert: true // Make this update into an upsert
-                });
+                console.log("filter", filter,update)
+                let userprofile = await Midwife.findOneAndUpdate(filter, update, {
+                   upsert: true // Make this update into an upsert
+                })
 
-                if (!user) {
-                    res.send({success: false, error: 'user can not updated'})
+                if (!userprofile) {
+                    res.send({success: false, error: 'user can not be updated'})
                     return
                 }
-            
+                
+                let user = {
+                    ...req.body,
+                    ...userprofile
+                }
+
+                console.log("", user)
                 res.send({success: true, user: user})
         }
      } catch (error) {

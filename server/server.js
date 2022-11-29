@@ -10,8 +10,6 @@ app.use(express.json()) // to process the req.body
 app.use(cookieParser())
 
 app.use('/user', require('./routes/userRoutes'))
-app.use('/user/0', require('./routes/midwifeRoutes'))
-app.use('/user/1', require('./routes/pregnantRoutes'))
 app.use('/message', require('./routes/messageRoutes'))
 
 

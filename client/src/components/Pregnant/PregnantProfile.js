@@ -13,7 +13,7 @@ export default function PregnantProfile(props) {
 
 
 const {state, dispatch} = useContext(AppContext)
-const [edited, setEdited] = useState(false);
+const [edited, setEdited] = useState(true);
 const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
 const [file, setFile] = useState(null)
 
@@ -52,7 +52,7 @@ const handleImageChange = (e) => {
     console.log("🚀 data", data)
 
 
-    const response = await axios.put('/user/1/edit', data)
+    const response = await axios.patch('/user/edit', data)
 
     console.log("🚀 response", response)
 
@@ -94,44 +94,37 @@ const handleImageChange = (e) => {
                   <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                   placeholder='' value={data.username} 
                   onChange={e => setData({...data, username: e.target.value})}
-                  onChange={e => setEdited(true)}
                   id="outlined-basic"  label="Username" variant="standard" />
               </div>
               <div className='flex justify-center items-center'>
                   <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                   placeholder='' value={data.email} 
                   onChange={e => setData({...data, email: e.target.value})}
-                  onChange={e => setEdited(true)}
                   id="outlined-basic" label="Email" variant="standard" />
               </div>
               <div className='flex justify-center items-center'>
                   <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                   placeholder='' value={data.password} 
                   onChange={e => setData({...data, password: e.target.value})} 
-                  onChange={e => setEdited(true)}
                   id="outlined-basic" label="Password" variant="standard" />
               </div>
               <div className='flex justify-center items-center'>
                   <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                   placeholder='' value={data.name} 
                   onChange={e => setData({...data, name: e.target.value})}
-                  onChange={e => setEdited(true)} 
                   id="outlined-basic" label="Name" variant="standard" />
               </div>
               <div className='flex justify-center items-center'>
                   <TextField id="outlined-basic" label="Due date" variant="outlined" value={data.duedate} 
                   onChange={e => setData({...data, duedate: e.target.value})}
-                  onChange={e => setEdited(true)}
                   />
               </div>
                       
               <City value={data.city} 
                   onChange={e => setData({...data, city: e.target.value})}
-                  onChange={e => setEdited(true)}
                   />
               <Language value={data.language} 
                   onChange={e => setData({...data, language: e.target.value})}
-                  onChange={e => setEdited(true)}
                   />
               <label className='cursor-pointer 
                     border-2 border-vividBlue 
@@ -147,7 +140,6 @@ const handleImageChange = (e) => {
                     hover:border-vividBlue flex justify-center items-center'>
                     <input  className='hidden' 
                     onChange={handleImageChange} 
-                    onChange={e => setEdited(true)}
                     type='file'
                     />
                     Select an image

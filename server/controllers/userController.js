@@ -1,4 +1,7 @@
 const User = require('../models/User')
+const Midwife = require('../models/Midwife')
+const Pregnant = require('../models/Pregnant')
+
 const bcrypt = require('bcrypt')
 const SALT_ROUNDS = 10;
 const jwt = require('jsonwebtoken');
@@ -50,16 +53,13 @@ module.exports.list = async (req, res) => {
 
     try {
         
-        const {_id, username, email, type, namesurname, service, 
+        const {_id, username, email, type, name, service, 
             city, language, availability, since, about, duedate} = req.body
         
         let query = {}
-        let querymidwife = {}
-        let querypregnant = {}
 
         if (_id) query._id=_id
         if (username) query.username=username
-        if (email) query.email=email
         if (type) query.type=type
 
         const users = await User.find(query).select('-password -email')   
@@ -81,15 +81,16 @@ module.exports.list = async (req, res) => {
         
          console.log("🚀 ~ edit here: ", req.body)
 
-         const {username, email, password} = req.body;
+         const {_id, username, email, password} = req.body
 
-         if (!(email || !username || !password )) {
+         if ((email==="") || (username==="") || (password==="" )) {
              res.send({success: false, error: 'validation failed'})
 
              return
          }
 
-         const user = await User.findByIdAndUpdate(req.body._id, {email, username, password}, {new: true})
+         
+         const user = await User.findByIdAndUpdate(req.body._id, req.body, {new: true})
          console.log("🚀 ~ user", user)
 
          if (!user) {
@@ -123,7 +124,7 @@ module.exports.login = async (req, res) => {
 
             let query = (username.includes("@")) ? {email: email} : {username: username}
 
-            const userFound = await User.findOne(query).select('-__v')
+            let userFound = await User.findOne(query).select('-__v')
             
             if (!userFound) return res.send({success: false, error: 2})
              
@@ -142,8 +143,9 @@ module.exports.login = async (req, res) => {
             res.cookie('myina', token)
     
             // remove password from userfound
-            const user =  userFound.toObject()
-            delete user.password
+
+            
+            console.log("profile and user", userFound )
 
             res.send({success: true, user: userFound})
         } catch (error) {

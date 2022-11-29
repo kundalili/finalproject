@@ -22,7 +22,7 @@ module.exports.list = async (req, res) => {
         const user = await Pregnant.find(query)
                     .populate({
                         path: 'userId',
-                        select: '_uid username email photo'
+                        select: '_id username email photo'
                     })
        
         res.send({success: true, user})
@@ -36,43 +36,54 @@ module.exports.list = async (req, res) => {
 }
 
  module.exports.edit = async (req, res) => {
-     try {
+    try {
         
-        const {userId, namesurname, service, connected,
-            city, language, availability, duedate} = req.body
+        if (!req.body.hasOwnProperty('_id')) {
+            console.log(req.body)
+            res.send({success: false, messages:["_id is a must"]})
+        } else {
 
-        console.log("🚀 ~ edit here: ", req.body)
+                const {_id, name, service, 
+                    city, language, availability, since, about} = req.body
 
-        if (!userId) {
-             res.send({success: false, error: 'Can not edit without a UserId'})
-             return
-         }
+                console.log("🚀 ~ edit here: ", req.body)
 
-        const filter = { userId: userId};
-        const update = {};
+                if (!_id) {
+                    res.send({success: false, error: 'Can not edit without a UserId'})
+                    return
+                }
 
-        if (userId) update.userId=userId
-        if (namesurname) update.namesurname=namesurname
-        if (service) update.service=service
-        if (city) update.city=city
-        if (language) update.language=language
-        if (duedate) update.duedate=duedate
-        if (connected) update.connected=connected
-        if (availability) update.availability=availability
+                const filter = { userId: _id};
+                const update = {};
+
+                if (userId) update.userId=userId
+                if (namesurname) update.namesurname=namesurname
+                if (service) update.service=service
+                if (city) update.city=city
+                if (language) update.language=language
+                if (duedate) update.duedate=duedate
+                if (connected) update.connected=connected
+                if (availability) update.availability=availability
   
-    
-        let user = await Pregnant.findOneAndUpdate(filter, update, {
-            new: true,
-            upsert: true // Make this update into an upsert
-        });
+                console.log("filter", filter,update)
+                let userprofile = await Pregnant.findOneAndUpdate(filter, update, {
+                    new: true,
+                    upsert: true // Make this update into an upsert
+                });
 
-         if (!user) {
-             res.send({success: false, error: 'user can not updated'})
-             return
+                if (!userprofile) {
+                    res.send({success: false, error: 'user can not updated'})
+                    return
+                }
+                let user = {
+                    ...req.body,
+                    ...userprofile
+                }
+
+             res.send({success: true, user: user})
          }
-       
-         res.send({success: true, user: user})
-     } catch (error) {
+        }
+         catch (error) {
     
          console.log("🚀 ~ Error in edit", error.message)
 
