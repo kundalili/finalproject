@@ -9,6 +9,8 @@ export default function InformationForMidwifes() {
     <div>
     <div className='flex flex-col justify-center items-center'>
         <div>
+        <h1 className='text-[2rem] p-[10px] text-center'>Welcome back, Patricia!</h1>
+
           <h1 className='text-[2rem] p-[10px] text-center'>How does INA work?</h1>
           <ol className='text-[1rem] p-[10px] bg-yellow-100'>
           <li>1. Enter your area and availabilities</li>
