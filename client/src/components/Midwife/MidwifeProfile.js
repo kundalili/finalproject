@@ -10,7 +10,7 @@ import EditProfile from './EditProfile';
 import City2 from '../ProfileDetails/City2'
 import Services from '../ProfileDetails/Services';
 import Availability from './Availability';
-import TestCheckbox from "../TestCheckbox";
+// import TestCheckbox from "../TestCheckbox";
 
 const genre = [
   "Action/Adventure",
@@ -283,9 +283,9 @@ const handleImageChange = (e) => {
                 <img className='w-[300px] h-[300px] rounded-full object-cover' 
                     src={imgUrl} alt='profile'/>
              <button onClick={handleSave}>Save Profile</button>
-             <TestCheckbox data={genre} label="Genre" />
-      <TestCheckbox data={contenttype} label="Content Type" />
-      <TestCheckbox data={programtype} label="Program Type" />
+             {/* <TestCheckbox data={genre} label="Genre" />
+             <TestCheckbox data={contenttype} label="Content Type" />
+             <TestCheckbox data={programtype} label="Program Type" /> */}
           </div>
         </>
   )
