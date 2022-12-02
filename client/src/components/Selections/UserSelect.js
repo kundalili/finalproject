@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const ITEMS_API_URL = "http://localhost:4000/user/list";
-const DEBOUNCE_DELAY = 500;
+const DEBOUNCE_DELAY = 700;
 
 // the exported component can be either a function or a class
 
@@ -19,9 +19,13 @@ const DEBOUNCE_DELAY = 500;
  * 6. I haven't put more time checking some minor test failures( sorry time constraint )
  */
 
+
+
   function useSearch(query) {
       const [isLoading, setIsLoading] = useState(false);
       const [data, setData] = useState([]);
+      console.log("usersearch",query)
+
       useEffect(() => {
         if (!query) return;
         setIsLoading(true);
@@ -29,29 +33,23 @@ const DEBOUNCE_DELAY = 500;
         return () => clearTimeout(timeOutId);
       }, [query]);
 
-      function fetchData() {
+      async function  fetchData() {
         setData([]);
         let cancel;
-        axios({
-          method: "GET",
-          url: "http://localhost:4000/user/list",
-          params: { username: query },
-          cancelToken: new axios.CancelToken((c) => (cancel = c)),
-        })
-          .then((res) => {
-            setIsLoading(false);
-            setData(res.data);
-          })
-          .catch((e) => {
-            if (axios.isCancel(e)) return;
-          });
+        console.log("will be search:",query)
+        const res= await axios.post('/user/list',{username:query})
+        console.log("userlist", res.data)
+        setIsLoading(false);
+        setData(res.data.users);
+        
+        console.log("userlist", res.data)
         return () => cancel();
       }
     return { data, isLoading };
 }
 
 //not so familier with bulma so not spending more time on finding classname (sorry)
-export default function UserSelect() {
+export default function UserSelect(props) {
   const [query, setQuery] = useState("");
   const { data, isLoading } = useSearch(query);
 
@@ -63,12 +61,13 @@ export default function UserSelect() {
   }
 
   function selectItem(index) {
-    alert("selected: " + data[index]);
+    props.cb(index)
   }
 
-
+  console.log("data:",data)
   return (
-    <div className="wrapper">
+    <div className="wrapper w-[400px] h-[300px] absolute top-[200px] left-[200px]
+    bg-slate-200 ">
       <div className="control">
         <div className={`control ${isLoading ? 'is-loading' : ''}`}>
           <input type="text" className="input" onChange={handleSearch} />
@@ -77,11 +76,11 @@ export default function UserSelect() {
           <div class="list">
             {data.map((i, index) => (
               <div
-                key={i}
-                onClick={() => selectItem(index)}
+                key={i._id}
+                onClick={() => selectItem(i)}
                 className="list-item"
               >
-                {i}
+                {i.username}
               </div>
             ))}
           </div>

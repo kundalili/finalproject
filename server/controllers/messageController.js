@@ -118,19 +118,19 @@ module.exports.group = async (req, res) => {
            // console.log("from to sum", fromusr, tousr, sum)
             
             if (fromusr===req.body.userId) {
-                await upsert(users, {userId:tousr,place:"to", value:sum})
+                await upsert(users, {_id:tousr,place:"to", value:sum})
             } else {
-                await upsert(users, {userId:fromusr,place:"from", value:sum})
+                await upsert(users, {_id:fromusr,place:"from", value:sum})
             }
         }
 
         async function upsert(array, item) { // (1)
            // console.log("upsert", array, item)
-            const i = array.findIndex(_item => _item.userId === item.userId);
+            const i = array.findIndex(_item => _item._id === item._id);
            // console.log("indexxxx:", i)
             if (i > -1) array[i][item.place] = item.value; // (2)
             else { 
-                    let myobj={userId:item.userId}
+                    let myobj={_id:item._id}
                     if (item.place==='from') {
                         myobj["from"]=item.value
                     } else myobj["to"]=item.value
@@ -146,7 +146,7 @@ module.exports.group = async (req, res) => {
           // console.log("user findusers:",item.userId, req.body.userId )
             let detailed ={}
 
-            myuser= await User.findById(item.userId)
+            myuser= await User.findById(item._id)
             //console.log("found user", myuser, item.userId)
 
             detailed=await users[idx]
