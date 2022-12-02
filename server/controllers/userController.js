@@ -57,14 +57,14 @@ module.exports.list = async (req, res) => {
             city, language, availability, since, about, duedate} = req.body
         
         let query = {}
-
+        
         if (_id) query._id=_id
-        if (username) query.username=username
+        if (username) query.username={ $regex: username }
         if (type) query.type=type
-
+        
+        console.log("query",query, req)
         const users = await User.find(query).select('-password -email')   
  
-        console.log("🚀 ~ users", users)
        
         res.send({success: true, users})
     } catch (error) {
@@ -137,7 +137,7 @@ module.exports.login = async (req, res) => {
             if (!isMatch) return res.send({success: false, error: 4})
 
             // payload, secretkey, options
-            const token = jwt.sign({_id: userFound._id}, process.env.JWT_SECRET, {expiresIn: '1h'})
+            const token = jwt.sign({_id: userFound._id}, process.env.JWT_SECRET, {expiresIn: '3h'})
             console.log("🚀 ~ token", token)
     
             res.cookie('myina', token)

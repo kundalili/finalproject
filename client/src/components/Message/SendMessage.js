@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
-import UserSelect from "../Selections/UserSelect"
+
 
 export default function SendMessage(props) {
     
@@ -15,19 +15,21 @@ export default function SendMessage(props) {
 
     async function  handleSave(){
         let response
+        console.log("message users",users)
         try {
             response = await axios.post('/message/send', {
                 from : users.from._id,
                 to : users.to._id,
                 text : text
             })
-            props.cb(response)
+            console.log("send message response:", response)
+            props.cb(response.data)
         } catch (error) {
             props.cb(error)
         }
     }
 
-    async  function  handleTo(e){
+/*     async  function  handleTo(e){
         let response
         try {
             response = await axios.post('/message/find', {
@@ -38,14 +40,15 @@ export default function SendMessage(props) {
         } catch (error) {
             return("error finding user ", e.target)
         }
-    }
+    } */
 
     return (
         <div className='w-[400px] h-[300px] absolute top-[200px] left-[200px]
             bg-slate-200  flex flex-row'>
             {
                 (users.from._id===users.to._id)
-                    ?<div><UserSelect/></div>
+                    ?<div>
+                    </div>
                     :<div className='flex flex-col'>
                         <img 
                             className='rounded-full w-[30px] h-[30px] object-cover' 

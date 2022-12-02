@@ -5,7 +5,7 @@ const {auth} = require('../middlewares/auth');
 const userController = require('../controllers/userController')
 
 router.get('/logout', auth, userController.logout)
-router.get('/list', auth, userController.list)
+router.post('/list', auth, userController.list)
 router.patch('/edit', auth, userController.edit)
 
 router.post('/login', userController.login)
