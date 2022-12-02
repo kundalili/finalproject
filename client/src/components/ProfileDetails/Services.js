@@ -12,10 +12,22 @@ const MenuProps = {
     },
   },
 };
+const services = [
+  'Prenatal examinations',
+  'Postpartum care',
+  'Breastfeeding- and nutrition-advicey',
+  'Attending midwife',
+  'Trauma processing',
+  'Prenatal acupuncture',
+  'Risk support',
+  'Miscarriage',
+  'Scream- and sleep-counseling'
+];
 
 export default function Services(props) {
  
-
+  const [myService, setMyService] = useState([]);
+  const [selectedservice, setSelectedservice] = useState();
 
   const handleChange = (event) => {
     const {

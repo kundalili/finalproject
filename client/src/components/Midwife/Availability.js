@@ -37,16 +37,14 @@ export default function Availability() {
     const {
       target: { value },
     } = event;
-    setMyavailability(      typeof value === 'string' ? value.split(',') : value,
+    setMyavailability(typeof value === 'string' ? value.split(',') : value,
     )
+    // console.log("🚀 ~ file: Availability.js:42 ~ handleChange ~ value", value)
   }
 
   return (
     <div>
-
-
       <div>
-
       <FormControl sx={{ m: 1, width: 300 }}>
       <InputLabel id="demo-multiple-name-label">Availability</InputLabel>
       <Select
@@ -59,10 +57,11 @@ export default function Availability() {
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {availabilities.map((availability) => (
+        {availabilities.map((availability, idx) => (
           <MenuItem
-            key={availability}
+            key={idx}
             value={availability}
+            name={idx}
           >
             <Checkbox checked={myavailability.indexOf(availability) > -1} />
               <ListItemText primary={availability} />
@@ -71,31 +70,6 @@ export default function Availability() {
         ))}
       </Select>
     </FormControl>
-      {/* <FormControl sx={{ m: 1, width: 200 }}>
-
-      <InputLabel id="demo-multiple-name-label">City</InputLabel>
-
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={city}
-              label="City"
-                    onChange={handleChange}>
-                    <MenuItem value={'January/2023'}>January/2023</MenuItem>
-                    <MenuItem value={'February/2023'}>February/2023</MenuItem>
-                    <MenuItem value={'March/2023'}>March/2023</MenuItem>
-                    <MenuItem value={'April/2023'}>April/2023</MenuItem>
-                    <MenuItem value={'May/2023'}>May/2023</MenuItem>
-                    <MenuItem value={'June/2023'}>June/2023</MenuItem>
-                    <MenuItem value={'July/202'}>July/202</MenuItem>
-                    <MenuItem value={'August/2023'}>August/2023</MenuItem>
-                    <MenuItem value={'September/2023'}>September/2023</MenuItem>
-                    <MenuItem value={'October/2023'}>October/2023</MenuItem>
-                    <MenuItem value={'November/2022'}>November/2022</MenuItem>
-                    <MenuItem value={'December/2022'}>December/2022</MenuItem>
-              
-              </Select>
-        </FormControl> */}
 
       </div>
 

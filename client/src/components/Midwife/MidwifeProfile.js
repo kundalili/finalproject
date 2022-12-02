@@ -1,35 +1,112 @@
 import React from 'react'
 import { AppContext } from '../Context'
+import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import { MenuItem, InputLabel,TextField, Button, Box, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Checkbox, alignProperty, TextareaAutosize }  from '@mui/material'
+import { Checkbox, Select, MenuItem,OutlinedInput, FormControl, InputLabel,TextField, Button, Box, FormLabel, ListItemText, FormGroup, FormControlLabel, FormHelperText, alignProperty, TextareaAutosize }  from '@mui/material'
 import Language from '../ProfileDetails/Language';
 import EditIcon from '@mui/icons-material/Edit'
 import EditProfile from './EditProfile';
-import Select from 'react-select'
-import City from '../ProfileDetails/City'
+import City2 from '../ProfileDetails/City2'
 import Services from '../ProfileDetails/Services';
 import Availability from './Availability';
+import TestCheckbox from "../TestCheckbox";
+
+const genre = [
+  "Action/Adventure",
+  "Adult Animation",
+  "Classics",
+  "Comedy",
+  "Documentary",
+  "Drama",
+  "Horror",
+  "Kids/Family",
+  "Music",
+  "Romance",
+  "Sci-Fi",
+  "Suspense/Thriller",
+  "Unscripted",
+  "Other"
+];
+
+const contenttype = ["Series", "Movies", "Special", "Live Sports"];
+
+const programtype = ["Acquired", "Original"];
 
 
-export default function Profile() {
-    const services = [
-        'Prenatal examinations',
-        'Postpartum care',
-        'Breastfeeding- and nutrition-advicey',
-        'Attending midwife',
-        'Trauma processing',
-        'Prenatal acupuncture',
-        'Risk support',
-        'Miscarriage',
-        'Scream- and sleep-counseling'
-      ];
+const ITEM_HEIGHT = 148;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 10.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+
+
+
+export default function Profile(props) {
+    
+     
+      const city = [
+        'Berlin',
+        'Hamburg',
+        'München',
+        'Köln',
+        'Frankfurt',
+        'Essen',
+        'Dortmund',
+        'Stuttgart',
+        'Düsseldorf',
+        'Bremen',
+        'Hannover',
+        'Duisburg',
+        'Nürnberg',
+        'Leipzig',
+        'Dresden'
       
-    const [selectedservice, setSelectedservice] = useState([]);
+      ];
+// const [selectedCity, setSelectedCity] = useState()
 
+// const handleChange = (event) => {
+//         setSelectedCity(event.target.value);
+//       };
+
+
+//AVAILABILITIES
+
+const availabilities = [
+
+    'January/2023',
+    'February/2023',
+    'March/2023',
+    'April/2023',
+    'May/2023',
+    'June/2023',
+    'July/2023',
+    'August/2023',
+    'September/2023',
+    'October/2023',
+    'November/2022',
+    'December/2022'
+];
+
+const [myavailability, setMyavailability] = useState([]);
+const [selected, setSelected] = useState()
+
+const handleChange = (event) => {
+  const {
+    target: { value },
+  } = event;
+  setMyavailability(typeof value === 'string' ? value.split(',') : value,
+  )
+  // console.log("🚀 ~ file: Availability.js:42 ~ handleChange ~ value", value)
+}
   
 const {state, dispatch} = useContext(AppContext)
-
 const [edited, setEdited] = useState(false);
 const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
 const [file, setFile] = useState(null)
@@ -64,6 +141,7 @@ const handleImageChange = (e) => {
     formdata.set('name', data.name)
     formdata.set('photo', data.photo)
 
+    console.log("🚀",  data.city)
 
     const config = {
         Headers: {'content-type': 'multipart/form-data'}
@@ -92,6 +170,7 @@ const handleImageChange = (e) => {
     <div className='text-[2rem]  text-center'>MIDWIFE PAGE</div>
      <div className="flex justify-center items-center">
         <div> 
+            <Link path='/infomid'>
             <button onClick={handleSave} type="submit"
                     className='cursor-pointer 
                     border-2 border-vividBlue 
@@ -106,6 +185,7 @@ const handleImageChange = (e) => {
                     hover:bg-vividBlue 
                     hover:border-vividBlue'>UPDATE PROFILE                
              </button> 
+             </Link>
         </div>
      </div>
      <div className='flex w-full justify-center items-center gap-[20px] flex-col mt-[30px]'>
@@ -149,10 +229,39 @@ const handleImageChange = (e) => {
                 value={data.about} 
                 onChange={e => setData({...data, about: e.target.value})}/>
                 </div>
-              {/* <Services services={services} selectedservice={selectedservice} setSelectedservice={setSelectedservice} /> */}
-              <Availability value={data.availability} 
-                  onChange={e => setData({...data, availability: e.target.value})}/>
-              <City value={data.city} 
+              {/* <Services  /> */}
+              {/* <Availability value={data.availability} 
+                  onChange={e => setData({...data, availability: e.target.value})}/> */}
+
+<div>
+      <FormControl sx={{ m: 1, width: 300 }}>
+      <InputLabel id="demo-multiple-name-label">Availability</InputLabel>
+      <Select
+        labelId="demo-multiple-name-label"
+        id="demo-multiple-name"
+        multiple
+        value={myavailability}
+        onChange={handleChange}
+        input={<OutlinedInput label="Language" />}
+        renderValue={(selected) => selected.join(', ')}
+        MenuProps={MenuProps}
+      >
+        {availabilities.map((availability, idx) => (
+          <MenuItem
+            key={idx}
+            value={availability}
+            name={idx}
+          >
+            <Checkbox checked={myavailability.indexOf(availability) > -1} />
+              <ListItemText primary={availability} />
+          
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+
+      </div>
+              <City2 city={city} 
                   onChange={e => setData({...data, city: e.target.value})}/>
               <Language value={data.language} 
                   onChange={e => setData({...data, language: e.target.value})} />
@@ -174,7 +283,11 @@ const handleImageChange = (e) => {
                 <img className='w-[300px] h-[300px] rounded-full object-cover' 
                     src={imgUrl} alt='profile'/>
              <button onClick={handleSave}>Save Profile</button>
+             <TestCheckbox data={genre} label="Genre" />
+      <TestCheckbox data={contenttype} label="Content Type" />
+      <TestCheckbox data={programtype} label="Program Type" />
           </div>
         </>
   )
 }
+

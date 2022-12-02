@@ -12,10 +12,14 @@ export default function HeaderLinks() {
     <div >
 
     <nav  className="flex flex-wrap justify-center 
-items-center h-[510px] gap-[10px] mb-[50px]]" > 
+items-center gap-[10px] p-[30px] mb-[50px]]" > 
        
         <div>
-        {/* <form className='flex flex-row pr-[50px]'>
+
+            
+        {/* 
+        HERE IS THE SEARCH FIELD
+        <form className='flex flex-row pr-[50px]'>
                 <input type="text" className="w-[180px] py-2.5 h-[40px] outline-none border-2 border-vividBlue rounded-full p-[10px] placeholder-lightBlue" placeholder="" />
                 <button type="submit" className='ml-[-40px] mb-[30px]'>
                     <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
@@ -31,7 +35,6 @@ items-center h-[510px] gap-[10px] mb-[50px]]" >
             <Link className='headerLink cursor-pointer font-bold' to='/message'>MESSAGES</Link>
         </div>
         <Link className='headerLink cursor-pointer font-bold' to='/'>LOGOUT
-            {/* <LogoutIcon className='cursor-pointer hover:text-blue-700'/> */}
         </Link>  
         <Link className='headerLink cursor-pointer font-bold' to='/'>
         <div className='headerLink cursor-pointer font-bold'>FAQ</div>
