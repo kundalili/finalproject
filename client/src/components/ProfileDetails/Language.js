@@ -38,7 +38,7 @@ export default function Language() {
     const {
       target: { value },
     } = event;
-    setSpokenLanguage(      typeof value === 'string' ? value.split(',') : value,
+    setSpokenLanguage( typeof value === 'string' ? value.split(',') : value,
     )
   }
 

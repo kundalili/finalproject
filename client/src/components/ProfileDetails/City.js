@@ -20,7 +20,7 @@ const city = [
 
 ];
 
-export default function Language() {
+export default function City() {
 
   const [selectedCity, setSelectedCity] = useState()
 
@@ -40,8 +40,8 @@ export default function Language() {
               value={selectedCity}
               label="City"
                     onChange={handleChange}>
-                    <MenuItem value={'Berlin'}>Berlin</MenuItem>
-                    <MenuItem value={'Hamburg'}>Hamburg</MenuItem>
+                    <MenuItem value='Berlin'>Berlin</MenuItem>
+                    <MenuItem value='Hamburg'>Hamburg</MenuItem>
                     <MenuItem value={'München'}>München</MenuItem>
                     <MenuItem value={'Köln'}>Köln</MenuItem>
                     <MenuItem value={'Frankfurt am Main'}>Frankfurt am Main</MenuItem>
