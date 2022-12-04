@@ -1,17 +1,29 @@
 import React from 'react'
 import Header from '../NavigationBar/Header'
 import { Link } from 'react-router-dom'
+import { AppContext } from '../Context'
 import MidwifeProfile from './MidwifeProfile'
+import { useState, useContext } from 'react';
+import profileImg from '../../assets/midwife.jpeg'
+import mobile from '../../assets/mobile.png'
 
 
-export default function InformationForMidwifes() {
+
+export default function InformationForMidwifes(props) {
+  const {state, dispatch} = useContext(AppContext)
+  const [data, setData] = useState({...state.user})
+
+
   return (
     <div>
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center bg-softBlue '>
         <div>
-        <h1 className='text-[2rem] p-[10px] text-center'>Welcome back, Patricia!</h1>
-
-          <h1 className='text-[2rem] p-[10px] text-center'>How does INA work?</h1>
+        <div className='flex justify-center items-center p-[30px]'>
+        <img className='w-[150px] h-[150px] rounded-full object-cover' src={profileImg} alt=''></img>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
+        {/* <h2 className='text-[2rem] p-[10px] text-center'></h2> */}
+        </div>
+          {/* <h1 className='text-[2rem] p-[10px] text-center'>How does INA work?</h1>
           <ol className='text-[1rem] p-[10px] bg-yellow-100'>
           <li>1. Enter your area and availabilities</li>
                   <br></br>
@@ -24,10 +36,10 @@ export default function InformationForMidwifes() {
                   <li>5. All requests at a glance</li>
                   <br></br>
                   <li>6. Open and already processed requests are displayed with the appropriate status. This way you can keep track.</li>
-          </ol>
+          </ol> */}
           </div>
       <div className='profileBtn flex flex-col'>
-      <div className=''>
+      <div className='p-[15px]'>
           <Link to='/profilemid' className='cursor-pointer font-bold'>
             <button  type="submit"
                     className='cursor-pointer 
@@ -42,12 +54,12 @@ export default function InformationForMidwifes() {
                     hover:text-white
                     hover:bg-vividBlue 
                     hover:border-vividBlue'>
-                      YOUR PROFILE
+                      My Profile
                 </button>
                 </Link>
         </div>
         <br></br>
-        <div className=''>
+        <div className='p-[15px]'>
           <Link to='/message' className='cursor-pointer  font-bold'>
             <button  type="submit"
                       className='cursor-pointer 
@@ -62,12 +74,12 @@ export default function InformationForMidwifes() {
                       hover:text-white
                       hover:bg-vividBlue 
                       hover:border-vividBlue'>
-                        MESSAGES                
+                        Messages                
               </button>
             </Link>
         </div>
         <br></br>
-        <div className=''>
+        <div className='p-[15px]'>
           <Link to='/logout' className='cursor-pointer font-bold'>
                 <button  type="submit"
                       className='cursor-pointer 
@@ -82,10 +94,12 @@ export default function InformationForMidwifes() {
                       hover:text-white
                       hover:bg-vividBlue 
                       hover:border-vividBlue'>
-                      LOGOUT                
+                      Logut                
                 </button>            
           </Link>
         </div>
+        <img className='w-full h-auto object-cover' src={mobile} alt=''></img>
+
         </div>
         </div>
     </div>

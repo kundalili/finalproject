@@ -11,10 +11,9 @@ export default function HeaderLinks() {
   return (
     <div >
 
-    <nav  className="flex flex-wrap justify-center 
-items-center gap-[10px] p-[30px] mb-[50px]]" > 
+        <nav className="flex flex-wrap justify-center items-center gap-[10px] p-[30px] mb-[50px]]" > 
        
-        <div>
+        <div className=''>
 
             
         {/* 

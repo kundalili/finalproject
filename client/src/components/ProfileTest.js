@@ -53,7 +53,7 @@ export default function Profile() {
     <div className='flex w-full justify-center items-center gap-[20px] flex-col mt-[30px]'>
       
         <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'placeholder='' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic"  label="Username" variant="standard" />
-        <TextField lassName='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'placeholder='' value={data.email} onChange={e => setData({...data, email: e.target.value})}id="outlined-basic" label="Email" variant="standard" />
+        <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'placeholder='' value={data.email} onChange={e => setData({...data, email: e.target.value})}id="outlined-basic" label="Email" variant="standard" />
         <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'placeholder='' value={data.type} onChange={e => setData({...data, type: e.target.value})} id="outlined-basic" label="Type of User" variant="standard" />
         <TextField id="outlined-basic" label="City" variant="outlined" />
         <TextField id="outlined-basic" label="Midwife since" variant="outlined" />

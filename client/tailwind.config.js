@@ -5,7 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {   
-    
+      // backgroundImage: {
+      //   'mother': "url('./src/assets/header.png')",
+      // },
       colors: {
       transparent: 'transparent',
       current: 'currentColor',
