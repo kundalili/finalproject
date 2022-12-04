@@ -29,7 +29,7 @@ export default function HeaderMobile() {
   return (
     <div>
        
-        <nav className='MobileNavigation flex pb-[30px] bg-coral h-[150px]'>
+        <nav className='MobileNavigation flex pb-[30px] bg-coral h-[80px]'>
             {open ? closeIcon : hamburgerIcon}
             {open && <HeaderLinks className=''/>}    
 

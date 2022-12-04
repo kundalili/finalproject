@@ -62,7 +62,7 @@ export default function Login_Single(props) {
     <>
     <Header />
     
-    <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col bg-softBlue'>
+    <div className='flex p-[20px] gap-[40px] justify-center items-center flex-col bg-softBlue h-screen'>
       <h2 className='text-4xl text-vividBlue font-bold text-center'>Do you have already an account?</h2> 
         <div className='flex justify-center items-center gap-[10px]'>
             <input className='h-[68px] w-[300px] text-center placeholder-softBlue text-xl' placeholder='Email/Username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Username" variant="none" />

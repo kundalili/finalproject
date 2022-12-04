@@ -33,6 +33,7 @@ export default function Language() {
 
   const [spokenLanguage, setSpokenLanguage] = useState([]);
   const [selected, setSelected] = useState()
+console.log('spoken', spokenLanguage)
 
   const handleChange = (event) => {
     const {
