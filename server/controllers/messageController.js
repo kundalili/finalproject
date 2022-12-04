@@ -31,12 +31,20 @@ module.exports.send = async (req, res) => {
 module.exports.list = async (req, res) => {
     
     try {
-        console.log(req.body, req.body.hasOwnProperty('userId'))
+        console.log("list for query:", req.body)
 
         if (!req.body.hasOwnProperty('from')&&!req.body.hasOwnProperty('to')) {
             console.log(req.body)
             res.send({success: false, messages:["from or to info is a must"]})
         } else {    
+        
+        let query={}
+
+        if (req.body.hasOwnProperty('from')) query= {from: new mongoose.Types.ObjectId(req.body.from)}
+        if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
+        if (req.body.hasOwnProperty('state')) query={...query, to:new mongoose.Types.ObjectId(req.body.state)}
+        
+        console.log("calculated query:", query)
 
         const messages = await Message.find(req.body)
                                         .populate({
@@ -50,7 +58,7 @@ module.exports.list = async (req, res) => {
                                         .sort({ date: -1 })  
 
 
-        //console.log("query and list", messages, req.body)
+        console.log("message list", messages)
        
         res.send({success: true, messages})
        }
@@ -83,7 +91,7 @@ module.exports.group = async (req, res) => {
         })
     } 
     
-     query.push({ $group: 
+    query.push({ $group: 
                     { 
                         _id: {from:"$from", to:"$to"},
                         sum: { $sum: 1 } 

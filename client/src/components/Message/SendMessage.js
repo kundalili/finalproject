@@ -11,7 +11,7 @@ export default function SendMessage(props) {
 
     const [users, setUsers] = useState({from:state.user, to:props.to})
     const [text, setText] = useState("")
-    console.log("🚀 Hello from Message Card, users :", users)
+    console.log("🚀 Hello from Send Message, users :", users)
 
     async function  handleSave(){
         let response
@@ -48,6 +48,7 @@ export default function SendMessage(props) {
             {
                 (users.from._id===users.to._id)
                     ?<div>
+                        <p>Can not send to yourself</p>
                     </div>
                     :<div className='flex flex-col'>
                         <img 
@@ -65,6 +66,8 @@ export default function SendMessage(props) {
                         />
                         </label>
                         <button onClick={handleSave}>Save Message</button>
+                        <button onClick={()=>props.cb("")}>Cancel</button>
+                        
                     </div>
             }
         </div>

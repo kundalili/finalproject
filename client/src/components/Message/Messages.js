@@ -52,8 +52,8 @@ export default function Messages (){
 
                 
         function msgTotals(){
+            console.log("calculate total for messages:",msglist)
             let tmpmsg ={from:0, to:0, unread:msglist.length}
-            tmpmsg.unread= query==={to:state.user._id, status:0}?msglist.length:tmpmsg.unread
             msggroup.forEach((item)=>{
                 console.log("message numbers", item.from, item.to, msglist.length )
                 tmpmsg.from+=item.from
@@ -71,9 +71,8 @@ export default function Messages (){
         }
 
         function handleOtherUserClick(otherUserId){
-            //todo setquery from to both user
-            setQuery({})
-            setOtherUser(otherUserId)
+            console.log("selected card", otherUserId)
+            otherUserId._id!==state.user._id?setOtherUser(otherUserId):setOtherUser("")
             setModalOpen(true)   
         }
         
@@ -84,8 +83,8 @@ export default function Messages (){
         }
 
         async function handleMessage(text){
-            //ToDo user-> other user send message
-            const response = await axios.post('/message/group', groupQuery)
+
+            console.log("message send response", text)
             setModalOpen(false)
             setOtherUser("")
             loadDatas()
@@ -97,14 +96,14 @@ export default function Messages (){
 
                 <div >
                     <div className='flex-col border-double' >
-                        <MessageCard user={state.user} msg={msg} sendMessage={sendMessage}  getUserMessages={handleMessage}/>
+                        <MessageCard user={state.user} msg={msg} sendMessage={handleOtherUserClick}  getUserMessages={handleMessage}/>
                     </div>
                     <hr/>
                     <hr/>
                     <div className= 'border-solid'>
                     { 
                         msggroup.map(item =><MessageCard 
-                                    key={item.userId} user={item} msg={{from:item.to, to:item.from, unread:item.unread} } 
+                                    key={item.userId} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
                                         getUserMessages={handleOtherUserClick} sendMessage={sendMessage}/>)
                     }
                     </div>
