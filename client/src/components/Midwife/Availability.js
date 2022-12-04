@@ -12,23 +12,8 @@ const MenuProps = {
   },
 };
 
-const availabilities = [
 
-    'January/2023',
-    'February/2023',
-    'March/2023',
-    'April/2023',
-    'May/2023',
-    'June/2023',
-    'July/2023',
-    'August/2023',
-    'September/2023',
-    'October/2023',
-    'November/2022',
-    'December/2022'
-];
-
-export default function Availability() {
+export default function Availability({availabilities}) {
 
   const [myavailability, setMyavailability] = useState([]);
   const [selected, setSelected] = useState()
