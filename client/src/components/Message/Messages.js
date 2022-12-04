@@ -62,8 +62,18 @@ export default function Messages (){
             setMsg(tmpmsg)
         }
 
-        function newPost(){
+        async function newPost(){
             return
+        }
+
+        async function handleRead(messagestatus){
+            const res= await axios.post('/message/edit',messagestatus)
+
+            if (messagestatus.status!==0 & res==="success") {
+                let tmplist=[...msglist]
+                delete tmplist[tmplist.findIndex(x => x._id ===messagestatus._id)]
+                setMsglist(tmplist)
+            }
         }
 
         function handleUserClick(){
@@ -118,7 +128,7 @@ export default function Messages (){
                     {
                         
                         msglist.length>0?
-                            msglist.map(item => <MessageList key={item._id} item={item} cb={newPost}/>)
+                            msglist.map(item => <MessageList key={item._id} item={item} markRead={handleRead} cb={newPost}/>)
                             :
                             <p> No Record to List</p>
                     }

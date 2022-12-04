@@ -37,7 +37,7 @@ export default function Login_Single(props) {
             payload: {...response.data.user}
         })
       }   else 
-      switch (response.data.error) {
+      switch (response?.data?.error) {
         case 2:
           alert ("username or e-mail not found")
           break;
