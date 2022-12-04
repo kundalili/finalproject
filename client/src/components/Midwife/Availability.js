@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Select, MenuItem, OutlinedInput,FormControl, InputLabel, Checkbox, ListItemText }  from '@mui/material'
+import { AppContext } from '../Context'
 
 const ITEM_HEIGHT = 148;
 const ITEM_PADDING_TOP = 8;
@@ -13,10 +14,30 @@ const MenuProps = {
 };
 
 
-export default function Availability({availabilities}) {
+export default function Availability() {
+
+  const availability = [
+
+    'January/2023',
+    'February/2023',
+    'March/2023',
+    'April/2023',
+    'May/2023',
+    'June/2023',
+    'July/2023',
+    'August/2023',
+    'September/2023',
+    'October/2023',
+    'November/2022',
+    'December/2022'
+];
 
   const [myavailability, setMyavailability] = useState([]);
-  const [selected, setSelected] = useState()
+  console.log("🚀 ~ file: Availability.js:35 ~ Availability ~ myavailability", myavailability)
+  const [selected, setSelected] = useState([])
+  console.log("🚀 ~ file: Availability.js:36 ~ Availability ~ selected", selected)
+  const {state, dispatch} = useContext(AppContext)
+
 
   const handleChange = (event) => {
     const {
@@ -42,7 +63,7 @@ export default function Availability({availabilities}) {
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {availabilities.map((availability, idx) => (
+        {availability.map((availability, idx) => (
           <MenuItem
             key={idx}
             value={availability}

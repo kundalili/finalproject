@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { TextField, Select,MenuItem, InputLabel, Button, Box, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Checkbox, alignProperty, TextareaAutosize }  from '@mui/material'
+import { AppContext } from '../Context'
 
 const city = [
   'Berlin',
@@ -22,10 +23,12 @@ const city = [
 
 export default function City() {
 
+  const {state, dispatch} = useContext(AppContext)
   const [selectedCity, setSelectedCity] = useState()
+  console.log("🚀 ~ file: City.js:26 ~ City ~ selectedCity", selectedCity)
 
-  const handleChange = (event) => {
-    setSelectedCity(event.target.value);
+  const handleChange = (e) => {
+    setSelectedCity(e.target.value);
   };
 
 

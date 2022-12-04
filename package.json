@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@material-ui/core": "^4.12.4",
     "@mui/styles": "^5.10.16",
     "bcrypt": "^5.1.0",
     "concurrently": "^7.5.0",

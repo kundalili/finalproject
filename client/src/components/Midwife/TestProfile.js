@@ -3,9 +3,10 @@ import { AppContext } from '../Context'
 import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import { Checkbox, Select, MenuItem, FormControl, InputLabel,TextField, ListItemText, TextareaAutosize, ListItemIcon  }  from '@mui/material'
+import { Checkbox, Select, MenuItem, FormControl, InputLabel,TextField, ListItemText, TextareaAutosize }  from '@mui/material'
 import Language from '../ProfileDetails/Language';
 import City2 from '../ProfileDetails/City2'
+import ListItemIcon from "@material-ui/core/ListItemIcon";
 
 const ITEM_HEIGHT = 148;
 const ITEM_PADDING_TOP = 8;

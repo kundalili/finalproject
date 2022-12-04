@@ -7,10 +7,10 @@ import { Checkbox, Select, MenuItem,OutlinedInput, FormControl, InputLabel,TextF
 import Language from '../ProfileDetails/Language';
 import City from '../ProfileDetails/City'
 import Services from '../ProfileDetails/Services';
-import Availability from './Availability';
 import profileImg from '../../assets/midwife.jpeg'
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import CloudinaryWidget from './CloudinaryWidget'
+import Availability from './Availability'
 
 
 const ITEM_HEIGHT = 148;
@@ -24,22 +24,22 @@ const MenuProps = {
   },
 };
 
-async function uploadCloudinary (formData)  {
+// async function uploadCloudinary (formData)  {
  
-  const data = await fetch(process.env.CLOUD_PATH, {
-      method: "POST",
-      body: formData
-    })
-      .then((response) => {
-        return response.text();
-      })
-  console.log("🚀 ~ file: MidwifeProfile.js:30 ~ uploadCloudinary ~ data", data)
+//   const data = await fetch(process.env.CLOUD_PATH, {
+//       method: "POST",
+//       body: formData
+//     })
+//       .then((response) => {
+//         return response.text();
+//       })
+//   console.log("🚀 ~ file: MidwifeProfile.js:30 ~ uploadCloudinary ~ data", data)
 
-  return data
+//   return data
   
-}
+// }
 
-export default function Profile(props) {
+export default function Profile({myavailability}) {
     
   
       const city = [
@@ -60,41 +60,20 @@ export default function Profile(props) {
         'Dresden'
       
       ];
-// const [selectedCity, setSelectedCity] = useState()
+const [selectedCity, setSelectedCity] = useState()
+
+const handleChange = (e) => {
+        setSelectedCity(e.target.value);
+      };
 
 // const handleChange = (event) => {
-//         setSelectedCity(event.target.value);
-//       };
-
-//AVAILABILITIES
-
-const availabilities = [
-
-    'January/2023',
-    'February/2023',
-    'March/2023',
-    'April/2023',
-    'May/2023',
-    'June/2023',
-    'July/2023',
-    'August/2023',
-    'September/2023',
-    'October/2023',
-    'November/2022',
-    'December/2022'
-];
-
-const [myavailability, setMyavailability] = useState([]);
-const [selected, setSelected] = useState()
-
-const handleChange = (event) => {
-  const {
-    target: { value },
-  } = event;
-  setMyavailability(typeof value === 'string' ? value.split(',') : value,
-  )
-  // console.log("🚀 ~ file: Availability.js:42 ~ handleChange ~ value", value)
-}
+//   const {
+//     target: { value },
+//   } = event;
+//   setMyavailability(typeof value === 'string' ? value.split(',') : value,
+//   )
+//   // console.log("🚀 ~ file: Availability.js:42 ~ handleChange ~ value", value)
+// }
   
 const {state, dispatch} = useContext(AppContext)
 const [edited, setEdited] = useState(false);
@@ -103,20 +82,32 @@ const [file, setFile] = useState(null)
 
 
 const handleImageChange = (e) => {
-  console.log('e is', e)
-        uploadFile(e)
+
+  console.log('file is', e.currentTarget.files[0])
+
+  const url = URL.createObjectURL(e.currentTarget.files[0])
+
+  setImgUrl(url)
+  setFile(e.currentTarget.files[0])
 }
 
-async function uploadFile (e) {
+//CLOUDINARY WAY
 
-      console.log('my photo is', e.currentTarget.files[0])
-      const url = URL.createObjectURL(e.currentTarget.files[0])
-      const imageUrl = await uploadCloudinary(url)
+// const handleImageChange = (e) => {
+//   console.log('e is', e)
+//         uploadFile(e)
+// }
 
-      setImgUrl(imageUrl)
-      setFile(e.currentTarget.files[0])
+// async function uploadFile (e) {
 
- }
+//       console.log('my photo is', e.currentTarget.files[0])
+//       const url = URL.createObjectURL(e.currentTarget.files[0])
+//       const imageUrl = await uploadCloudinary(url)
+
+//       setImgUrl(imageUrl)
+//       setFile(e.currentTarget.files[0])
+
+//  }
   const [data, setData] = useState({...state.user})
   console.log(data)
 
@@ -227,38 +218,10 @@ async function uploadFile (e) {
                             onChange={e => setData({...data, about: e.target.value})}/>
                             </div>
                           {/* <Services  /> */}
-                          {/* <Availability value={data.availability} 
-                              onChange={e => setData({...data, availability: e.target.value})}/> */}
-
-                  <div>
-                    <FormControl sx={{ m: 1, width: 300 }}>
-                      <InputLabel id="demo-multiple-name-label">Availability</InputLabel>
-                        <Select
-                          labelId="demo-multiple-name-label"
-                          id="demo-multiple-name"
-                          multiple
-                          value={myavailability}
-                          onChange={handleChange}
-                          input={<OutlinedInput label="Language" />}
-                          renderValue={(selected) => selected.join(', ')}
-                          MenuProps={MenuProps}
-                          >
-                          {availabilities.map((availability, idx) => (
-                              <MenuItem
-                              key={idx}
-                              value={availability}
-                              name={idx}
-                              >
-                                  <Checkbox checked={myavailability.indexOf(availability) > -1} />
-                                  <ListItemText primary={availability} />
-                              </MenuItem>
-                              ))}
-                    </Select>
-                </FormControl>
-
-                  </div>
                           <City city={city} 
                               onChange={e => setData({...data, city: e.target.value})}/>
+                              <Availability city={city} 
+                              onChange={e => setData({data}={myavailability})}/>
                           <Language value={data.language} 
                               onChange={e => setData({...data, language: e.target.value})} />
                             <label className='cursor-pointer 
@@ -298,7 +261,7 @@ async function uploadFile (e) {
                                 hover:border-vividBlue'>Save                
                         </button> 
                     </div>
-                    <CloudinaryWidget />
+                    {/* <CloudinaryWidget /> */}
               </div>
         </>
   )
