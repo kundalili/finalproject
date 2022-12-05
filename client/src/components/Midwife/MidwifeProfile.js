@@ -28,7 +28,12 @@ const MenuProps = {
 
 export default function Profile({myavailability}) {
 
-
+  const {state, dispatch} = useContext(AppContext)
+  const [edited, setEdited] = useState(false);
+  const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
+  const [file, setFile] = useState(null)
+  
+  const [data, setData] = useState({...state.user})
     
   
       const city = [
@@ -85,23 +90,18 @@ const handleChangeService = (event) => {
 console.log("🚀 selected Service", myService)
 
 
-const [spokenLanguage, setSpokenLanguage] = useState([]);
+const [spokenLanguage, setSpokenLanguage] = useState(data?.language?data.language:[]);
 console.log('spoken', spokenLanguage)
 
 const handleChangeLanguage = (event) => {
   const {
     target: { value },
   } = event;
-  setSpokenLanguage( typeof value === 'string' ? value.split(',') : value,
-  )
+  
+  setSpokenLanguage( typeof value === 'string' ? value.split(',') : value, )
 }
 
-const {state, dispatch} = useContext(AppContext)
-const [edited, setEdited] = useState(false);
-const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
-const [file, setFile] = useState(null)
 
-const [data, setData] = useState({...state.user})
 
 console.log("data is at the beginning", data)
 
@@ -151,8 +151,11 @@ console.log("data is at the beginning", data)
       if (response._id) setData(response)
     }
     else {
-      console.log("Without image", data)
-      response = await axios.patch('/user/edit', data)
+      const mydata = {};
+      formdata.forEach((value, key) => (mydata[key] = value))
+      console.log("updating mydata", mydata)
+      response = await axios.patch('/user/edit', mydata)
+      setData(response)
     }
   
 
