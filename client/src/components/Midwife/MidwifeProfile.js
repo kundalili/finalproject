@@ -77,7 +77,7 @@ const handleChange = (e) => {
   
 const {state, dispatch} = useContext(AppContext)
 const [edited, setEdited] = useState(false);
-const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
+const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
 const [file, setFile] = useState(null)
 
 
@@ -117,23 +117,25 @@ const handleImageChange = (e) => {
     
     console.log("🚀 ~ data", data)
 
-    formdata.set('userId', data.userId)
+    formdata.set('_id', data._id)
     formdata.set('username', data.username)
     formdata.set('email', data.email)
     formdata.set('city', data.city)
-    formdata.set('since', data.since)
+    //formdata.set('since', data.since?data.since:"")
     formdata.set('service', data.service)
     formdata.set('language', data.language)
     formdata.set('availability', data.availability)
     formdata.set('about', data.about)
     formdata.set('name', data.name)
-    // formdata.set('photo', data.photo)
+    formdata.set('photo', data.photo)
 
+    if (file) formdata.set('image', file, 'somefilename')
+        
     const config = {
         Headers: {'content-type': 'multipart/form-data'}
     } 
-
-    const response = await axios.patch('/user/edit', data)
+    
+    const response = await axios.patch('/user/profile', formdata, config)
 
     console.log("🚀 response", response)
 
