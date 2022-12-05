@@ -12,51 +12,55 @@ const MenuProps = {
     },
   },
 };
-const services = [
-  'Prenatal examinations',
-  'Postpartum care',
-  'Breastfeeding- and nutrition-advicey',
-  'Attending midwife',
-  'Trauma processing',
-  'Prenatal acupuncture',
-  'Risk support',
-  'Miscarriage',
-  'Scream- and sleep-counseling'
-];
+
 
 export default function Services(props) {
- 
+  const services = [
+    'Prenatal examinations',
+    'Postpartum care',
+    'Breastfeeding- and nutrition-advicey',
+    'Attending midwife',
+    'Trauma processing',
+    'Prenatal acupuncture',
+    'Risk support',
+    'Miscarriage',
+    'Scream- and sleep-counseling'
+  ];
   const [myService, setMyService] = useState([]);
-  const [selectedservice, setSelectedservice] = useState();
+  // console.log("🚀 myService", myService)
 
-  const handleChange = (event) => {
+
+
+  const handleChangeService = (event) => {
     const {
       target: { value },
     } = event;
-    props.setSelectedservice(typeof value === 'string' ? value.split(',') : value,)
+   setMyService(typeof value === 'string' ? value.split(',') : value,)
   }
-  
+  console.log("🚀 selected Service", setMyService)
+
   return (
     <div>
-    <FormControl sx={{ m: 1, width: 300 }}>
+    <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
       <InputLabel id="demo-multiple-name-label">Services</InputLabel>
       <Select
         labelId="demo-multiple-name-label"
         id="demo-multiple-name"
         multiple
-        value={props.selectedservices}
-        onChange={handleChange}
-        input={<OutlinedInput label="Services" />}
-        renderValue={(selected) => selected.join(', ')}
+        value={myService}
+        onChange={handleChangeService}
+       label="Services"
+        renderValue={(selectedservice) => selectedservice.join(', ')}
         MenuProps={MenuProps}
       >
-        {props.services.map((service) => (
+        {services.map((services, idx) => (
           <MenuItem
-            key={service}
-            value={service}
+            key={idx}
+            value={services}
+             name={idx}
           >
-            <Checkbox checked={props.selectedservice.indexOf(service) > -1} />
-              <ListItemText primary={service} />
+            <Checkbox checked={myService.indexOf(services) > -1} />
+              <ListItemText primary={services} />
           
           </MenuItem>
         ))}

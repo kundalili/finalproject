@@ -29,11 +29,9 @@ const languages = [
   'Chinese'
 ];
 
-export default function Language() {
+export default function Language({spokenLanguage, setSpokenLanguage}) {
 
-  const [spokenLanguage, setSpokenLanguage] = useState([]);
-  const [selected, setSelected] = useState()
-console.log('spoken', spokenLanguage)
+
 
   const handleChange = (event) => {
     const {
@@ -46,7 +44,7 @@ console.log('spoken', spokenLanguage)
   
   return (
     <div>
-    <FormControl sx={{ m: 1, width: 300 }}>
+    <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
       <InputLabel id="demo-multiple-name-label">Languages</InputLabel>
       <Select
         labelId="demo-multiple-name-label"
@@ -54,7 +52,7 @@ console.log('spoken', spokenLanguage)
         multiple
         value={spokenLanguage}
         onChange={handleChange}
-        input={<OutlinedInput label="Language" />}
+        label="Language"
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >

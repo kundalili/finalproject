@@ -23,13 +23,17 @@ const city = [
 
 export default function City() {
 
-  const {state, dispatch} = useContext(AppContext)
   const [selectedCity, setSelectedCity] = useState()
   console.log("🚀 ~ file: City.js:26 ~ City ~ selectedCity", selectedCity)
+  // const {state, dispatch} = useContext(AppContext)
 
   const handleChange = (e) => {
     setSelectedCity(e.target.value);
+    console.log("🚀 ~ file: City.js:26 ~ City ~ selectedCity", setSelectedCity)
+
   };
+
+
 
 
   return (

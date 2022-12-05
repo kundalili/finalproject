@@ -34,8 +34,6 @@ export default function Availability() {
 
   const [myavailability, setMyavailability] = useState([]);
   console.log("🚀 ~ file: Availability.js:35 ~ Availability ~ myavailability", myavailability)
-  const [selected, setSelected] = useState([])
-  console.log("🚀 ~ file: Availability.js:36 ~ Availability ~ selected", selected)
   const {state, dispatch} = useContext(AppContext)
 
 
@@ -45,13 +43,12 @@ export default function Availability() {
     } = event;
     setMyavailability(typeof value === 'string' ? value.split(',') : value,
     )
-    // console.log("🚀 ~ file: Availability.js:42 ~ handleChange ~ value", value)
   }
 
   return (
     <div>
       <div>
-      <FormControl sx={{ m: 1, width: 300 }}>
+      <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
       <InputLabel id="demo-multiple-name-label">Availability</InputLabel>
       <Select
         labelId="demo-multiple-name-label"
@@ -59,7 +56,7 @@ export default function Availability() {
         multiple
         value={myavailability}
         onChange={handleChange}
-        input={<OutlinedInput label="Language" />}
+        label="Language"
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >

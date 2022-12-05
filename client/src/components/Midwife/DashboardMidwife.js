@@ -20,7 +20,13 @@ export default function InformationForMidwifes(props) {
         <div>
         <div className='flex justify-center items-center p-[30px]'>
         <img className='w-[150px] h-[150px] rounded-full object-cover' src={profileImg} alt=''></img>
-        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
+        {/* <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.language}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.service}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.since}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.about}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.city}!</h2> */}
+
         {/* <h2 className='text-[2rem] p-[10px] text-center'></h2> */}
         </div>
           {/* <h1 className='text-[2rem] p-[10px] text-center'>How does INA work?</h1>
@@ -79,27 +85,27 @@ export default function InformationForMidwifes(props) {
             </Link>
         </div>
         <br></br>
-        <div className='p-[15px]'>
-          <Link to='/logout' className='cursor-pointer font-bold'>
-                <button  type="submit"
-                      className='cursor-pointer 
-                      border-2 border-vividBlue 
-                      text-vividBlue 
-                      font-semibold 
-                      hover:border-2
-                      text-center w-[312px] 
-                      h-[68px] 
-                      outline-none 
-                      rounded-full 
-                      hover:text-white
-                      hover:bg-vividBlue 
-                      hover:border-vividBlue'>
-                      Logut                
-                </button>            
-          </Link>
-        </div>
-        <img className='w-full h-auto object-cover' src={mobile} alt=''></img>
-
+        
+          <div className='p-[15px]'>
+            <Link to='/logout' className='cursor-pointer font-bold'>
+                  <button  type="submit"
+                        className='cursor-pointer 
+                        border-2 border-vividBlue 
+                        text-vividBlue 
+                        font-semibold 
+                        hover:border-2
+                        text-center w-[312px] 
+                        h-[68px] 
+                        outline-none 
+                        rounded-full 
+                        hover:text-white
+                        hover:bg-vividBlue 
+                        hover:border-vividBlue'>
+                        Logut                
+                  </button>            
+            </Link>
+          </div>
+            <img className='w-full h-auto object-cover' src={mobile} alt=''></img>
         </div>
         </div>
     </div>
