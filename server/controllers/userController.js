@@ -26,10 +26,6 @@ module.exports.register = async (req, res) => {
         }
         
         const salt = await bcrypt.genSalt(10)
-        console.log("🚀 ~ salt", salt)
-
-        req.body.password = await bcrypt.hash(password, salt)
-        console.log("🚀 ~ hashedPass", req.body.password)
 
         const userCreated = await User.create( req.body)
         console.log("🚀 ~ userCreated", userCreated)
@@ -75,6 +71,7 @@ module.exports.list = async (req, res) => {
         
     }
 }
+
 
  module.exports.edit = async (req, res) => {
      try {
@@ -276,5 +273,39 @@ module.exports.delete = async (req, res) => {
         console.log('Error in delete user', error.message)
 
         res.send({success: false, error: error.message})
+    }
+}
+
+
+
+module.exports.profile = async (req, res) => {
+
+    try {
+
+        console.log("Hello from profile", req.body, req.file)
+
+        const {email, _id, username} = req.body
+
+        if (!email || !_id || !username) {
+            res.send({success: false, errorId: 1})
+            return
+        }
+
+        req.body.photo = req.file.filename
+       
+        const user = await User.findByIdAndUpdate(_id, req.body, {new: true}).select('-__v -password')
+        console.log("🚀 ~ user", user)
+      
+        if (!user) {
+            res.send({success: false, errorId: 2})
+            return
+        }
+        res.send({success: true, user})
+    } catch (error) {
+    
+        console.log("🚀 ~ Error in Profile users", error.message)
+
+        res.send({success: false, error: error.message})
+        
     }
 }

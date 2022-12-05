@@ -49,14 +49,17 @@ export default function PregnantProfile(props) {
         formdata.set('about', data.about)
         formdata.set('name', data.name)
         formdata.set('photo', data.photo)
-    
+
+        if (file) formdata.set('photo', file, 'somefilename')
+            
         const config = {
             Headers: {'content-type': 'multipart/form-data'}
         } 
-    
-        const response = await axios.patch('/user/edit', data)
+        
+        const response = await axios.patch('/user/profile', formdata, config)
     
         console.log("🚀 response", response)
+    
     
         if (response.data.success) {
             dispatch({
