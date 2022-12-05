@@ -136,7 +136,7 @@ console.log('spoken', spokenLanguage)
   }
 const {state, dispatch} = useContext(AppContext)
 const [edited, setEdited] = useState(false);
-const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
+const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
 const [file, setFile] = useState(null)
 
 
@@ -193,6 +193,7 @@ const handleImageChange = (e) => {
     // } 
 
     const response = await axios.patch('/user/edit', data, spokenLanguage)
+  
 
     console.log("🚀 updated datas are", response)
 

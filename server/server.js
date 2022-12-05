@@ -2,6 +2,9 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const app = express()
 const mongoose = require('mongoose')
+const cors = require('cors')
+
+app.use(cors())
 
 const db = require('./config/db')
 
@@ -13,7 +16,7 @@ app.use(cookieParser())
 
 app.use('/user', require('./routes/userRoutes'))
 app.use('/message', require('./routes/messageRoutes'))
-app.use('/file', require('./routes/fileRoutes'))
+
 
 
 const port = process.env.PORT || 5001
