@@ -3,7 +3,7 @@ import { AppContext } from '../Context'
 import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react';
 import axios from 'axios';
-import { Checkbox, Select, MenuItem,OutlinedInput, FormControl, InputLabel,TextField, Button, Box, FormLabel, ListItemText, FormGroup, FormControlLabel, FormHelperText, alignProperty, TextareaAutosize }  from '@mui/material'
+import { Checkbox, Select, MenuItem, OutlinedInput, FormControl, InputLabel,TextField, Button, Box, FormLabel, ListItemText, FormGroup, FormControlLabel, FormHelperText, alignProperty, TextareaAutosize }  from '@mui/material'
 import Language from '../ProfileDetails/Language';
 import City from '../ProfileDetails/City'
 import Services from '../ProfileDetails/Services';
@@ -12,6 +12,7 @@ import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 import CloudinaryWidget from './CloudinaryWidget'
 import Availability from './Availability'
 
+const FormData = require('form-data')
 
 const ITEM_HEIGHT = 148;
 const ITEM_PADDING_TOP = 8;
@@ -84,60 +85,47 @@ const handleChangeService = (event) => {
 console.log("🚀 selected Service", myService)
 
 
-
-// SPOKEN LANGUAGES
-
-const languages = [
-  'German',
-  'English',
-  'Turkish',
-  'Spanish',
-  'Dutch',
-  'French',
-  'Greek',
-  'Arabic',
-  'Finnish',
-  'Italian',
-  'Polish',
-  'Chinese'
-];
-
 const [spokenLanguage, setSpokenLanguage] = useState([]);
 console.log('spoken', spokenLanguage)
 
-  const handleChangeLanguage = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setSpokenLanguage( typeof value === 'string' ? value.split(',') : value,
-    )
-  }
-const {state, dispatch} = useContext(AppContext)
-const [edited, setEdited] = useState(false);
-const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
-const [file, setFile] = useState(null)
-
-
-const handleImageChange = (e) => {
-
-  console.log('file is', e.currentTarget.files[0])
-
-  const url = URL.createObjectURL(e.currentTarget.files[0])
-
-  setImgUrl(url)
-  setFile(e.currentTarget.files[0])
+const handleChangeLanguage = (event) => {
+  const {
+    target: { value },
+  } = event;
+  setSpokenLanguage( typeof value === 'string' ? value.split(',') : value,
+  )
 }
 
-  const [data, setData] = useState({...state.user})
-  console.log(data)
+const {state, dispatch} = useContext(AppContext)
+const [edited, setEdited] = useState(false);
+const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
+const [file, setFile] = useState(null)
+
+const [data, setData] = useState({...state.user})
+
+console.log("data is at the beginning", data)
+
+
+
+  const handleImageChange = (e) => {
+
+    console.log('file is', e.currentTarget.files[0])
+
+    const url = URL.createObjectURL(e.currentTarget.files[0])
+
+    setImgUrl(url)
+    setFile(e.currentTarget.files[0])
+  }
+
+
 
   const handleSave = async () => {
 
     const formdata = new FormData()
     
-    // console.log("🚀 ~ data", data)
+    console.log("🚀 ~ data", data)
 
-    formdata.set('userId', data.userId)
+    //formdata.set('userId', data.userId)
     formdata.set('_id', data._id)
     formdata.set('username', data.username)
     formdata.set('email', data.email)
@@ -150,14 +138,22 @@ const handleImageChange = (e) => {
     formdata.set('name', data.name)
     formdata.set('photo', data.photo)
 
-    if (file) formdata.set('image', file, 'somefilename')
-        
-  
-    const config = {
+    let response
+    
+    console.log("formdata:", formdata)
+    if (file) {
+      console.log("formdata with image:", formdata)
+      const config = {
         Headers: {'content-type': 'multipart/form-data'}
-    } 
-
-    const response = await axios.patch('/user/profile', formdata, config)
+      } 
+      formdata.set('image', file)
+      response = await axios.patch('/user/profile', formdata, config)
+      if (response._id) setData(response)
+    }
+    else {
+      console.log("Without image", data)
+      response = await axios.patch('/user/edit', data)
+    }
   
 
     console.log("🚀 updated datas are", response)
