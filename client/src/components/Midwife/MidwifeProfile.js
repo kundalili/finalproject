@@ -24,20 +24,6 @@ const MenuProps = {
   },
 };
 
-// async function uploadCloudinary (formData)  {
- 
-//   const data = await fetch(process.env.CLOUD_PATH, {
-//       method: "POST",
-//       body: formData
-//     })
-//       .then((response) => {
-//         return response.text();
-//       })
-//   console.log("🚀 ~ file: MidwifeProfile.js:30 ~ uploadCloudinary ~ data", data)
-
-//   return data
-  
-// }
 
 export default function Profile({myavailability}) {
 
@@ -70,14 +56,6 @@ const handleChange = (e) => {
         setSelectedCity(e.target.value);
       };
 
-// const handleChange = (event) => {
-//   const {
-//     target: { value },
-//   } = event;
-//   setMyavailability(typeof value === 'string' ? value.split(',') : value,
-//   )
-//   // console.log("🚀 ~ file: Availability.js:42 ~ handleChange ~ value", value)
-// }
 
 //SERVICES
 
@@ -136,7 +114,7 @@ console.log('spoken', spokenLanguage)
   }
 const {state, dispatch} = useContext(AppContext)
 const [edited, setEdited] = useState(false);
-const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
+const [imgUrl, setImgUrl] = useState(state.user.image ? '/images/' + state.user.image : null)
 const [file, setFile] = useState(null)
 
 
@@ -150,49 +128,36 @@ const handleImageChange = (e) => {
   setFile(e.currentTarget.files[0])
 }
 
-//CLOUDINARY WAY
-
-// const handleImageChange = (e) => {
-//   console.log('e is', e)
-//         uploadFile(e)
-// }
-
-// async function uploadFile (e) {
-
-//       console.log('my photo is', e.currentTarget.files[0])
-//       const url = URL.createObjectURL(e.currentTarget.files[0])
-//       const imageUrl = await uploadCloudinary(url)
-
-//       setImgUrl(imageUrl)
-//       setFile(e.currentTarget.files[0])
-
-//  }
   const [data, setData] = useState({...state.user})
   console.log(data)
 
   const handleSave = async () => {
 
-    // const formdata = new FormData()
+    const formdata = new FormData()
     
     // console.log("🚀 ~ data", data)
 
-    // formdata.set('userId', data.userId)
-    // formdata.set('username', data.username)
-    // formdata.set('email', data.email)
-    // formdata.set('city', data.city)
-    // formdata.set('since', data.since)
-    // formdata.set('service', data.service)
-    // formdata.set('language', spokenLanguage)
-    // formdata.set('availability', data.availability)
-    // formdata.set('about', data.about)
-    // formdata.set('name', data.name)
-    // // formdata.set('photo', data.photo)
+    formdata.set('userId', data.userId)
+    formdata.set('_id', data._id)
+    formdata.set('username', data.username)
+    formdata.set('email', data.email)
+    formdata.set('city', data.city)
+    formdata.set('since', data.since)
+    formdata.set('service', data.service)
+    formdata.set('language', spokenLanguage)
+    formdata.set('availability', data.availability)
+    formdata.set('about', data.about)
+    formdata.set('name', data.name)
+    formdata.set('photo', data.photo)
 
-    // const config = {
-    //     Headers: {'content-type': 'multipart/form-data'}
-    // } 
+    if (file) formdata.set('image', file, 'somefilename')
+        
+  
+    const config = {
+        Headers: {'content-type': 'multipart/form-data'}
+    } 
 
-    const response = await axios.patch('/user/edit', data, spokenLanguage)
+    const response = await axios.patch('/user/profile', formdata, config)
   
 
     console.log("🚀 updated datas are", response)

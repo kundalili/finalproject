@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const {auth} = require('../middlewares/auth');
-const {cloudinaryUpload} = require('../config/multer-cloudinary')
+const {checkFile} = require('../middlewares/checkFile')
 
 
 const userController = require('../controllers/userController')
@@ -9,7 +9,7 @@ const userController = require('../controllers/userController')
 router.get('/logout', auth, userController.logout)
 router.post('/list', auth, userController.list)
 router.patch('/edit', auth, userController.edit)
-router.patch('/profile', cloudinaryUpload.single('image'), userController.profile)
+router.patch('/profile',auth, userController.profile)
 
 router.post('/login', userController.login)
 router.post('/delete', userController.login)
