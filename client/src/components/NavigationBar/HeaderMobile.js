@@ -26,15 +26,15 @@ export default function HeaderMobile() {
             cursor-pointer absolute' 
             onClick={() => setOpen(!open)}
                 />
+
   return (
+
     <div>
-       
         <nav className='MobileNavigation flex pb-[30px] bg-coral h-[80px]'>
             {open ? closeIcon : hamburgerIcon}
             {open && <HeaderLinks className=''/>}    
-
         </nav>
-
     </div>
+    
   )
 }

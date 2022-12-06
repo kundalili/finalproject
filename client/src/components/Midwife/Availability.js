@@ -12,28 +12,25 @@ const MenuProps = {
     },
   },
 };
+const availability = [
 
-
-export default function Availability() {
-
-  const availability = [
-
-    'January/2023',
-    'February/2023',
-    'March/2023',
-    'April/2023',
-    'May/2023',
-    'June/2023',
-    'July/2023',
-    'August/2023',
-    'September/2023',
-    'October/2023',
-    'November/2022',
-    'December/2022'
+  'January/2023',
+  'February/2023',
+  'March/2023',
+  'April/2023',
+  'May/2023',
+  'June/2023',
+  'July/2023',
+  'August/2023',
+  'September/2023',
+  'October/2023',
+  'November/2022',
+  'December/2022'
 ];
 
-  const [myavailability, setMyavailability] = useState([]);
-  console.log("🚀 ~ file: Availability.js:35 ~ Availability ~ myavailability", myavailability)
+export default function Availability({myavailability, setMyavailability}) {
+
+ 
   const {state, dispatch} = useContext(AppContext)
 
 

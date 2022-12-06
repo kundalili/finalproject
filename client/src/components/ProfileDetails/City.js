@@ -21,11 +21,8 @@ const city = [
 
 ];
 
-export default function City() {
+export default function City({selectedCity, setSelectedCity}) {
 
-  const [selectedCity, setSelectedCity] = useState()
-  console.log("🚀 ~ file: City.js:26 ~ City ~ selectedCity", selectedCity)
-  // const {state, dispatch} = useContext(AppContext)
 
   const handleChange = (e) => {
     setSelectedCity(e.target.value);
@@ -33,13 +30,10 @@ export default function City() {
 
   };
 
-
-
-
   return (
     <div>
       <div>
-      <FormControl sx={{ m: 1, width: 200 }}>
+      <FormControl variant="standard" sx={{ m: 1, width: 200 }}>
       <InputLabel id="demo-multiple-name-label">City</InputLabel>
             <Select
               labelId="demo-simple-select-label"

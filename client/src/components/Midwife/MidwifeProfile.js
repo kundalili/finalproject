@@ -6,10 +6,8 @@ import axios from 'axios';
 import { Checkbox, Select, MenuItem, OutlinedInput, FormControl, InputLabel,TextField, Button, Box, FormLabel, ListItemText, FormGroup, FormControlLabel, FormHelperText, alignProperty, TextareaAutosize }  from '@mui/material'
 import Language from '../ProfileDetails/Language';
 import City from '../ProfileDetails/City'
-import Services from '../ProfileDetails/Services';
+import Services from './Services';
 import profileImg from '../../assets/midwife.jpeg'
-import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
-import CloudinaryWidget from './CloudinaryWidget'
 import Availability from './Availability'
 
 const FormData = require('form-data')
@@ -26,86 +24,42 @@ const MenuProps = {
 };
 
 
-export default function Profile({myavailability}) {
+export default function Profile() {
 
+
+  // STATES
+  
   const {state, dispatch} = useContext(AppContext)
   const [edited, setEdited] = useState(false);
   const [imgUrl, setImgUrl] = useState(state.user.photo ? 'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo : null)
   const [file, setFile] = useState(null)
-  
   const [data, setData] = useState({...state.user})
     
-  
-      const city = [
-        'Berlin',
-        'Hamburg',
-        'München',
-        'Köln',
-        'Frankfurt',
-        'Essen',
-        'Dortmund',
-        'Stuttgart',
-        'Düsseldorf',
-        'Bremen',
-        'Hannover',
-        'Duisburg',
-        'Nürnberg',
-        'Leipzig',
-        'Dresden'
-      
-      ];
 
+// CITY
 
-const [selectedCity, setSelectedCity] = useState()
-
-const handleChange = (e) => {
-        setSelectedCity(e.target.value);
-      };
+const [selectedCity, setSelectedCity] = useState(data?.city?data.city:[]);
 
 
 //SERVICES
 
-const services = [
-  'Prenatal examinations',
-  'Postpartum care',
-  'Breastfeeding- and nutrition-advicey',
-  'Attending midwife',
-  'Trauma processing',
-  'Prenatal acupuncture',
-  'Risk support',
-  'Miscarriage',
-  'Scream- and sleep-counseling'
-];
-const [myService, setMyService] = useState([]);
-// console.log("🚀 myService", myService)
 
+const [myService, setMyService] = useState(data?.service?data.service:[]);
+console.log("🚀 myService", myService)
 
-
-const handleChangeService = (event) => {
-  const {
-    target: { value },
-  } = event;
- setMyService(typeof value === 'string' ? value.split(',') : value,)
-}
-console.log("🚀 selected Service", myService)
-
+//LANGUAGE
 
 const [spokenLanguage, setSpokenLanguage] = useState(data?.language?data.language:[]);
-console.log('spoken', spokenLanguage)
-
-const handleChangeLanguage = (event) => {
-  const {
-    target: { value },
-  } = event;
-  
-  setSpokenLanguage( typeof value === 'string' ? value.split(',') : value, )
-}
 
 
+// AVAILABILITY
+
+const [myavailability, setMyavailability] = useState(data?.availability?data.availability:[]);
+console.log("🚀 ~ file: Availability.js:35 ~ Availability ~ myavailability", myavailability)
 
 console.log("data is at the beginning", data)
 
-
+//HANDLE IMAGES
 
   const handleImageChange = (e) => {
 
@@ -117,7 +71,7 @@ console.log("data is at the beginning", data)
     setFile(e.currentTarget.files[0])
   }
 
-
+//HANDLE SAVE
 
   const handleSave = async () => {
 
@@ -125,15 +79,14 @@ console.log("data is at the beginning", data)
     
     console.log("🚀 ~ data", data)
 
-    //formdata.set('userId', data.userId)
     formdata.set('_id', data._id)
     formdata.set('username', data.username)
     formdata.set('email', data.email)
-    formdata.set('city', data.city)
+    formdata.set('city', selectedCity)
     formdata.set('since', data.since)
-    formdata.set('service', data.service)
+    formdata.set('service', myService)
     formdata.set('language', spokenLanguage)
-    formdata.set('availability', data.availability)
+    formdata.set('availability', myavailability)
     formdata.set('about', data.about)
     formdata.set('name', data.name)
     formdata.set('photo', data.photo)
@@ -177,7 +130,7 @@ console.log("data is at the beginning", data)
       <>        
         <div className='bg-softBlue'>
             <div className='flex justify-center items-center p-[30px]'>
-                  <img className='w-[100px] h-[100px] rounded-full object-cover m-[10px]' src={profileImg} alt=''></img>
+                  <img className='w-[100px] h-[100px] rounded-full object-cover m-[10px]' src={imgUrl} alt=''></img>
                   <div className='text-[2rem] p-[10px] text-center font-bold text-vividBlue'>My Midwife Profile</div>
             </div>
                 <div className="flex justify-center items-center">
@@ -202,10 +155,8 @@ console.log("data is at the beginning", data)
                         <div className='flex justify-center items-center gap-[20px] flex-col mt-[30px] w-min p-[30px] bg-white'>
                             <div className='flex justify-center items-center'>
 
+                            {/* USERNAME*/}
 
-                            {/* USERNME*/}
-
-                                
                                 <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                                 placeholder='' value={data.username} 
                                 onChange={e => setData({...data, username: e.target.value})}
@@ -215,13 +166,12 @@ console.log("data is at the beginning", data)
                                     
                                      {/* EMAIL*/}
 
-
-                                      <div className='flex justify-center items-center'>
-                                          <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
-                                          placeholder='' value={data.email} 
-                                          onChange={e => setData({...data, email: e.target.value})}
-                                          id="standard-basic" label="Email" variant="standard" />
-                                      </div>
+                                        <div className='flex justify-center items-center'>
+                                            <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
+                                            placeholder='' value={data.email} 
+                                            onChange={e => setData({...data, email: e.target.value})}
+                                            id="standard-basic" label="Email" variant="standard" />
+                                        </div>
                                                    {/* PASSWORD*/}
 
                                                 <div className='flex justify-center items-center'>
@@ -246,98 +196,31 @@ console.log("data is at the beginning", data)
                                                                 <TextField id="standard-basic" label="Midwife since" variant="standard" 
                                                                 value={data.since} 
                                                                 onChange={e => setData({...data, since: e.target.value})}/>
-                                                    </div>
-                                                   
-                                                           {/* LANGUAGE */}
-
-                                            
-                                                                  {/* <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
-                                                                          <InputLabel id="demo-multiple-name-label">Languages</InputLabel>
-                                                                              <Select
-                                                                                labelId="demo-multiple-name-label"
-                                                                                id="demo-multiple-name"
-                                                                                multiple
-                                                                                value={spokenLanguage}
-                                                                                onChange={e => setData({...data, language: e.target.value})}
-                                                                                label="Language"
-                                                                                renderValue={(selected) => selected.join(', ')}
-                                                                                MenuProps={MenuProps}
-                                                                              >
-                                                                                {languages.map((language) => (
-                                                                                        <MenuItem
-                                                                                          key={language}
-                                                                                          value={language}
-                                                                                        >
-                                                                                                  <Checkbox checked={spokenLanguage.indexOf(language) > -1} />
-                                                                                                    <ListItemText primary={language} />    
-                                                                                        </MenuItem>))}
-                                                                              </Select>
-                                                                        </FormControl> */}
-
-
-                                                                              {/* CITY */}
-                                                                                  <div>
-                                                                                    <FormControl variant="standard" sx={{ m: 1, width: 200 }}>
-                                                                                    <InputLabel id="demo-multiple-name-label">City</InputLabel>
-                                                                                          <Select
-                                                                                            labelId="demo-simple-select-label"
-                                                                                            id="demo-simple-select"
-                                                                                            value={selectedCity}
-                                                                                            label="City"
-                                                                                                  onChange={e => setData({...data, city: e.target.value})}>
-                                                                                                  <MenuItem value='Berlin'>Berlin</MenuItem>
-                                                                                                  <MenuItem value='Hamburg'>Hamburg</MenuItem>
-                                                                                                  <MenuItem value={'München'}>München</MenuItem>
-                                                                                                  <MenuItem value={'Köln'}>Köln</MenuItem>
-                                                                                                  <MenuItem value={'Frankfurt am Main'}>Frankfurt am Main</MenuItem>
-                                                                                                  <MenuItem value={'Stuttgart'}>Stuttgart</MenuItem>
-                                                                                                  <MenuItem value={'Düsseldorf'}>Düsseldorf</MenuItem>
-                                                                                                  <MenuItem value={'Leipzig'}>Leipzig</MenuItem>
-                                                                                                  <MenuItem value={'München'}>München</MenuItem>
-                                                                                                  <MenuItem value={'München'}>München</MenuItem>
-                                                                                                  <MenuItem value={'Bremen'}>Essen</MenuItem>
-                                                                                                  <MenuItem value={'Dresden'}>Dresden</MenuItem>
-                                                                                                  <MenuItem value={'Hannover'}>Hannover</MenuItem>
-                                                                                                  <MenuItem value={'Duisburg'}>Duisburg</MenuItem>
-                                                                                            </Select>
-                                                                                      </FormControl>
-                                                                                    </div>
+                                                            </div>
                               
                                                                   {/* SERVICES */}
-
-                                                                                                                            <div>
-                                                              <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
-                                                                <InputLabel id="demo-multiple-name-label">Services</InputLabel>
-                                                                <Select
-                                                                  labelId="demo-multiple-name-label"
-                                                                  id="demo-multiple-name"
-                                                                  multiple
-                                                                  value={myService}
-                                                                  onChange={e => setData({...data, service: e.target.value})}
-                                                                label="Services"
-                                                                  renderValue={(selectedservice) => selectedservice.join(', ')}
-                                                                  MenuProps={MenuProps}
-                                                                >
-                                                                  {services.map((services, idx) => (
-                                                                    <MenuItem
-                                                                      key={idx}
-                                                                      value={services}
-                                                                      name={idx}
-                                                                    >
-                                                                      <Checkbox checked={myService.indexOf(services) > -1} />
-                                                                        <ListItemText primary={services} />
-                                                                    
-                                                                    </MenuItem>
-                                                                  ))}
-                                                                </Select>
-                                                              </FormControl>
+                                                                  <Services myService={myService} setMyService={setMyService}
+                                                                    onChange={e => setData({...data, service: e.target.value})} />
+                                                                <div>
+                                                              
                                                             </div>
-                                                        {/* <City city={city} 
-                                                            onChange={e => setData({...data, city: e.target.value})}/> */}
-                                                    <Availability 
+
+                                                            {/*CITY*/}
+                                                        <City selectedCity={selectedCity} setSelectedCity={setSelectedCity}
+                                                            onChange={e => setData({...data, city: e.target.value})}/>
+                                                          
+                                                          {/* Availability */}
+
+                                                    <Availability myavailability={myavailability} setMyavailability={setMyavailability}
                                                     onChange={e => setData({...data, availability: e.target.value})}/>
+                                                   
+                                                    {/* LANGUAGE */}
+
                                                 <Language spokenLanguage={spokenLanguage} setSpokenLanguage={setSpokenLanguage}
                                                       onChange={e => setData({...data, language: e.target.value})} />
+                                                      
+                                                      {/* ABOUT */}
+
                                                   <div className='text-[1.5rem]'>About me</div>
                                           <div className='flex justify-center items-center'>
                                               <TextareaAutosize
@@ -349,6 +232,9 @@ console.log("data is at the beginning", data)
                                                 value={data.about} 
                                                 onChange={e => setData({...data, about: e.target.value})}/>
                                             </div>
+
+                                          {/* SELECT IMAGE */}
+                                          
                                       <label className='cursor-pointer 
                                           border-2 border-vividBlue 
                                           text-vividBlue 
@@ -370,6 +256,9 @@ console.log("data is at the beginning", data)
                               </div>
                               </div>
                             </div>
+
+                            {/* SAVE BUTTON */}
+                      
                       <div className='flex justify-center items-center p-[30px]'> 
                             <button onClick={handleSave} type="submit"
                                     className='cursor-pointer 
@@ -388,9 +277,7 @@ console.log("data is at the beginning", data)
                             
                       </div>
                   <div>
-                    {/* <CloudinaryWidget /> */}
               </div>
         </>
   )
 }
-
