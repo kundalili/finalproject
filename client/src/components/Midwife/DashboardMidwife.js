@@ -9,7 +9,7 @@ import mobile from '../../assets/mobile.png'
 
 
 
-export default function InformationForMidwifes(props) {
+export default function InformationForMidwifes({imgUrl}) {
   const {state, dispatch} = useContext(AppContext)
   const [data, setData] = useState({...state.user})
 
@@ -19,13 +19,13 @@ export default function InformationForMidwifes(props) {
     <div className='flex flex-col justify-center items-center bg-softBlue '>
         <div>
         <div className='flex justify-center items-center p-[30px]'>
-        <img className='w-[150px] h-[150px] rounded-full object-cover' src={profileImg} alt=''></img>
-        {/* <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
-        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.language}!</h2>
-        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.service}!</h2>
-        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.since}!</h2>
-        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.about}!</h2>
-        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.city}!</h2> */}
+        <img className='w-[150px] h-[150px] rounded-full object-cover' src={imgUrl} alt=''></img>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
+        {/* <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>LSpoken Language: {data.language}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>My Services: {data.service}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Midwife since: {data.since}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>About: {data.about}!</h2>
+        <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>City:{data.city}!</h2> */}
 
         {/* <h2 className='text-[2rem] p-[10px] text-center'></h2> */}
         </div>

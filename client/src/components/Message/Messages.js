@@ -102,7 +102,7 @@ export default function Messages (){
         }
 
         return (
-            <div className='flex flex-row'>
+            <div className='flex flex-col'>
 
                 <div >
                     <div className='flex-col border-double' >

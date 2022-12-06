@@ -13,21 +13,19 @@ const MenuProps = {
   },
 };
 
+const services = [
+  'Prenatal examinations',
+  'Postpartum care',
+  'Breastfeeding- and nutrition-advicey',
+  'Attending midwife',
+  'Trauma processing',
+  'Prenatal acupuncture',
+  'Risk support',
+  'Miscarriage',
+  'Scream- and sleep-counseling'
+];
 
-export default function Services(props) {
-  const services = [
-    'Prenatal examinations',
-    'Postpartum care',
-    'Breastfeeding- and nutrition-advicey',
-    'Attending midwife',
-    'Trauma processing',
-    'Prenatal acupuncture',
-    'Risk support',
-    'Miscarriage',
-    'Scream- and sleep-counseling'
-  ];
-  const [myService, setMyService] = useState([]);
-  // console.log("🚀 myService", myService)
+export default function Services({myService, setMyService}) {
 
 
 
@@ -37,7 +35,6 @@ export default function Services(props) {
     } = event;
    setMyService(typeof value === 'string' ? value.split(',') : value,)
   }
-  console.log("🚀 selected Service", setMyService)
 
   return (
     <div>
@@ -50,14 +47,13 @@ export default function Services(props) {
         value={myService}
         onChange={handleChangeService}
        label="Services"
-        renderValue={(selectedservice) => selectedservice.join(', ')}
+        renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {services.map((services, idx) => (
+        {services.map((services) => (
           <MenuItem
-            key={idx}
+            key={services}
             value={services}
-             name={idx}
           >
             <Checkbox checked={myService.indexOf(services) > -1} />
               <ListItemText primary={services} />

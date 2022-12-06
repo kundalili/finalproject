@@ -33,7 +33,7 @@ export default function Language({spokenLanguage, setSpokenLanguage}) {
 
 
 
-  const handleChange = (event) => {
+  const handleChangeLanguage = (event) => {
     const {
       target: { value },
     } = event;
@@ -51,7 +51,7 @@ export default function Language({spokenLanguage, setSpokenLanguage}) {
         id="demo-multiple-name"
         multiple
         value={spokenLanguage}
-        onChange={handleChange}
+        onChange={handleChangeLanguage}
         label="Language"
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
