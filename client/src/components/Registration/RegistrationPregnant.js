@@ -37,7 +37,8 @@ export default function RegistrationPregnant() {
     <>
         <Header />
               <div className='flex justify-end items-center' >
-                  <div style={{ backgroundImage:`url(${register})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
+                {/* <img src={register} alt='' className='w-[1000px]'/> */}
+                  <div className='' style={{ backgroundImage:`url(${register})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
                       height: '70vh', width: '120vw'}}></div>        
                         <h2 className="text-3xl font-bold italic w-[164px] h-[148px] text-white pt-[10px] absolute mr-[20px] text-left top-[270px]">
                             Are you looking for a midwife?
