@@ -14,7 +14,7 @@ export default function MessageList({item}) {
   return (
     <div className=' bg-softRed rounded-xl p-[20px]  text-white'>
       <div className='flex justify-between items-center gap-[20px] p-[10px]'>
-          <p className='font-bold text-2xl'>From {item.from.username}</p>
+          <p className='font-bold text-2xl'>{item.from.username}</p>
           <p >{item.date}</p>
       </div>
 
