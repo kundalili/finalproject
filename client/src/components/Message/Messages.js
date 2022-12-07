@@ -102,14 +102,13 @@ export default function Messages (){
         }
 
         return (
-            <div className='flex flex-col'>
+            <div className='flex flex-row'>
 
                 <div >
                     <div className='flex-col border-double' >
                         <MessageCard user={state.user} msg={msg} sendMessage={handleOtherUserClick}  getUserMessages={handleMessage}/>
                     </div>
-                    <hr/>
-                    <hr/>
+
                     <div className= 'border-solid'>
                     { 
                         msggroup.map(item =><MessageCard 
