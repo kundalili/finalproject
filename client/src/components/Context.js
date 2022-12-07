@@ -13,7 +13,11 @@ export default function ContextProvider({children}) {
                     ...state,
                     user: action.payload
                 }
-          
+            case ('logout'):
+                return {
+                    ...state,
+                    user:{}
+                }
             default:
                 return
         }

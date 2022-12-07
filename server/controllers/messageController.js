@@ -33,7 +33,7 @@ module.exports.list = async (req, res) => {
     try {
         console.log("list for query:", req.body)
 
-        if (!req.body.hasOwnProperty('from')&&!req.body.hasOwnProperty('to')) {
+        if (!req.body.hasOwnProperty('from')&&!req.body.hasOwnProperty('to')&&!req.body.hasOwnProperty('_id')) {
             console.log(req.body)
             res.send({success: false, messages:["from or to info is a must"]})
         } else {    
@@ -43,6 +43,7 @@ module.exports.list = async (req, res) => {
         if (req.body.hasOwnProperty('from')) query= {from: new mongoose.Types.ObjectId(req.body.from)}
         if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
         if (req.body.hasOwnProperty('state')) query={...query, to:new mongoose.Types.ObjectId(req.body.state)}
+        if (req.body.hasOwnProperty('_id')) query={...query, to:new mongoose.Types.ObjectId(req.body._id)} 
         
         console.log("calculated query:", query)
 
@@ -207,6 +208,11 @@ module.exports.edit = async (req, res) => {
         console.log("🚀 ~ edit here: ", req.body)
 
         const {status, flag, _id} = req.body;
+        const query={}
+        if (status) query.status =status
+        if(flag) query.flag=flag
+
+        console.log("update", query)
 
         if (!_id) {
             res.send({success: false, error: 'id must be supplied'})
@@ -214,7 +220,7 @@ module.exports.edit = async (req, res) => {
             return
         }
 
-        const message = await Message.findByIdAndUpdate(req.body._id, {status, flag}, {new: true})
+        const message = await Message.findByIdAndUpdate(req.body._id, query, {new: true})
         console.log("🚀 ~ Message", message)
 
         if (!message) {
