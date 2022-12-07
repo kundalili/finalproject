@@ -24,7 +24,7 @@ const MenuProps = {
 };
 
 
-export default function Profile() {
+export default function Profile({availability}) {
 
 
   // STATES
@@ -86,7 +86,7 @@ console.log("data is at the beginning", data)
     formdata.set('since', data.since)
     formdata.set('service', myService)
     formdata.set('language', spokenLanguage)
-    formdata.set('availability', myavailability)
+    formdata.set('availability', JSON.stringify(myavailability))
     formdata.set('about', data.about)
     formdata.set('name', data.name)
     formdata.set('photo', data.photo)

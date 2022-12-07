@@ -6,6 +6,7 @@ import { useState, useContext } from 'react';
 import profileImgP from '../../assets/pregnant.png'
 import mobile from '../../assets/mobile.png'
 import { AppContext } from '../Context'
+import CardPregnant from './CardPregnant';
 
 
 
@@ -38,74 +39,79 @@ export default function InformationForPregnant() {
                     <li>6. Open and already processed requests are displayed with the appropriate status. This way you can keep track.</li>
               </ol>
               </div> */}
-              <div className='flex flex-col justify-center items-center p-[30px]'>
-                          <form className='flex flex-row justify-center items-center pr-[35px] pb-[40px]'>
-                              <input type="text" className="w-[312px] h-[68px] outline-none placeholder-lightBlue text-center" placeholder="Find your midwife" />
-                                <button type="submit" className='ml-[-40px] mb-[30px]'>
-                                  <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
+              <div >
+                  <div className='flex flex-row'>
+                  <CardPregnant/>
+                      <div className='flex flex-col justify-center items-center p-[60px]'>
+                                  <form className='flex flex-row justify-center items-center pr-[35px] pb-[40px]'>
+                                      <input type="text" className="w-[312px] h-[68px] outline-none placeholder-lightBlue text-center" placeholder="Find your midwife" />
+                                        <button type="submit" className='ml-[-40px] mb-[30px]'>
+                                          <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
+                                        </button>
+                                  </form>
+                                  <div className='profileBtn flex flex-col'>
+                      
+                            <Link to='/profilepreg' className='cursor-pointer font-bold'>
+                              <button  type="submit"
+                                      className='cursor-pointer 
+                                      border-2 border-vividBlue 
+                                      text-vividBlue 
+                                      font-semibold 
+                                      hover:border-2
+                                      text-center w-[312px] 
+                                      h-[68px] 
+                                      outline-none 
+                                      rounded-full 
+                                      hover:text-white
+                                      hover:bg-vividBlue 
+                                      hover:border-vividBlue'>
+                                        My Profile
+                                  </button>
+                                  </Link>
+                          </div>
+                          <br></br>
+                          <div className=''>
+                            <Link to='/message' className='cursor-pointer  font-bold'>
+                              <button  type="submit"
+                                        className='cursor-pointer 
+                                        border-2 border-vividBlue 
+                                        text-vividBlue 
+                                        font-semibold 
+                                        hover:border-2
+                                        text-center w-[312px] 
+                                        h-[68px] 
+                                        outline-none 
+                                        rounded-full 
+                                        hover:text-white
+                                        hover:bg-vividBlue 
+                                        hover:border-vividBlue'>
+                                          Messages                
                                 </button>
-                          </form>
-                          <div className='profileBtn flex flex-col'>
-              
-                    <Link to='/profilepreg' className='cursor-pointer font-bold'>
-                      <button  type="submit"
-                              className='cursor-pointer 
-                              border-2 border-vividBlue 
-                              text-vividBlue 
-                              font-semibold 
-                              hover:border-2
-                              text-center w-[312px] 
-                              h-[68px] 
-                              outline-none 
-                              rounded-full 
-                              hover:text-white
-                              hover:bg-vividBlue 
-                              hover:border-vividBlue'>
-                                My Profile
-                          </button>
-                          </Link>
-                  </div>
-                  <br></br>
-                  <div className=''>
-                    <Link to='/message' className='cursor-pointer  font-bold'>
-                      <button  type="submit"
-                                className='cursor-pointer 
-                                border-2 border-vividBlue 
-                                text-vividBlue 
-                                font-semibold 
-                                hover:border-2
-                                text-center w-[312px] 
-                                h-[68px] 
-                                outline-none 
-                                rounded-full 
-                                hover:text-white
-                                hover:bg-vividBlue 
-                                hover:border-vividBlue'>
-                                  Messages                
-                        </button>
-                      </Link>
-                  </div>
-                  <br></br>
-                  <div className=''>
-                    <Link to='/logout' className='cursor-pointer  font-bold'>
-                          <button  type="submit"
-                                className='cursor-pointer 
-                                border-2 border-vividBlue 
-                                text-vividBlue 
-                                font-semibold 
-                                hover:border-2
-                                text-center w-[312px] 
-                                h-[68px] 
-                                outline-none 
-                                rounded-full 
-                                hover:text-white
-                                hover:bg-vividBlue 
-                                hover:border-vividBlue'>
-                                Logout                
-                          </button>            
-                     </Link>
-                  </div>
+                              </Link>
+                          </div>
+                          <br></br>
+                          <div className=''>
+                            <Link to='/logout' className='cursor-pointer  font-bold'>
+                                  <button  type="submit"
+                                        className='cursor-pointer 
+                                        border-2 border-vividBlue 
+                                        text-vividBlue 
+                                        font-semibold 
+                                        hover:border-2
+                                        text-center w-[312px] 
+                                        h-[68px] 
+                                        outline-none 
+                                        rounded-full 
+                                        hover:text-white
+                                        hover:bg-vividBlue 
+                                        hover:border-vividBlue'>
+                                        Logout                
+                                  </button>            
+                            </Link>
+                          </div>
+                        </div>
                 </div>
+              </div>
             </div>
         </div>
     </div>
