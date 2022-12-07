@@ -31,6 +31,11 @@ export default function Messages (){
             
             return () => clearInterval(interval);
         }, [])
+
+        useEffect(() => {
+            loadDatas()
+        }, [query])
+
         
         const loadDatas = async()=>{
             await getGroupData()
@@ -111,14 +116,15 @@ export default function Messages (){
 
                 <div >
                     <div className='flex-col border-double' >
-                        <MessageCard user={state.user} msg={msg} sendMessage={handleOtherUserClick}  getUserMessages={handleMessage}/>
+                        <MessageCard user={state.user} msg={msg} sendMessage={handleOtherUserClick}  
+                                    getUserMessages={handleUserClick}/>
                     </div>
 
                     <div className= 'border-solid'>
                     { 
                         msggroup.map(item =><MessageCard 
                                     key={item.userId} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
-                                        getUserMessages={handleOtherUserClick} sendMessage={sendMessage}/>)
+                                        getUserMessages={(user)=>setQuery({from:state.user._id, to:user._id})} sendMessage={sendMessage}/>)
                     }
                     </div>
                 </div>
