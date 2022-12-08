@@ -30,21 +30,30 @@ module.exports.send = async (req, res) => {
 
 module.exports.list = async (req, res) => {
     
+    let query ={}
     try {
         console.log("list for query:", req.body)
 
-        if (!req.body.hasOwnProperty('from')&&!req.body.hasOwnProperty('to')&&!req.body.hasOwnProperty('_id')) {
+        if (!req.body.hasOwnProperty('from')&&!req.body.hasOwnProperty('to')
+            &&!req.body.hasOwnProperty('_id')&&!req.body.hasOwnProperty('users')) {
             console.log(req.body)
-            res.send({success: false, messages:["from or to info is a must"]})
+            res.send({success: false, messages:["from, to, id or users info is a must"]})
         } else {    
         
-        let query={}
-
-        if (req.body.hasOwnProperty('from')) query= {from: new mongoose.Types.ObjectId(req.body.from)}
-        if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
-        if (req.body.hasOwnProperty('state')) query={...query, to:new mongoose.Types.ObjectId(req.body.state)}
-        if (req.body.hasOwnProperty('_id')) query={...query, to:new mongoose.Types.ObjectId(req.body._id)} 
-        
+        if (req.body.hasOwnProperty('users')) 
+            {
+                let u1 =mongoose.Types.ObjectId(req.body.users[0])
+                let u2 =mongoose.Types.ObjectId(req.body.users[1])
+                
+                query = {from:u1}
+                //query = {...query, to:{$in:[u1,u2]}}
+            } else 
+                {
+                    if (req.body.hasOwnProperty('from')) query= {from: new mongoose.Types.ObjectId(req.body.from)}
+                    if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
+                    if (req.body.hasOwnProperty('state')) query={...query, to:new mongoose.Types.ObjectId(req.body.state)}
+                    if (req.body.hasOwnProperty('_id')) query={...query, to:new mongoose.Types.ObjectId(req.body._id)}  
+                }
         console.log("calculated query:", query)
 
         const messages = await Message.find(req.body)
@@ -59,7 +68,7 @@ module.exports.list = async (req, res) => {
                                         .sort({ date: -1 })  
 
 
-        console.log("message list", messages)
+       // console.log("message list", messages)
        
         res.send({success: true, messages})
        }
