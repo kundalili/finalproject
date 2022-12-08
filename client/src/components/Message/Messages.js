@@ -33,7 +33,10 @@ export default function Messages (){
         }, [])
 
         useEffect(() => {
-            loadDatas()
+            console.log("new query", query)
+            getMsgData()
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }, [query])
 
         
@@ -46,6 +49,18 @@ export default function Messages (){
         const getGroupData = async () => {
             const response = await axios.post('/message/group', groupQuery)
             // console.log("grouplist and filter", groupQuery, response)
+
+            console.log( response?.data?.user)
+            response?.data?.user?.sort(function (a, b) {
+                if (a.username < b.username) {
+                  return 1;
+                }
+                if (a.username > b.username) {
+                  return -1;
+                }
+                return 0;
+              });
+              console.log("sorted", response?.data?.user)
             response?.data?.users?.length>0?setMsggroup(response.data.users):setMsggroup([])
         }
 
@@ -124,7 +139,14 @@ export default function Messages (){
                     { 
                         msggroup.map(item =><MessageCard 
                                     key={item.userId} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
-                                        getUserMessages={(user)=>setQuery({from:state.user._id, to:user._id})} sendMessage={sendMessage}/>)
+                                        getUserMessages={(user)=>setQuery( 
+                                            {
+                                                users:{
+                                                    "from": {"$in":[state.user._id, user._id]},
+                                                    "to": {"$in":[state.user._id,user._id]}
+                                                    }
+                                            })} 
+                                        sendMessage={sendMessage}/>)
                     }
                     </div>
                 </div>

@@ -13,9 +13,12 @@ export default function MessageList(props) {
 
   console.log("🚀 Hello from Message Card, Props and global are :", item)
 
+  const bg = item.from._id!==state.user._id?"bg-softRed":"bg-rose-300"
 
   return (
-    <div className=' bg-softRed rounded-xl p-[20px] w-[350px]  text-white'>
+
+    <div className={'rounded-xl p-[20px] '+ bg}>
+
       <div className='flex justify-between items-center gap-[20px] p-[10px]'>
           <p className='font-bold text-2xl'>{item.from.username}</p>
           <p >{item.date}</p>
