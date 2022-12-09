@@ -73,7 +73,7 @@ export default function UserSelect(props) {
           <input type="text" className="input" onChange={handleSearch} />
         </div>
         {data.length > 0 && !isLoading && (
-          <div class="list">
+          <div className="list">
             {data.map((i, index) => (
               <div
                 key={i._id}

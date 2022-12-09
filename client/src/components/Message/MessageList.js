@@ -13,7 +13,7 @@ export default function MessageList(props) {
 
   console.log("🚀 Hello from Message Card, Props and global are :", item)
 
-  const bg = item.from._id!==state.user._id?"bg-softRed":"bg-rose-300"
+  const bg = item?.from?._id!==state?.user?._id?"bg-softRed":"bg-rose-300"
 
   return (
 
@@ -21,8 +21,8 @@ export default function MessageList(props) {
 
       <div className='flex justify-between items-center gap-[20px] p-[10px]'>
           {
-            item.from._id!==state.user._id
-              ?<p className='font-bold text-2xl'>{item.from.username}</p>
+            item?.from?._id!==state?.user?._id
+              ?<p className='font-bold text-2xl'>{item?.from?.username}</p>
               :<></>
             }
           <p >{item.date}</p>
