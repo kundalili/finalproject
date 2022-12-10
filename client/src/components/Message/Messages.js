@@ -17,7 +17,7 @@ export default function Messages (){
      //   const [msglistUser, setMsglistUser] = useState([]) //RightSide MessageList
         const [query] = useState({to:state.user._id, tostatus:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
-        const [otherUser, setOtherUser] = useState("")
+        const [otherUser, setOtherUser] = useState(state.user._id)
         const [modalOpen, setModalOpen] = useState(false)
         const [data, setData] = useState ({groupList:[], msgList:[], total:{from:0, to:0, unread:0}})
         
@@ -25,11 +25,11 @@ export default function Messages (){
         useEffect(() => {
             let interval;
             loadDatas()
-            interval = setInterval(() => {
+/*             interval = setInterval(() => {
                 loadDatas()
                 // The logic of refreshing message info.
               }, 300000);
-            
+             */
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             return () => clearInterval(interval);
@@ -87,7 +87,8 @@ export default function Messages (){
         }
 
         const getMsgData = async () => {
-            if (otherUser) {
+            console.log( "getting list for :", otherUser) 
+            if (otherUser!==state.user._id) {
                     const response = await axios.post('/message/list',{users:[state.user._id, otherUser]})
                     if (response?.data?.messages?.length>0) return response.data.messages 
                     return []
@@ -100,69 +101,35 @@ export default function Messages (){
             }
         }
 
-                
-/*         function msgTotals(msgList, groupList){
-            let tmpmsg ={from:0, to:0, unread:msgList.length}
-            msggroup.forEach((item)=>{
-                console.log("message numbers", item.from, item.to, msgList.length )
-                tmpmsg.from+=item?.from?item.from:0
-                tmpmsg.to+=item?.to?item.to:0
-            })
-            return tmpmsg
-        } */
-
         async function newPost(item){
             const query={}
             query._id=item._id
+            query.tostatus=1
 
-            if (item.from._id===state.user._id){
-                query.fromstatus=1
-            } else query.tostatus=1
-
-            const response = await axios.put('/message/edit',query)
-            if (response.success) {    
-                sendMessage(item.from._id)
-            } else alert("Message cannot be set as read")
+            await axios.put('/message/edit',query)
+            setOtherUser(item.from._id)
         }
 
         async function handleRead(item){
             console.log("message read clicked", item)
             const data={_id:item._id}
   
-            if (state.user._id===item.from._id)
+            if (state.user._id===item.to._id)
                 {
-                    data.status=[1,item.status[1]]
-                } else data.status=[item.status[0],1]
+                    data.tostatus=1-item.tostatus
+                } 
 
 
             const res= await axios.put('/message/edit',data)
-            console.log("message etid response", res)
+            console.log("message make read  response", res)
             loadDatas()
         }
 
-        function handleUserClick(){
-            setOtherUser()
-        }
-
-        function handleOtherUserClick(otherUserId){
-            console.log("selected card", otherUserId)
-            otherUserId._id!==state.user._id?setOtherUser(otherUserId):setOtherUser("")
-            setModalOpen(true)   
-        }
         
-        function sendMessage(otherUserId){
-            console.log("message send clicked", otherUserId)
-            setOtherUser(otherUserId)
-            setModalOpen(true)
-        }
-
         async function handleMessage(text){
 
             console.log("message send response", text)
-            setModalOpen(false)
-            setOtherUser("")
             loadDatas()
-
         }
 
         console.log("Data WILL BE RENDERED", data)
@@ -174,8 +141,9 @@ export default function Messages (){
 
                             <div >
                                 <div className='flex flex-col border-double' >
-                                    <MessageCard user={state.user} msg={data.total} sendMessage={handleOtherUserClick}  
-                                                getUserMessages={handleUserClick}/>
+                                    <MessageCard user={state.user} msg={data.total} 
+                                                sendMessage={(user)=>setOtherUser(state.user._id)}  
+                                                getUserMessages={(user)=>setOtherUser(state.user._id)}/>
                                 </div>
 
                                 <div className= 'border-solid'>
@@ -183,21 +151,20 @@ export default function Messages (){
                                     data?.groupList.map(item =><MessageCard 
                                                 key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
                                                     getUserMessages={(user)=>setOtherUser(user._id)} 
-                                                    sendMessage={sendMessage}/>)
+                                                    sendMessage={(user)=>setOtherUser(user._id)}/>)
                                 }
                                 </div>
                             </div>
-                            {
-                                modalOpen? otherUser?<SendMessage  to={otherUser} cb={handleMessage} />
-                                                    :<UserSelect cb={sendMessage}/>
-                                        :<></>
-
-                            }
+                           
                             <div className='flex w-full gap-[20px] min-h-[100vh] p-[40px] flex-col'>
+                                {    
+                                    otherUser!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
+                                                    :<UserSelect cb={(user)=>setOtherUser(user._id)}/>
+                                }
                                 { 
                                     data?.msgList?.length>0  
                                         ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
-                                        :<div className='bg-vividBlue text-white text-center text-2xl shadow rounded-md p-[5px]'>Sorry, you have no messages! </div>
+                                        :<div className='bg-vividBlue text-white text-center text-2xl shadow rounded-md p-[5px]'> {otherUser!==state.user._id?'Loading...':"No unread messages!"} </div>
                                 }  
                             </div>
                     </div>

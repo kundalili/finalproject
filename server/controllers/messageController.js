@@ -40,12 +40,13 @@ module.exports.list = async (req, res) => {
                 let u2 =mongoose.Types.ObjectId(req.body.users[1])
                 
                 query = {$or:[{from:u1, to:u2},{from:u2, to:u1}]}
+            
             } 
             
             if (req.body.hasOwnProperty('from')) query= {...query, from: new mongoose.Types.ObjectId(req.body.from)}
             if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
-            if (req.body.hasOwnProperty('fromstate')) query={...query, fromstate:req.body.fromstate}
-            if (req.body.hasOwnProperty('tostate')) query={...query, tostate:req.body.tostate}
+            if (req.body.hasOwnProperty('fromstatus')) query={...query, fromstatus:req.body.fromstatus}
+            if (req.body.hasOwnProperty('tostatus')) query={...query, tostatus:req.body.tostatus}
             if (req.body.hasOwnProperty('fromflag')) query={...query, fromflag:req.body.fromflag}
             if (req.body.hasOwnProperty('toflag')) query={...query, toflag:req.body.toflag}
             if (req.body.hasOwnProperty('text')) query={...query, text:{$regex:req.body.text}}
@@ -222,10 +223,10 @@ module.exports.edit = async (req, res) => {
             res.send({success: false, error: 'id must be supplied'})
         }
         const query={}
-        if (fromstatus) query.fromstatus =fromstatus
-        if (tostatus) query.tostatus =tostatus
-        if (fromflag) query.fromflag =fromflag
-        if (toflag) query.toflag =toflag
+        if (Number.isInteger(fromstatus)) query.fromstatus =fromstatus
+        if (Number.isInteger(tostatus)) query.tostatus =tostatus
+        if (Number.isInteger(fromflag)) query.fromflag =fromflag
+        if (Number.isInteger(toflag)) query.toflag =toflag
 
         console.log("update", query)
 

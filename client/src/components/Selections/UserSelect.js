@@ -61,13 +61,13 @@ export default function UserSelect(props) {
   }
 
   function selectItem(index) {
+    console.log("selected item:", index)
     props.cb(index)
   }
 
   console.log("data:",data)
   return (
-    <div className="wrapper w-[400px] h-[300px] absolute top-[200px] left-[200px]
-    bg-slate-200 ">
+    <div className="wrapper w-[400px] h-[200px] bg-slate-200 ">
       <div className="control">
         <div className={`control ${isLoading ? 'is-loading' : ''}`}>
           <input type="text" className="input" onChange={handleSearch} />
