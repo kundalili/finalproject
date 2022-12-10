@@ -6,6 +6,7 @@ import MessageCard from './MessageCard'
 import MessageList from './MessageList'
 import SendMessage from './SendMessage'
 import UserSelect from "../Selections/UserSelect"
+import Header from '../NavigationBar/Header'
 
 
 export default function Messages (){
@@ -166,36 +167,41 @@ export default function Messages (){
 
         console.log("Data WILL BE RENDERED", data)
         return (
-            <div className='flex flex-row'>
 
-                <div >
-                    <div className='flex-col border-double' >
-                        <MessageCard user={state.user} msg={data.total} sendMessage={handleOtherUserClick}  
-                                    getUserMessages={handleUserClick}/>
+            <div>
+                    <Header />
+                        <div className='flex flex-row'>
+
+                            <div >
+                                <div className='flex flex-col border-double' >
+                                    <MessageCard user={state.user} msg={data.total} sendMessage={handleOtherUserClick}  
+                                                getUserMessages={handleUserClick}/>
+                                </div>
+
+                                <div className= 'border-solid'>
+                                { 
+                                    data?.groupList.map(item =><MessageCard 
+                                                key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
+                                                    getUserMessages={(user)=>setOtherUser(user._id)} 
+                                                    sendMessage={sendMessage}/>)
+                                }
+                                </div>
+                            </div>
+                            {
+                                modalOpen? otherUser?<SendMessage  to={otherUser} cb={handleMessage} />
+                                                    :<UserSelect cb={sendMessage}/>
+                                        :<></>
+
+                            }
+                            <div className='flex w-full gap-[20px] min-h-[100vh] p-[40px] flex-col'>
+                                { 
+                                    data?.msgList?.length>0  
+                                        ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
+                                        :<div className='bg-vividBlue text-white text-center text-2xl shadow rounded-md p-[5px]'>Sorry, you have no messages! </div>
+                                }  
+                            </div>
                     </div>
-
-                    <div className= 'border-solid'>
-                    { 
-                        data?.groupList.map(item =><MessageCard 
-                                    key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
-                                        getUserMessages={(user)=>setOtherUser(user._id)} 
-                                        sendMessage={sendMessage}/>)
-                    }
-                    </div>
-                </div>
-                {
-                    modalOpen? otherUser?<SendMessage  to={otherUser} cb={handleMessage} />
-                                        :<UserSelect cb={sendMessage}/>
-                            :<></>
-
-                }
-                <div className='flex items-center w-full gap-[20px] min-h-[100vh] p-[40px] flex-col'>
-                    { 
-                        data?.msgList?.length>0  
-                            ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
-                            :<>No Messages</>
-                    }  
-              </div>
             </div>
+
     )
 }

@@ -37,31 +37,30 @@ export default function Services({myService, setMyService}) {
   }
 
   return (
-    <div>
-    <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
-      <InputLabel id="demo-multiple-name-label">Services</InputLabel>
-      <Select
-        labelId="demo-multiple-name-label"
-        id="demo-multiple-name"
-        multiple
-        value={myService}
-        onChange={handleChangeService}
-       label="Services"
-        renderValue={(selected) => selected.join(', ')}
-        MenuProps={MenuProps}
-      >
-        {services.map((services) => (
-          <MenuItem
-            key={services}
-            value={services}
-          >
-            <Checkbox checked={myService.indexOf(services) > -1} />
-              <ListItemText primary={services} />
-          
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  </div>
+        <div>
+            <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
+
+              <InputLabel id="demo-multiple-name-label">Services</InputLabel>
+
+                  <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={myService}
+                    onChange={handleChangeService}
+                    label="Services"
+                    renderValue={(selected) => selected.join(', ')}
+                    MenuProps={MenuProps}>
+                    {services.map((services) => (
+                        <MenuItem
+                            key={services}
+                            value={services}>
+                            <Checkbox checked={myService.indexOf(services) > -1} />
+                            <ListItemText primary={services} />
+                        </MenuItem>
+                    ))}
+                  </Select>
+            </FormControl>
+        </div>
 );
 }

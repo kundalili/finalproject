@@ -14,8 +14,8 @@ export default function CardPregnant() {
   return (
     <>
         <div>
-              <h2 className='text-[1.5rem] font-bold flex justify-center items-center p-[20px] text-left bg-vividBlue text-white rounded-t-lg'>My Profile</h2>
-              <div className='bg-coral rounded-b-lg p-[20px]'>
+              <h2 className='text-[1.5rem] font-bold flex justify-center items-center p-[20px] text-left bg-vividBlue text-white rounded-t-lg shadow'>My Profile</h2>
+              <div className='bg-coral shadow rounded-b-lg p-[20px]'>
 
                     <h3 className='text-[1.5rem] p-[10px] text-left text-lotionPink pl-[15px] '>Name</h3>
                     <h3 className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.name}</h3>
