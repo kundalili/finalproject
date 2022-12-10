@@ -102,13 +102,15 @@ const handleImageChange = (e) => {
 
   }   
   return (
-    <>        
+    
+        <>        
+                <Header />
                 <div className='bg-softBlue'>
                         <div className='flex justify-center items-center p-[30px]'>
                         <img className='w-[100px] h-[100px] rounded-full object-cover m-[10px]' src={imgUrl} alt=''></img>
                         <div className='text-[2rem] p-[10px] text-center font-bold text-vividBlue'>My Profile</div>
                 </div>
-                <div className="flex justify-center items-center">
+                {/* <div className="flex justify-center items-center">
                     <div > 
                         <button onClick={handleSave} type="submit"
                                 className='cursor-pointer 
@@ -125,7 +127,7 @@ const handleImageChange = (e) => {
                                 hover:border-vividBlue'>Update Profile                
                         </button> 
                     </div>
-                </div>
+                </div> */}
 
                         {/* <div className="flex justify-center items-center">
                             <div> { edited ? <button onClick={handleSave} type="submit"
@@ -240,7 +242,7 @@ const handleImageChange = (e) => {
                                 rounded-full 
                                 hover:text-white
                                 hover:bg-vividBlue 
-                                hover:border-vividBlue'>Save                
+                                hover:border-vividBlue'>Update Profile               
                         </button> 
                     </div>
                     </div>
