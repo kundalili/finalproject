@@ -42,6 +42,10 @@ const messageSchema = new Schema({
     attachments:{
         type: Array,  
         default: []
+    },
+    numberOfComments:{
+        type: Number,  
+        default: 0
     }
 
  },
