@@ -2,7 +2,7 @@ import React from 'react'
 import { AppContext } from '../Context'
 import { useState, useContext } from 'react';
 
-export default function CardMidwife({myavailability}) {
+export default function CardMidwife({availability}) {
 
   const {state, dispatch} = useContext(AppContext)
   const [data, setData] = useState({...state.user})
@@ -24,12 +24,11 @@ export default function CardMidwife({myavailability}) {
                     <li className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.service}</li>
 
                     <h2 className='text-[1.5rem] p-[10px] text-left text-lotionPink pl-[15px]'>Availability</h2>
-                    {/* <ul>
-      {myavailability.map((item, index) => (
-        <li key={index} myavailability={item}></li>
-      ))}
-    </ul> */}
-                    <li className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.availability}</li>
+                        {/* <ul>
+                              {availability.map((item, index) => (
+                              <li key={index} availability={item}></li> ))}
+                            </ul>
+                    <li className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.availability}</li> */}
 
                     <h3 className='text-[1.5rem] p-[10px] text-left  text-lotionPink pl-[15px]'>City</h3>    
                     <h3 className='font-bold text-[1.5rem] text-white pl-[15px] '>{data.city}</h3>

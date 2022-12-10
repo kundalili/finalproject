@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { AppContext } from '../Context'
 import MidwifeProfile from './MidwifeProfile'
 import { useState, useContext } from 'react';
-import profileImg from '../../assets/midwife.jpeg'
 import mobile from '../../assets/mobile.png'
 import CardMidwife from './CardMidwife'
 
@@ -20,7 +19,7 @@ export default function InformationForMidwifes({imgUrl}) {
     <div className='flex flex-col justify-center items-center bg-softBlue '>
         <div>
               <div className='flex justify-center items-center p-[30px]'>
-              <img className='w-[150px] h-[150px] rounded-full object-cover' src={profileImg} alt=''></img>
+              <img className='w-[150px] h-[150px] rounded-full object-cover' src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo} alt=''></img>
               <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
         </div>
       

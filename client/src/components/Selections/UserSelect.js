@@ -48,7 +48,7 @@ const DEBOUNCE_DELAY = 700;
     return { data, isLoading };
 }
 
-//not so familier with bulma so not spending more time on finding classname (sorry)
+//not so familiar with bulma so not spending more time on finding classname (sorry)
 export default function UserSelect(props) {
   const [query, setQuery] = useState("");
   const { data, isLoading } = useSearch(query);
