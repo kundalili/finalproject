@@ -6,6 +6,7 @@ import MidwifeProfile from './MidwifeProfile'
 import { useState, useContext } from 'react';
 import mobile from '../../assets/mobile.png'
 import CardMidwife from './CardMidwife'
+import ButtonMidwife from '../Buttons/ButtonMidwife';
 
 
 
@@ -15,89 +16,22 @@ export default function InformationForMidwifes({imgUrl}) {
 
 
   return (
-  <div>
-    <div className='flex flex-col justify-center items-center bg-softBlue '>
         <div>
-              <div className='flex justify-center items-center p-[30px]'>
-              <img className='w-[150px] h-[150px] rounded-full object-cover' src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo} alt=''></img>
-              <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
-        </div>
-      
-    <div>
-          <div className='flex'>
-            <CardMidwife/>
-
-          
-      <div className='profileBtn flex flex-col'>
-      <div className='p-[15px]'>
-          <Link to='/profilemid' className='cursor-pointer font-bold'>
-            <button  type="submit"
-                    className='cursor-pointer 
-                    border-2 border-vividBlue 
-                    text-vividBlue 
-                    font-semibold 
-                    hover:border-2
-                    text-center w-[312px] 
-                    h-[68px] 
-                    outline-none 
-                    rounded-full 
-                    hover:text-white
-                    hover:bg-vividBlue 
-                    hover:border-vividBlue'>
-                      My Profile
-                </button>
-                </Link>
-        </div>
-        <br></br>
-        <div className='p-[15px]'>
-          <Link to='/message' className='cursor-pointer  font-bold'>
-            <button  type="submit"
-                      className='cursor-pointer 
-                      border-2 border-vividBlue 
-                      text-vividBlue 
-                      font-semibold 
-                      hover:border-2
-                      text-center w-[312px] 
-                      h-[68px] 
-                      outline-none 
-                      rounded-full 
-                      hover:text-white
-                      hover:bg-vividBlue 
-                      hover:border-vividBlue'>
-                        Messages                
-              </button>
-            </Link>
-        </div>
-        <br></br>
-        
-          <div className='p-[15px]'>
-            <Link to='/logout' className='cursor-pointer font-bold'>
-                  <button  type="submit"
-                        className='cursor-pointer 
-                        border-2 border-vividBlue 
-                        text-vividBlue 
-                        font-semibold 
-                        hover:border-2
-                        text-center w-[312px] 
-                        h-[68px] 
-                        outline-none 
-                        rounded-full 
-                        hover:text-white
-                        hover:bg-vividBlue 
-                        hover:border-vividBlue'>
-                        Logut                
-                  </button>            
-            </Link>
+            <Header />
+            <div className='flex flex-col justify-center items-center bg-softBlue '>
+                  <div>
+                        <div className='flex justify-center items-center p-[30px]'>
+                            <img className='w-[150px] h-[150px] rounded-full object-cover' src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo} alt=''></img>
+                            <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
+                        </div>
+                        <div className='flex flex-col'>
+                            <CardMidwife/>
+                            <ButtonMidwife />
+                        </div>
+                  </div>
+              </div>
           </div>
-            {/* <img className='w-full h-auto object-cover' src={mobile} alt=''></img> */}
-          </div>
-         </div>
-        </div>
-        </div>
-        </div>
-
-    </div>
-  )
+        )
 }
 
    {/* <h1 className='text-[2rem] p-[10px] text-center'>How does INA work?</h1>

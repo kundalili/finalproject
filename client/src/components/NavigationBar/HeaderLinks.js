@@ -13,7 +13,7 @@ export default function HeaderLinks() {
     const {state, dispatch} = useContext(AppContext)
   return (
     <div >
-        <nav className="flex flex-wrap justify-center items-center gap-[10px] p-[30px] mb-[50px]]" > 
+        <nav className="flex flex-wrap justify-center items-start gap-[10px] p-[10px]" > 
                     {/* 
                     HERE IS THE SEARCH FIELD
                     <form className='flex flex-row pr-[50px]'>
@@ -22,21 +22,17 @@ export default function HeaderLinks() {
                                 <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
                             </button>
                     </form> */}
-                    <div>
                         <Link to='/'><img className='' src={logo} alt='logo'/></Link>
-                    </div>
-                        <Link to='/register' className='headerLink cursor-pointer font-bold'>REGISTRATION</Link>
+                        <Link to='/register' className='headerLink cursor-pointer font-bold'><div className=''>REGISTRATION</div></Link>
                         {
                             !state.user._id
                                 ?<Link to='/login' className='headerLink cursor-pointer font-bold'>LOGIN </Link>
                                 :<></>
                         }
                         
-                        <div>
                             <Link className='headerLink cursor-pointer font-bold' to='/message'>MESSAGES</Link>
-                            <Link className='headerLink cursor-pointer font-bold' to='/post'>POSTS</Link>
                             
-                        </div>
+                            <Link className='headerLink cursor-pointer font-bold' to='/post'>POSTS</Link>
                         {
                             state.user._id
                                 ?<Link onClick={()=>{dispatch({ type: 'login', payload: {}})}} 

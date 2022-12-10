@@ -82,7 +82,8 @@ export default function Login_Single(props) {
                     rounded-full 
                     hover:text-white
                     hover:bg-vividBlue 
-                    hover:border-vividBlue'>
+                    hover:border-vividBlue
+                    shadow'>
                     Login
                 </button>
                 <Link to='/forgotpassword'>            

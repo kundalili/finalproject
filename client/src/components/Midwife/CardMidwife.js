@@ -10,9 +10,9 @@ export default function CardMidwife({availability}) {
   return (
 <>
         <div className='w-[500px]'>
-            <h2 className='text-[2rem] p-[20px] text-left bg-vividBlue text-white rounded-t-lg'>My Profile</h2>
+            <h2 className='text-[2rem] p-[20px] text-left bg-vividBlue text-white  shadow rounded-t-lg'>My Profile</h2>
 
-              <div className='bg-coral rounded-b-lg p-[20px]'>
+              <div className='bg-coral shadow rounded-b-lg p-[20px]'>
 
                     <h3 className='text-[1.5rem] p-[10px] text-left text-lotionPink pl-[15px] '>Name</h3>
                     <h3 className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.name}</h3>

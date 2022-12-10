@@ -140,7 +140,7 @@ console.log("data is at the beginning", data)
                   <div className='text-[2rem] p-[10px] text-center font-bold text-vividBlue'>My Midwife Profile</div>
             </div>
                 <div className="flex justify-center items-center">
-                    <div > 
+                    {/* <div > 
                         <button onClick={handleSave} type="submit"
                                 className='cursor-pointer 
                                 border-2 border-vividBlue 
@@ -155,10 +155,10 @@ console.log("data is at the beginning", data)
                                 hover:bg-vividBlue 
                                 hover:border-vividBlue'>Update Profile                
                         </button> 
-                    </div>
+                    </div> */}
                 </div>
                     <div className='flex justify-center items-center'>
-                        <div className='flex justify-center items-center gap-[20px] flex-col mt-[30px] w-min p-[30px] bg-white'>
+                        <div className='flex justify-center items-center gap-[20px] flex-col mt-[30px] w-min p-[30px] shadow bg-white'>
                             <div className='flex justify-center items-center'>
 
                             {/* USERNAME*/}
@@ -260,10 +260,9 @@ console.log("data is at the beginning", data)
                                     src={imgUrl} alt='profile'/>
                        
                               </div>
+                              
                               </div>
-                            </div>
-
-                            {/* SAVE BUTTON */}
+                                   {/* SAVE BUTTON */}
                       
                       <div className='flex justify-center items-center p-[30px]'> 
                             <button onClick={handleSave} type="submit"
@@ -278,9 +277,14 @@ console.log("data is at the beginning", data)
                                     rounded-full 
                                     hover:text-white
                                     hover:bg-vividBlue 
-                                    hover:border-vividBlue'>Save                
+                                    hover:border-vividBlue
+                                    shadow'>
+                                    Update Profile                
                             </button>   
                       </div>
+                            </div>
+
+                       
                   <div>
               </div>
         </>

@@ -1,4 +1,3 @@
-import { listItemClasses } from '@mui/material'
 import React from 'react'
 import {MdMarkEmailRead} from 'react-icons/md'
 import arrow from '../../assets/Arrow 1.png'
@@ -13,13 +12,13 @@ export default function MessageList(props) {
 
   console.log("🚀 Hello from Message Card, Props and global are :", item)
 
-  const bg = item?.from?._id!==state?.user?._id?"bg-softRed":"bg-rose-300"
+  const bg = item?.from?._id!==state?.user?._id?"bg-lotionPink text-darkGray w-[350px] pr-[50px] ml-[150px] shadow ":"bg-white w-[350px] text-darkGray shadow"
 
   return (
 
     <div className={'rounded-xl p-[20px] '+ bg}>
 
-      <div className='flex justify-between items-center gap-[20px] p-[10px]'>
+      <div className=' gap-[20px] p-[10px]'>
           {
             item?.from?._id!==state?.user?._id
               ?<p className='font-bold text-2xl'>{item?.from?.username}</p>
