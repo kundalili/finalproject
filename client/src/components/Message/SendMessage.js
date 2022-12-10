@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
 
@@ -7,22 +7,25 @@ export default function SendMessage(props) {
     
     const {state} = useContext(AppContext)
 
-    
-
-    const [users, setUsers] = useState({from:state.user, to:props.to})
+    const [users, setUsers] = useState({from:state.user._id, to:props.to})
     const [text, setText] = useState("")
     console.log("🚀 Hello from Send Message, users :", users)
+    
+    useEffect(()=>{
+        console.log("users changed", users)
+    }, [users])
 
     async function  handleSave(){
         let response
         console.log("message users",users)
         try {
             response = await axios.post('/message/send', {
-                from : users.from._id,
-                to : users.to._id,
+                from : users.from,
+                to : users.to,
                 text : text
             })
             console.log("send message response:", response)
+            setText("")
             props.cb(response.data)
         } catch (error) {
             props.cb(error)
@@ -43,12 +46,11 @@ export default function SendMessage(props) {
     } */
 
     return (
-        <div className='w-[400px] h-[300px] absolute top-[200px] left-[200px]
-            bg-slate-200  flex flex-row'>
+        <div className='w-[400px] h-[200px] bg-slate-200  flex flex-row'>
             {
-                (users.from._id===users.to._id)
+                (users.to===users.from)
                     ?<div>
-                        <p>Can not send to yourself</p>
+                        <p>Can not send to itself</p>
                     </div>
                     :<div className='flex flex-col'>
                         <img 

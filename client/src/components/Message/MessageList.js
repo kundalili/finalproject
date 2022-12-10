@@ -1,7 +1,10 @@
 import React from 'react'
 import {MdMarkEmailRead} from 'react-icons/md'
 import arrow from '../../assets/Arrow 1.png'
-import readed from '../../assets/Group 3.svg'
+import read from '../../assets/Group 3.svg' //icon for read messages
+import unread from '../../assets/Group 4.svg' //icon for unread messages
+
+
 import {useContext} from 'react'
 import { AppContext } from '../Context'
 
@@ -35,7 +38,8 @@ export default function MessageList(props) {
           item?.from._id!==state?.user?._id
             ?
             <div className='flex justify-between items-center'>
-              <img src={readed} alt='arrow' className='text-white mt-[10px] h-[18px]' onClick={(e)=>{markRead(item)}}/>
+              <img src={item.tostatus?unread:read} alt='arrow' className='text-white mt-[10px] h-[18px]' onClick={(e)=>{markRead(item)}}/>
+      
               <img src={arrow} alt='arrow' className='text-white mt-[10px] h-[18px]' onClick={(e)=>{newPost(item)}}/>
             </div>
             :<></>
