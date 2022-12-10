@@ -1,13 +1,13 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../Context'
 
 import logo from '../../assets/ina_blue.svg'
-import menu from '../../assets/menu.svg'
+/* import menu from '../../assets/menu.svg'
 import magnifier from '../../assets/search.svg'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from '@mui/icons-material/Logout'; */
 
 export default function HeaderLinks() {
     const {state, dispatch} = useContext(AppContext)
@@ -34,6 +34,8 @@ export default function HeaderLinks() {
                         
                         <div>
                             <Link className='headerLink cursor-pointer font-bold' to='/message'>MESSAGES</Link>
+                            <Link className='headerLink cursor-pointer font-bold' to='/post'>POSTS</Link>
+                            
                         </div>
                         {
                             state.user._id

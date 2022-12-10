@@ -10,17 +10,16 @@ import DashboardMidwife from './components/Midwife/DashboardMidwife'
 import App from './App';
 import ContextProvider from './components/Context';
 import Messages from './components/Message/Messages'
+import Posts from './components/Post/Post'
 import PregnantProfile from './components/Pregnant/PregnantProfile';
 import RegistrationMidwife from './components/Registration/RegistrationMidwife';
 import RegistrationPregnant from './components/Registration/RegistrationPregnant';
-import Login_Single from './components/Login/Login_Single'
-import LoginMidwife from './components/Login/LoginMidwife'
-import LoginPregnant from './components/Login/LoginPregnant'
+import LoginSingle from './components/Login/LoginSingle'
+
 import EmailConfirm from './components/EmailConfirm'
 import ForgotPass from './components/ForgotPass'
 import ChangePass from './components/ChangePass'
 import ProtectedRoutes from './components/ProtectedRoutes'
-import Login from './components/Login/Login';
 import Registration from './components/Registration/Registration';
 import Logout from './components/Logout';
 
@@ -34,10 +33,8 @@ root.render(
                             </Route>
                             <Route>
                                 <Route element={<LoginLayout />} />
-                                <Route path='/loginmid' element={<LoginMidwife />} />
-                                <Route path='/loginpreg' element={<LoginPregnant />} />
                                 <Route path='/register' element={<Registration />} />
-                                <Route path='/login' element={<Login_Single />} />
+                                <Route path='/login' element={<LoginSingle />} />
                                 <Route path='/registermid' element={<RegistrationMidwife />} />
                                 <Route path='/registerpreg' element={<RegistrationPregnant />} />
                                 <Route path='/emailconfirm/:token' element={<EmailConfirm />} />
@@ -50,6 +47,7 @@ root.render(
                                     <Route path='/profilemid' element={< MidwifeProfile/>} />
                                     <Route path='/profilepreg' element={< PregnantProfile/>} />
                                     <Route path='/message' element={<Messages />} />
+                                    <Route path='/post' element={<Posts />} />
                                     <Route path='/infomid' element={<DashboardMidwife />} />
                                     <Route path='/infopreg' element={<DashboardPregnant />} />
                                 </Route>

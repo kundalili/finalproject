@@ -5,7 +5,7 @@ const {cloudinaryUpload} = require('../config/multer-cloudinary')
 const postController = require('../controllers/postController')
 
 
-router.post('/send',auth, cloudinaryUpload.single('image'), postController.send)
+router.post('/add',auth, cloudinaryUpload.single('image'), postController.add)
 router.get('/list', auth, postController.list)
 router.delete('/delete', auth, postController.delete)
 router.post('/like', auth, postController.like)

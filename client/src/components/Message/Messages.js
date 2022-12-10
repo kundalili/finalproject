@@ -15,7 +15,7 @@ export default function Messages (){
         const [msglist, setMsglist] = useState([]) //RightSide MessageList
         const [msglistUser, setMsglistUser] = useState([]) //RightSide MessageList
         const [msg, setMsg] = useState({from:0, to:0, unread:0}) //total message info for the user
-        const [query, setQuery] = useState({to:state.user._id, tostatus:0})
+        const [query] = useState({to:state.user._id, tostatus:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
         const [otherUser, setOtherUser] = useState()
         const [modalOpen, setModalOpen] = useState(false)
@@ -31,11 +31,12 @@ export default function Messages (){
               }, 300000);
             
             return () => clearInterval(interval);
-        }, [])
+        })
 
         useEffect(() => {
             console.log("new query", query)
-            getMsgData()
+            let a = getMsgData()
+            console.log("new query", query,a)
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }, [otherUser])
