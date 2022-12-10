@@ -53,7 +53,7 @@ module.exports.list = async (req, res) => {
             city, language, availability, since, about, duedate} = req.body
         
         let query = {}
-        
+    
         if (_id) query._id=_id
         if (username) query.username={ $regex: username }
         if (type) query.type=type

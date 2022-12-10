@@ -4,6 +4,8 @@ import {IoMdMail} from 'react-icons/io'
 
 import {SiMinutemailer} from "react-icons/si"
 
+import SendMessage from './SendMessage';
+import inbox from './../../assets/inbox_FILL0_wght400_GRAD0_opsz48.svg'
 
 export default function MessageCard(props) {
     
@@ -30,8 +32,11 @@ export default function MessageCard(props) {
             <div className='flex flex-row justify-around'>
                     <div className='flex flex-col justify-between items-center  text-white'>
                         <div className='flex justify-between w-[50px] p-[5px] text-2xl text-white'> 
-                            <IoMdMail/> 
-                            <span className='text-xl text-white'>{props?.msg?.from}</span>
+
+                            <img alt='' src={inbox} />
+                            <span className='text-xl text-white'>{props.msg.from}</span>
+
+
                         </div>
                         <p>Inbox</p>
                     </div>

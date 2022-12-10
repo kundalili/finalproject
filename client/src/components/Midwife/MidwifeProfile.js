@@ -49,7 +49,7 @@ console.log("🚀 myService", myService)
 
 //LANGUAGE
 
-const [spokenLanguage, setSpokenLanguage] = useState(data?.language?data.language:[]);
+const [spokenLanguage, setSpokenLanguage] = useState(data?.spokenLanguage?data.spokenLanguage:[])
 
 
 // AVAILABILITY
@@ -58,6 +58,12 @@ const [myavailability, setMyavailability] = useState(data?.availability?data.ava
 console.log("🚀 ~ file: Availability.js:35 ~ Availability ~ myavailability", myavailability)
 
 console.log("data is at the beginning", data)
+
+// let text = availability;
+// let myArray = text.split("");
+// console.log("myArray is", myArray)
+
+
 
 //HANDLE IMAGES
 
@@ -86,7 +92,7 @@ console.log("data is at the beginning", data)
     formdata.set('since', data.since)
     formdata.set('service', myService)
     formdata.set('language', spokenLanguage)
-    formdata.set('availability', JSON.stringify(myavailability))
+    formdata.set('availability', myavailability)
     formdata.set('about', data.about)
     formdata.set('name', data.name)
     formdata.set('photo', data.photo)
@@ -273,8 +279,7 @@ console.log("data is at the beginning", data)
                                     hover:text-white
                                     hover:bg-vividBlue 
                                     hover:border-vividBlue'>Save                
-                            </button> 
-                            
+                            </button>   
                       </div>
                   <div>
               </div>
