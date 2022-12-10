@@ -30,24 +30,31 @@ module.exports.send = async (req, res) => {
 
 module.exports.list = async (req, res) => {
     
+    let query ={}
     try {
         console.log("list for query:", req.body)
 
-        if (!req.body.hasOwnProperty('from')&&!req.body.hasOwnProperty('to')&&!req.body.hasOwnProperty('_id')) {
-            console.log(req.body)
-            res.send({success: false, messages:["from or to info is a must"]})
-        } else {    
-        
-        let query={}
-
-        if (req.body.hasOwnProperty('from')) query= {from: new mongoose.Types.ObjectId(req.body.from)}
-        if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
-        if (req.body.hasOwnProperty('state')) query={...query, to:new mongoose.Types.ObjectId(req.body.state)}
-        if (req.body.hasOwnProperty('_id')) query={...query, to:new mongoose.Types.ObjectId(req.body._id)} 
-        
+        if (req.body.hasOwnProperty('users')) 
+            {
+                let u1 =mongoose.Types.ObjectId(req.body.users[0])
+                let u2 =mongoose.Types.ObjectId(req.body.users[1])
+                
+                query = {$or:[{from:u1, to:u2},{from:u2, to:u1}]}
+            } 
+            
+            if (req.body.hasOwnProperty('from')) query= {...query, from: new mongoose.Types.ObjectId(req.body.from)}
+            if (req.body.hasOwnProperty('to')) query= {...query, to:new mongoose.Types.ObjectId(req.body.to)}
+            if (req.body.hasOwnProperty('fromstate')) query={...query, fromstate:req.body.fromstate}
+            if (req.body.hasOwnProperty('tostate')) query={...query, tostate:req.body.tostate}
+            if (req.body.hasOwnProperty('fromflag')) query={...query, fromflag:req.body.fromflag}
+            if (req.body.hasOwnProperty('toflag')) query={...query, toflag:req.body.toflag}
+            if (req.body.hasOwnProperty('text')) query={...query, text:{$regex:req.body.text}}
+            
+            if (req.body.hasOwnProperty('_id')) query={...query, _id:new mongoose.Types.ObjectId(req.body._id)}  
+    
         console.log("calculated query:", query)
 
-        const messages = await Message.find(req.body)
+        const messages = await Message.find(query)
                                         .populate({
                                             path: 'from',
                                             select: '-password -email'
@@ -59,10 +66,10 @@ module.exports.list = async (req, res) => {
                                         .sort({ date: -1 })  
 
 
-        console.log("message list", messages)
+       // console.log("message list", messages)
        
         res.send({success: true, messages})
-       }
+       
     } catch (error) {
     
         console.log("🚀 ~ Error in list messages", error.message)
@@ -206,19 +213,18 @@ module.exports.edit = async (req, res) => {
     try {
        
         console.log("🚀 ~ edit here: ", req.body)
-
-        const {status, flag, _id} = req.body;
-        const query={}
-        if (status) query.status =status
-        if(flag) query.flag=flag
-
-        console.log("update", query)
-
+            
+        const {fromstatus, tostatus, fromflag, toflag, _id} = req.body;
         if (!_id) {
             res.send({success: false, error: 'id must be supplied'})
-
-            return
         }
+        const query={}
+        if (fromstatus) query.fromstatus =fromstatus
+        if (tostatus) query.tostatus =tostatus
+        if (fromflag) query.fromflag =fromflag
+        if (toflag) query.toflag =toflag
+
+        console.log("update", query)
 
         const message = await Message.findByIdAndUpdate(req.body._id, query, {new: true})
         console.log("🚀 ~ Message", message)

@@ -13,17 +13,23 @@ export default function MessageList(props) {
 
   console.log("🚀 Hello from Message Card, Props and global are :", item)
 
+  const bg = item?.from?._id!==state?.user?._id?"bg-softRed":"bg-rose-300"
 
   return (
-    <div className=' bg-softRed rounded-xl p-[20px] w-[350px]  text-white'>
+
+    <div className={'rounded-xl p-[20px] '+ bg}>
+
       <div className='flex justify-between items-center gap-[20px] p-[10px]'>
-          <p className='font-bold text-2xl'>{item.from.username}</p>
+          {
+            item?.from?._id!==state?.user?._id
+              ?<p className='font-bold text-2xl'>{item?.from?.username}</p>
+              :<></>
+            }
           <p >{item.date}</p>
       </div>
 
       <p className='text-2xl p-[10px]'>{item.text}</p>
 
-      <p className='p-[10px]'>{item.to.username}</p>
       <hr></hr>
       
         {/* <MdMarkEmailRead className='text-2xl ml-[10px] mt-[10px]' onClick={handleClick}/> */

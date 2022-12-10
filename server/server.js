@@ -16,6 +16,7 @@ app.use(cookieParser())
 
 app.use('/user', require('./routes/userRoutes'))
 app.use('/message', require('./routes/messageRoutes'))
+app.use('/post', require('./routes/postRoutes'))
 
 
 

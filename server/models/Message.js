@@ -32,16 +32,25 @@ const messageSchema = new Schema({
         default: Date.now 
     },
 
-    status:{
-        type: Array,  
-        required: true,
-        default: [1,0]
+    fromstatus:{
+        type: Number,  
+        default: 1
     },
 
-    flag:{
-        type: Array,  
-        required: true,
-        default: [0,0]
+    tostatus:{
+        type: Number,  
+        default: 0
+    },
+
+
+    fromflag:{
+        type: Number,  
+        default: 0
+    },
+    
+    toflag:{
+        type: Number,  
+        default: 0
     }
 
  })

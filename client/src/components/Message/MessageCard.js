@@ -32,22 +32,25 @@ export default function MessageCard(props) {
             <div className='flex flex-row justify-around'>
                     <div className='flex flex-col justify-between items-center  text-white'>
                         <div className='flex justify-between w-[50px] p-[5px] text-2xl text-white'> 
+
                             <img alt='' src={inbox} />
                             <span className='text-xl text-white'>{props.msg.from}</span>
+
+
                         </div>
                         <p>Inbox</p>
                     </div>
                     <div className='flex flex-col justify-between items-center  text-white'>
                         <div className='flex justify-between w-[50px] p-[5px] text-2xl text-white'> 
                             <IoMdMail/> 
-                            <span className='text-xl text-white'>{props.msg.to}</span>
+                            <span className='text-xl text-white'>{props?.msg?.to}</span>
                         </div>
                         <p>Sent</p>
                     </div>
                     <div className='flex flex-col justify-between items-center  text-white'>
                         <div className='flex justify-between w-[50px] p-[5px] text-2xl text-white'> 
                             <IoMdMail/> 
-                            <span className='text-xl text-white'>{props.msg.unread}</span>
+                            <span className='text-xl text-white'>{props?.msg?.unread}</span>
                         </div>
                         <p>Unread</p>
                     </div>
