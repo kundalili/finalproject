@@ -17,6 +17,10 @@ module.exports.add = async (req, res) => {
         }
         
         const postCreated = await Post.create( req.body)
+        if (postCreated.parentId) {
+            const increaseParent = await Post.findByIdAndUpdate(mongoose.Types.ObjectId(postCreated.parentId),
+                                                                {$inc: {"numberOfComments":1}})
+        } 
         console.log("PostCreated", postCreated)
         res.send({success: true})
 
@@ -31,6 +35,7 @@ module.exports.add = async (req, res) => {
 module.exports.list = async (req, res) => {
 
     let parentId = req.body.parentId;
+    
 
     let query = (parentId)
                 ?{parentId:parentId}
@@ -44,6 +49,31 @@ module.exports.list = async (req, res) => {
                                             select: '-password -email'
                                             })  
                                         .sort({ date: -1 })  
+
+
+        console.log("post list and query ", posts, req.body)
+       
+        res.send({success: true, posts})
+       }
+     catch (error) {
+    
+        console.log("🚀 ~ Error in list messages", error.message)
+
+        res.send({success: false, error: error.message})
+        
+    }
+}
+
+module.exports.populars = async (req, res) => {
+
+    try{
+        const posts = await Post.find()
+                                        .populate({
+                                            path: 'userId',
+                                            select: '-password -email'
+                                            })  
+                                        .sort({ numberOfComments: -1, date:-1 })
+                                        .limit(5) 
 
 
         //console.log("query and list", messages, req.body)
