@@ -46,7 +46,7 @@ module.exports.register = async (req, res) => {
 }
 
 module.exports.list = async (req, res) => {
-    console.log(req.body.availability)
+    console.log('user list here:', req.body)
     try {
         
         const {_id, username, email, type, name, service, 
