@@ -148,15 +148,18 @@ module.exports.group = async (req, res) => {
             else { 
                     let myobj={_id:item._id}
                     if (item.place==='from') {
+                        myobj["to"]=0
                         myobj["from"]=item.value
-                    } else myobj["to"]=item.value
+                    } else {
+                        myobj["to"]=item.value
+                        myobj["from"]=0
+                    }
                     array.push(myobj);
                 }
         }
 
         //console.log("collected user list", users)
         
-        let userdetay = []
         let myuser
         const findUsers = async (item,idx)=>{
           // console.log("user findusers:",item.userId, req.body.userId )
@@ -167,7 +170,7 @@ module.exports.group = async (req, res) => {
 
             detailed=await users[idx]
             detailed["photo"]=myuser?.photo ? myuser.photo : ""
-            detailed["username"]=myuser.username
+            detailed["username"]=myuser?.username
             //console.log("new data", detailed)
             return detailed
         }
@@ -175,7 +178,7 @@ module.exports.group = async (req, res) => {
         for (let idx=0;idx<users.length;idx++) {
             users[idx]= await findUsers(users[idx],idx)
         }
-        res.send({success: true, users})
+        res.send({success: true, data:users})
       }
 
     } catch (error) {

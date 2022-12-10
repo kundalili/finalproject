@@ -33,7 +33,7 @@ export default function MessageList(props) {
       <hr></hr>
       
         {/* <MdMarkEmailRead className='text-2xl ml-[10px] mt-[10px]' onClick={handleClick}/> */
-          item.from._id!==state.user._id
+          item?.from._id!==state?.user?._id
             ?
             <div className='flex justify-between items-center'>
               <img src={readed} alt='arrow' className='text-white mt-[10px] h-[18px]' onClick={(e)=>{markRead(item)}}/>
