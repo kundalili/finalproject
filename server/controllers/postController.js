@@ -2,7 +2,7 @@ const Post = require('../models/Post')
 
 const mongoose = require('mongoose');
 
-module.exports.send = async (req, res) => {
+module.exports.add = async (req, res) => {
 
     const {userId, text, parentId} = req.body;
 

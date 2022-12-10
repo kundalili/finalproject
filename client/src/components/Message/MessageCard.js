@@ -1,16 +1,15 @@
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import {AppContext} from '../Context'
-import {IoMdMail, IoMdMailUnread } from 'react-icons/io'
-import {MdOutgoingMail} from "react-icons/md"
+import {IoMdMail} from 'react-icons/io'
+
 import {SiMinutemailer} from "react-icons/si"
-import SendMessage from './SendMessage';
+
 
 export default function MessageCard(props) {
     
     console.log("🚀 Hello from Message Card, Props are :", props)
     
     const {state} = useContext(AppContext)
-    const [editModalOpen, setEditModalOpen] = useState(false)
 
     return (
         <div className={'flex flex-col gap-[20px] rounded-md w-[350px]  p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-blue-600":'bg-lightBlue')}>
