@@ -6,7 +6,8 @@ import { useState, useContext } from 'react';
 import { AppContext } from '../Context'
 import Header from '../NavigationBar/Header'
 import { useNavigate } from 'react-router-dom'
-
+import ForgotPass from '../ForgotPass';
+import { Link } from 'react-router-dom';
 
 
 export default function Login_Single(props) {
@@ -84,6 +85,10 @@ export default function Login_Single(props) {
                     hover:border-vividBlue'>
                     Login
                 </button>
+                <Link to='/forgotpassword'>            
+                  <h3 className='text-vividBlue text-l font-bold'>Forgot your password?</h3>
+                </Link>
+              
     </div>  
   </>
 

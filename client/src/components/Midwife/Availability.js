@@ -52,19 +52,17 @@ export default function Availability({myavailability, setMyavailability}) {
         id="demo-multiple-name"
         multiple
         value={myavailability}
-        onChange={handleChange}
+        onChange={(e) => setMyavailability( e.target.value)}
         label="Language"
         renderValue={(selected) => selected.join(', ')}
         MenuProps={MenuProps}
       >
-        {availability.map((availability, idx) => (
+        {availability.map((item) => (
           <MenuItem
-            key={idx}
-            value={availability}
-            name={idx}
+          key={item} value={item}
           >
-            <Checkbox checked={myavailability.indexOf(availability) > -1} />
-              <ListItemText primary={availability} />
+            <Checkbox checked={myavailability.indexOf(item) > -1} />
+              <ListItemText primary={item} />
           
           </MenuItem>
         ))}

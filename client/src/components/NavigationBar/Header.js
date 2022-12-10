@@ -18,13 +18,6 @@ import './Header.css'
 export default function Header() {
     
     const {state} = useContext(AppContext)
-    const handleRegister = async () => {
-
-        // const response =  await axios.post(
-        //     '/user/register', data
-        // )
-        // console.log("🚀 Registration",  response)
-      }
 
   return (
     <div>

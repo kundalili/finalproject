@@ -44,7 +44,7 @@ const handleImageChange = (e) => {
     setFile(e.currentTarget.files[0])
   }
 
-  // DUE DATE STRIM
+  // DUE DATE
 
   
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 function ForgotPass(props) {
 
@@ -13,16 +14,33 @@ function ForgotPass(props) {
 
     return (
         <div className='flex items-center 
-        w-[500px]
+    
         justify-center gap-[20px] h-[400px] p-[40px] 
-        flex-col border-2 border-slate-500 rounded-md'>
-            <h3>Forgot your password?</h3>
+        flex-col '>
+            <h3 className='text-vividBlue text-l font-bold'>Forgot your password?</h3>
             <label>
-                Type your email or username
-                <input  className='border-2 border-slate-500 p-[5px]' value={data} onChange={e=> setData(e.target.value)}/>
+                <input className='h-[51px] w-[225px] text-center 
+                     placeholder-softBlue text-xl'
+                       placeholder='Your email/username' label="Forgotten Password"  />            
             </label>
-            <button className='border-2 border-slate-500 p-[5px]'
-            onClick={handleSubmit}>Submit</button>
+            <Link to='/login'>
+            <button type="submit" 
+                    className='cursor-pointer 
+                    border-2 border-vividBlue 
+                    text-vividBlue 
+                    font-semibold 
+                    hover:border-2
+                    text-center w-[235px] 
+                    h-[51px] 
+                    outline-none 
+                    rounded-full 
+                    hover:text-white
+                    hover:bg-vividBlue 
+                    hover:border-vividBlue' 
+                    onClick={handleSubmit}>
+                    Submit
+                </button>
+                </Link>
         </div>
     );
 }
