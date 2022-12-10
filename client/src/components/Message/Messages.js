@@ -11,17 +11,16 @@ import UserSelect from "../Selections/UserSelect"
 export default function Messages (){
 
         const {state} = useContext(AppContext) //Global state for user
-        const [msggroup, setMsggroup] = useState([]) //Left side corresponderlist
-        const [msglist, setMsglist] = useState([]) //RightSide MessageList
-        const [msglistUser, setMsglistUser] = useState([]) //RightSide MessageList
-        const [msg, setMsg] = useState({from:0, to:0, unread:0}) //total message info for the user
+     //   const [msggroup, setMsggroup] = useState([]) //Left side corresponderlist
+     //   const [msglist, setMsglist] = useState([]) //RightSide MessageList
+     //   const [msglistUser, setMsglistUser] = useState([]) //RightSide MessageList
         const [query] = useState({to:state.user._id, tostatus:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
-        const [otherUser, setOtherUser] = useState()
+        const [otherUser, setOtherUser] = useState("")
         const [modalOpen, setModalOpen] = useState(false)
+        const [data, setData] = useState ({groupList:[], msgList:[], total:{from:0, to:0, unread:0}})
         
-        console.log('Hello from Messages state and msggroup are :', state, msggroup)
-
+        
         useEffect(() => {
             let interval;
             loadDatas()
@@ -30,73 +29,86 @@ export default function Messages (){
                 // The logic of refreshing message info.
               }, 300000);
             
-            return () => clearInterval(interval);
-        })
-
-        useEffect(() => {
-            console.log("new query", query)
-            let a = getMsgData()
-            console.log("new query", query,a)
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }, [otherUser])
+            return () => clearInterval(interval);
+        },[otherUser])
+
 
         useEffect (()=>{
-            console.log("msggroup", msggroup)
-            console.log("msglist", msglist)
-            console.log("msglistUser", msglistUser)
-            
-        },[msggroup, msglist, msglistUser, otherUser, query])
+            console.log("msggroup", data.groupList)
+            console.log("msglist after set data", data.msgList)
+            console.log("msglistUser", data.total)
+        },[data])
 
         
         const loadDatas = async()=>{
-            await getGroupData()
-            await getMsgData()
-            await msgTotals()
+            
+            let groupList = await getGroupData()
+            console.log ("groupList is :", groupList)
+            
+            let msgList = await getMsgData()
+            console.log ("msgList is :", msgList)
+            
+
+            let total ={from:0, to:0, unread:0}
+            groupList.forEach((item)=>{
+                console.log("message numbers", msgList.from, msgList.to )
+                total.from+=msgList?.from?msgList.from:0
+                total.to+=msgList?.to?msgList.to:0
+            })
+            
+            console.log ("Hello from data State set")
+            setData({groupList:groupList, msgList:msgList, total:total})
 
         }
        
         const getGroupData = async () => {
-            const response = await axios.post('/message/group', groupQuery)
-            // console.log("grouplist and filter", groupQuery, response)
-
-            console.log( "groupdata:",response?.data?.users)
             console.log( "groupquery:",groupQuery)
-            let myarr = response?.data?.users
-            myarr.sort((a, b)=>{
-                if(a.username.toLowerCase() > b.username.toLowerCase()){
-                  return 1;
-                }else{
-                  return -1;
-                }
-              });
-            console.log("sorted", response?.data?.users)
-            response?.data?.users?.length>0?setMsggroup(response.data.users):setMsggroup([])
+
+            const response = await axios.post('/message/group', groupQuery)
+            let myarr = response?.data?.data
+            console.log( "my group search result:",myarr)
+
+            if (Array.isArray(myarr)) {
+                    myarr.sort((a, b)=>{
+                        if(a.username.toLowerCase() > b.username.toLowerCase()){
+                        return 1;
+                        }else{
+                        return -1;
+                        }
+                    });
+            }
+            
+            console.log( "group query response:",response)
+            if (myarr.length>0) return myarr
+            return []
         }
 
         const getMsgData = async () => {
             if (otherUser) {
                     const response = await axios.post('/message/list',{users:[state.user._id, otherUser]})
-                    console.log("msglistttt for corresposder", response?.data, query)
-                    response?.data?.messages?.length>0?setMsglistUser(response.data.messages):setMsglistUser([])
+                    if (response?.data?.messages?.length>0) return response.data.messages 
+                    return []
             } else {
                 const response = await axios.post('/message/list',query)
-                console.log("msglistttt for active user", response, query)
-                response?.data?.messages?.length>0?setMsglist(response.data.messages):setMsglist([])
+                console.log( "group query response:",response)
+                if (response?.data?.messages?.length>0) return response.data.messages
+                return []
+            
             }
         }
 
                 
-        function msgTotals(){
-            console.log("calculate total for messages:",msglist)
-            let tmpmsg ={from:0, to:0, unread:msglist.length}
+/*         function msgTotals(msgList, groupList){
+            let tmpmsg ={from:0, to:0, unread:msgList.length}
             msggroup.forEach((item)=>{
-                console.log("message numbers", item.from, item.to, msglist.length )
+                console.log("message numbers", item.from, item.to, msgList.length )
                 tmpmsg.from+=item?.from?item.from:0
                 tmpmsg.to+=item?.to?item.to:0
             })
-            setMsg()
-        }
+            return tmpmsg
+        } */
 
         async function newPost(item){
             const query={}
@@ -152,19 +164,20 @@ export default function Messages (){
 
         }
 
+        console.log("Data WILL BE RENDERED", data)
         return (
             <div className='flex flex-row'>
 
                 <div >
                     <div className='flex-col border-double' >
-                        <MessageCard user={state.user} msg={msg} sendMessage={handleOtherUserClick}  
+                        <MessageCard user={state.user} msg={data.total} sendMessage={handleOtherUserClick}  
                                     getUserMessages={handleUserClick}/>
                     </div>
 
                     <div className= 'border-solid'>
                     { 
-                        msggroup.map(item =><MessageCard 
-                                    key={item.userId} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
+                        data?.groupList.map(item =><MessageCard 
+                                    key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
                                         getUserMessages={(user)=>setOtherUser(user._id)} 
                                         sendMessage={sendMessage}/>)
                     }
@@ -178,9 +191,9 @@ export default function Messages (){
                 }
                 <div className='flex items-center w-full gap-[20px] min-h-[100vh] p-[40px] flex-col'>
                     { 
-                        otherUser
-                            ?msglistUser.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
-                            :msglist.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
+                        data?.msgList?.length>0  
+                            ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
+                            :<>No Messages</>
                     }  
               </div>
             </div>
