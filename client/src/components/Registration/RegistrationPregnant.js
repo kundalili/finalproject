@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import Header from '../NavigationBar/Header';
 import register from '../../assets/register.png'
+import searching from '../../assets/istockphoto-1205456753-1024x1024.jpg'
 
 
 export default function RegistrationPregnant() {
@@ -37,16 +38,16 @@ export default function RegistrationPregnant() {
     <>
         <Header />
               <div className='flex justify-end items-center' >
-                {/* <img src={register} alt='' className='w-[1000px]'/> */}
-                  <div className='' style={{ backgroundImage:`url(${register})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
-                      height: '70vh', width: '120vw'}}></div>        
+                <img src={register} alt='' className='w-[100vw]'/>
+                  {/* <div className='' style={{ backgroundImage:`url(${searching})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
+                      height: '70vh', width: '120vw'}}></div>         */}
                         <h2 className="text-3xl font-bold italic w-[164px] h-[148px] text-white pt-[10px] absolute mr-[20px] text-left top-[270px]">
                             Are you looking for a midwife?
                         </h2>
               </div>  
               <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col bg-lotionPink'> 
           
-                    <h1 className='text-[1.5rem] p-[10px] text-center'>
+                    <h1 className='text-[2rem] p-[10px] text-center text-vividBlue'>
                       Search for midwives and book them online</h1>
                       <input className='h-[68px] w-[300px] text-center placeholder-lotionPink text-xl'
                       placeholder='Username' 
@@ -78,7 +79,7 @@ export default function RegistrationPregnant() {
                                       hover:border-vividBlue'
                                       variant="outlined" onClick={handleRegistration}>Registration
                           </button>  
-                          <h3 className='text-[2rem]'>Do you have already an account?</h3>
+                          <h3 className='text-[2rem] text-vividBlue'>Do you have already an account?</h3>
                                 <Link to='/loginpreg'>
                                     <button  type="submit"
                                       className='cursor-pointer 
@@ -96,7 +97,7 @@ export default function RegistrationPregnant() {
                                       Login
                                       </button>
                                   </Link>  
-                </div>
+                                  </div>
          </>
   )
 }
