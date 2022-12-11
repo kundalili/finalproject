@@ -1,5 +1,4 @@
 import React from 'react'
-import HeaderLinks from './HeaderLinksMobile';
 import HeaderMobile from './HeaderMobile';
 import HeaderDesktop from './HeaderDesktop';
 import './Header.css'

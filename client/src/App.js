@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Information from './components/Information';
 
 function App() {
-
  
   return (
     <div className="App">
