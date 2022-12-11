@@ -20,8 +20,6 @@ const DEBOUNCE_DELAY = 700;
  * 6. I haven't put more time checking some minor test failures( sorry time constraint )
  */
 
-
-
   function useSearch(query) {
       const [isLoading, setIsLoading] = useState(false);
       const [data, setData] = useState([]);
