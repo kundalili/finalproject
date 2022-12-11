@@ -6,7 +6,7 @@ import PostCard from './PostCard'
 import ParentPostCard from './ParentPostCard'
 import UserCard from './UserCard'
 
-function Posts() {
+export default function Posts() {
 
     const {state} = useContext(AppContext)
 
@@ -18,9 +18,15 @@ function Posts() {
     
 
     useEffect(() => {
+        getData()
+        const interval = setInterval(() => {
+            // The logic of refreshing message info.
+            getData()
+          }, 180000);
+        
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        getData()
+        return () => clearInterval(interval);
 
     }, [query])
 
@@ -57,7 +63,7 @@ function Posts() {
         flex-col'>
             {
                 query[0]?._id
-                ?<ParentPostCard post={query[0]}/>
+                ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
                 :query[1]?._id
                 ?<UserCard user={query[0]}/>
                 :<></>
@@ -84,4 +90,3 @@ function Posts() {
 
         </div>
 )}
-export default Posts;

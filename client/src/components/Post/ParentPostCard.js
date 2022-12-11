@@ -3,7 +3,7 @@ import {useState, useContext, useEffect} from 'react'
 import { CssBaseline } from '@mui/material'
 
 function Card(props) {
-    console.log("🚀 ~ Card", props)
+    console.log("🚀 ~Parent  Card", props)
     const [text, setText] = useState('')
     const [showNewPost, setShowNewPost] = useState(false)
 
