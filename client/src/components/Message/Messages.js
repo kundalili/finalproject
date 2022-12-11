@@ -9,8 +9,6 @@ import UserSelect from "../Selections/UserSelect"
 import Header from '../NavigationBar/Header'
 
 import "../styles.css";
-import { LinkPreviewer } from "../LinkPreview";
-
 
 export default function Messages (props){
 
@@ -18,7 +16,7 @@ export default function Messages (props){
 
         const [query] = useState({to:state.user._id, tostatus:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
-        const [otherUser, setOtherUser] = useState(props?.id?props?.id:state.user._id)
+        const [otherUser, setOtherUser] = useState(state.user)
         
 
         const [data, setData] = useState ({groupList:[], msgList:[], total:{from:0, to:0, unread:0}})
@@ -89,8 +87,8 @@ export default function Messages (props){
 
         const getMsgData = async () => {
             console.log( "getting list for :", otherUser) 
-            if (otherUser!==state.user._id) {
-                    const response = await axios.post('/message/list',{users:[state.user._id, otherUser]})
+            if (otherUser._id!==state.user._id) {
+                    const response = await axios.post('/message/list',{users:[state.user._id, otherUser._id]})
                     if (response?.data?.messages?.length>0) return response.data.messages 
                     return []
             } else {
@@ -145,29 +143,29 @@ export default function Messages (props){
                             <div >
                                 <div className='flex' >
                                     <MessageCard user={state.user} msg={data.total} 
-                                                sendMessage={(user)=>setOtherUser(state.user._id)}  
-                                                getUserMessages={(user)=>setOtherUser(state.user._id)}/>
+                                                sendMessage={()=>setOtherUser(state.user)}  
+                                                getUserMessages={()=>setOtherUser(state.user)}/>
                                 </div>
 
                                 <div className= 'border-solid'>
                                 { 
                                     data?.groupList.map(item =><MessageCard 
                                                 key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
-                                                    getUserMessages={(user)=>setOtherUser(user._id)} 
-                                                    sendMessage={(user)=>setOtherUser(user._id)}/>)
+                                                    getUserMessages={(user)=>setOtherUser(user)} 
+                                                    sendMessage={(user)=>setOtherUser(user)}/>)
                                 }
                                 </div>
                             </div>
                            
                             <div className='flex w-full gap-[20px] min-h-[100vh] p-[40px] flex-col'>
                                 {    
-                                    otherUser!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
-                                                    :<UserSelect cb={(user)=>setOtherUser(user._id)}/>
+                                    otherUser._id!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
+                                                    :<UserSelect cb={(user)=>setOtherUser(user)}/>
                                 }
                                 { 
                                     data?.msgList?.length>0  
                                         ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
-                                        :<div className='bg-blue-100 text-vividBlue text-center text-2xl shadow rounded-md p-[5px]'> {otherUser!==state.user._id?'Loading...':"No unread messages!"} </div>
+                                        :<div className='bg-blue-100 text-vividBlue text-center text-2xl shadow rounded-md p-[5px]'> {otherUser._id!==state.user._id?'Loading...':"No unread messages!"} </div>
                                 }  
                             </div>
                     </div>

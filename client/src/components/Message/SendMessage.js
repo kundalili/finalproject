@@ -7,14 +7,10 @@ export default function SendMessage(props) {
     
     const {state} = useContext(AppContext)
 
-    const [users, setUsers] = useState({from:state.user._id, to:props.to})
+    const [users, setUsers] = useState({from:state.user._id, to:props.to._id})
     const [text, setText] = useState("")
     console.log("🚀 Hello from Send Message, users :", users)
     
-    useEffect(()=>{
-        console.log("users changed", users)
-    }, [users])
-
     async function  handleSave(){
         let response
         console.log("message users",users)
@@ -26,24 +22,12 @@ export default function SendMessage(props) {
             })
             console.log("send message response:", response)
             setText("")
-            props.cb(response.data)
+          //  props.cb(response.data)
         } catch (error) {
-            props.cb(error)
+          //  props.cb(error)
         }
     }
 
-/*     async  function  handleTo(e){
-        let response
-        try {
-            response = await axios.post('/message/find', {
-                username:e.target.value
-            })
-            console.log(response)
-            if (response.username) setUsers({from:users.from, to:response.data})
-        } catch (error) {
-            return("error finding user ", e.target)
-        }
-    } */
 
     return (
         <div className='w-[700px] p-[20px] rounded-md  bg-blue-100 flex flex-row'>
@@ -53,10 +37,12 @@ export default function SendMessage(props) {
                         <p>Can not send to itself</p>
                     </div>
                     :<div className='flex flex-col'>
-                        {/* <img 
-                            className='rounded-full w-[30px] h-[30px] object-cover' 
-                            src={'https://res.cloudinary.com/dgqr3qzxk/image/upload/v1668241829/' + users.photo} alt=''/> */}
-                        {users.to.username}
+                        <div className='flex flex-row'>    
+                            <img 
+                                className='rounded-full w-[30px] h-[30px] object-cover' 
+                                src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.to.photo} alt=''/>
+                            <span >{props.to.username}</span>
+                        </div>
                         <label className='flex items-center p-[10px]'>
                         <textarea  
                             rows="6" 
