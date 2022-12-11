@@ -22,9 +22,9 @@ export default function SendMessage(props) {
             })
             console.log("send message response:", response)
             setText("")
-          //  props.cb(response.data)
+          props.cb(response.data)
         } catch (error) {
-          //  props.cb(error)
+          props.cb(error)
         }
     }
 
@@ -53,9 +53,6 @@ export default function SendMessage(props) {
                             onChange={e => setText(e.target.value)}
                         />
 
-                        <p contentEditable="true" onChange={e => setText(e.target.value)} className="resize-none p-[20px]">
-                            <a></a>
-                        </p>
                         </label>
                         <div className='flex justify-center items-center gap-[30px]'>
                             <button  

@@ -2,16 +2,33 @@ import React from 'react'
 import { AppContext } from '../Context'
 import { useState, useContext } from 'react';
 import {BiMessageRoundedAdd} from 'react-icons/bi'
+import SendMessage from '../Message/SendMessage'
 
 export default function CardMidwifeListed({data, availability}) {
+
+  const [message, setMessage] = useState(false)
+    
+  const {state} = useContext(AppContext)
+
+  async function handleMessage(text){
+    alert("Message Sent")
+    setMessage(false)   
+  }
 
   return (
 <>
         <div className='w-min'>
           <div className='flex justify-between p-[10px] items-center bg-vividBlue rounded-t-lg'>
             <h2 className='text-[1.5rem] p-[10px]  text-white font-bold '>Midwife: {data.name}</h2>
-            <BiMessageRoundedAdd className='text-white text-4xl'/>
+            <BiMessageRoundedAdd className='text-white text-4xl' onClick={()=>{setMessage(true)}}/>
           </div>
+          <div>
+                {
+                    message
+                    ?<SendMessage  to={data} cb={handleMessage} />
+                    :<></>
+                }
+           </div>
               <div className='bg-white rounded-b-lg p-[20px]'>
 
                     {/* <h3 className='text-[1rem] p-[10px] text-left text-greyBlue pl-[15px] '>Name</h3>
