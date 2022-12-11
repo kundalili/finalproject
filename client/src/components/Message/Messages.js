@@ -8,14 +8,18 @@ import SendMessage from './SendMessage'
 import UserSelect from "../Selections/UserSelect"
 import Header from '../NavigationBar/Header'
 
+import "../styles.css";
+import { LinkPreviewer } from "../LinkPreview";
 
-export default function Messages (){
+
+export default function Messages (props){
 
         const {state} = useContext(AppContext) //Global state for user
 
         const [query] = useState({to:state.user._id, tostatus:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
-        const [otherUser, setOtherUser] = useState(state.user._id)
+        const [otherUser, setOtherUser] = useState(props?.id?props?.id:state.user._id)
+        
 
         const [data, setData] = useState ({groupList:[], msgList:[], total:{from:0, to:0, unread:0}})
         
@@ -134,6 +138,8 @@ export default function Messages (){
 
             <div>
                     <Header />
+
+
                         <div className=' flex'>
 
                             <div >

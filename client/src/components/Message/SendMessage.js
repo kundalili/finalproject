@@ -66,6 +66,10 @@ export default function SendMessage(props) {
                             value={text}
                             onChange={e => setText(e.target.value)}
                         />
+
+                        <p contentEditable="true" onChange={e => setText(e.target.value)} className="resize-none p-[20px]">
+                            <a></a>
+                        </p>
                         </label>
                         <div className='flex justify-center items-center gap-[30px]'>
                             <button  

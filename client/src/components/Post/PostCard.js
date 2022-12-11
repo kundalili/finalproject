@@ -1,12 +1,16 @@
 import {FaPlusCircle} from 'react-icons/fa'
+import {AiOutlineLike, AiFillLike} from 'react-icons/ai'
 import {useState, useContext, useEffect} from 'react'
 import { CssBaseline } from '@mui/material'
+import axios from 'axios'
+import { AppContext } from '../Context'
 
 function Card(props) {
     console.log("🚀 ~ Card", props)
     const [text, setText] = useState('')
     const [showNewPost, setShowNewPost] = useState(false)
-
+    const [like, setLike] = useState([props.post.likes.includes(props.post.userId._id), props.post.likes.length])
+     const {state} = useContext(AppContext)
 
     function handleSave(){
         console.log("inside card data", props.post._id, text)
@@ -15,7 +19,16 @@ function Card(props) {
         setText("")
     }
 
+    async function handleLike(){
+        
+        const res = await axios.post('/post/like', {_id:props.post._id, userId: state.user._id})
+        console.log("liked pressed and response is:", res, res.data)
+        if (res.data.success) setLike([!like[0], res.data.data.likes.length])
+    } 
     
+
+    console.log("like render",like)
+
     return (
         <div className='flex flex-col gap-[20px] border-2 border-slate-500 rounded-md w-[400px]  p-[20px]'>
             <div className='flex '>
@@ -32,7 +45,15 @@ function Card(props) {
             <p >
                 Comments: {props.post.numberOfComments}  
             </p>
-            <FaPlusCircle className='text-[1rem]' onClick={() => setShowNewPost(true)}/>
+            <div className="flex flex-between" >    
+                <FaPlusCircle className='text-[1rem]' onClick={() => setShowNewPost(true)}/>
+                {
+                    like[0]
+                    ?<AiFillLike className='text-[1rem]' onClick={() => handleLike()}/>
+                    :<AiOutlineLike className='text-[1rem]' onClick={() => handleLike()}/>
+                }
+                <span>{like[1]}</span>
+            </div>
             {   
                 showNewPost
                 ?<div> 
@@ -42,7 +63,7 @@ function Card(props) {
                     {
                         text
                             ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave()}/>
-                            :<>Type something into text area to Post</>
+                            :<p>Type something into text area to Post</p>
                     }
                 </div>
                 :<></>
