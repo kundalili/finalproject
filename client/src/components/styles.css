@@ -1,13 +1,5 @@
 .App {
-    font-family: sans-serif;
-    text-align: center;
-    font-size: 24px;
-  
-    width: 500px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
+
   }
   
   .card {
