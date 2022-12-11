@@ -46,7 +46,7 @@ export default function RegistrationMidwife() {
         </div>  
         <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col bg-lotionPink'> 
           
-            <h1 className='text-[1.5rem] p-[10px] text-center'>
+            <h1 className='text-[2rem] p-[10px] text-center text-vividBlue'>
             Sign up now, easily and for free. On the largest midwife platform in Germany.</h1>
               <input className='h-[68px] w-[300px] text-center placeholder-lotionPink text-xl'
         placeholder='Username' value={data.username} onChange={e => setData({...data, username: e.target.value})} label="Username"  />
@@ -72,7 +72,7 @@ export default function RegistrationMidwife() {
                               hover:border-vividBlue'
                               variant="outlined" onClick={handleRegistration}>Registration
                               </button>  
-                    <h3 className='text-[2rem]'>Do you have already an account?</h3>
+                    <h3 className='text-[2rem] text-vividBlue'>Do you have already an account?</h3>
                         <Link to='/loginpreg'>
                             <button  type="submit"
                               className='cursor-pointer 

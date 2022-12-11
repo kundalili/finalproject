@@ -9,6 +9,7 @@ import City from '../ProfileDetails/City'
 import Services from './Services';
 import profileImg from '../../assets/midwife.jpeg'
 import Availability from './Availability'
+import Header from '../NavigationBar/Header';
 
 const FormData = require('form-data')
 
@@ -134,6 +135,7 @@ console.log("data is at the beginning", data)
   }   
   return (
       <>        
+        <Header />
         <div className='bg-softBlue'>
             <div className='flex justify-center items-center p-[30px]'>
                   <img className='w-[100px] h-[100px] rounded-full object-cover m-[10px]' src={imgUrl} alt=''></img>

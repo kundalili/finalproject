@@ -46,31 +46,70 @@ export default function SendMessage(props) {
     } */
 
     return (
-        <div className='w-[400px] h-[200px] bg-slate-200  flex flex-row'>
+        <div className='w-[700px] p-[20px] rounded-md  bg-blue-100 flex flex-row'>
             {
                 (users.to===users.from)
                     ?<div>
                         <p>Can not send to itself</p>
                     </div>
                     :<div className='flex flex-col'>
-                        <img 
+                        {/* <img 
                             className='rounded-full w-[30px] h-[30px] object-cover' 
-                            src={'https://res.cloudinary.com/dgqr3qzxk/image/upload/v1668241829/' + users.photo} alt=''/>
+                            src={'https://res.cloudinary.com/dgqr3qzxk/image/upload/v1668241829/' + users.photo} alt=''/> */}
                         {users.to.username}
-                        <label className='border-2 border-slate-500 flex items-center p-[10px]'>
+                        <label className='flex items-center p-[10px]'>
                         <textarea  
-                            rows="4" 
-                            cols="50"
-                            className='resize-none ' 
-                            placeholder='type your comment'
+                            rows="6" 
+                            cols="70"
+                            className='resize-none p-[20px]' 
+                            placeholder='Type your messages'
                             value={text}
                             onChange={e => setText(e.target.value)}
                         />
                         </label>
-                        <button onClick={handleSave}>Save Message</button>
-                        <button onClick={()=>props.cb("")}>Cancel</button>
-                        
-                    </div>
+                        <div className='flex justify-center items-center gap-[30px]'>
+                            <button  
+                                    onClick={handleSave}
+                                    type="submit"
+                                    className='cursor-pointer 
+                                    border-2 border-vividBlue 
+                                    text-vividBlue 
+                                    font-semibold 
+                                    hover:border-2
+                                    text-center w-[106px] 
+                                    h-[34px] 
+                                    outline-none 
+                                    rounded-full 
+                                    hover:text-white
+                                    hover:bg-vividBlue 
+                                    hover:border-vividBlue
+                                    shadow
+                                    '>
+                                    Send               
+                            </button> 
+                            <button  
+                                    onClick={()=>props.cb("")}
+                                    type="submit"
+                                    className='cursor-pointer 
+                                    border-2 border-vividBlue 
+                                    text-vividBlue 
+                                    font-semibold 
+                                    hover:border-2
+                                    text-center w-[106px] 
+                                    h-[34px] 
+                                    outline-none 
+                                    rounded-full 
+                                    hover:text-white
+                                    hover:bg-vividBlue 
+                                    hover:border-vividBlue
+                                    shadow
+                                    '>
+                                    Cancel              
+                            </button>    
+ 
+                         </div>
+                     
+                </div>
             }
         </div>
     )

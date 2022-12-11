@@ -1,7 +1,7 @@
 
 import React from 'react'
 import { useState } from 'react'
-import HeaderLinks from './HeaderLinks'
+import HeaderLinksMobile from './HeaderLinksMobile'
 import './Header.css'
 import menu from '../../assets/menu.svg'
 import { TfiClose } from 'react-icons/tfi'
@@ -15,14 +15,14 @@ export default function HeaderMobile() {
 
   const closeIcon = <TfiClose
   alt=""
-  className='hamburger right-5 top-6 text-4xl
+  className='hamburger mt-[20px]  left-7 top-1 text-4xl 
   cursor-pointer absolute' 
   onClick={() => setOpen(!open)}
       />
 
   const hamburgerIcon = <img src={menu} 
             alt=""
-            className='hamburger right-5 top-5 
+            className='hamburger left-7 top-5 pr-[120px]
             cursor-pointer absolute' 
             onClick={() => setOpen(!open)}
                 />
@@ -32,9 +32,11 @@ export default function HeaderMobile() {
     <div>
         <nav className='MobileNavigation flex pb-[30px] bg-coral h-[80px]'>
             {open ? closeIcon : hamburgerIcon}
-            {open && <HeaderLinks className=''/>}    
+                <Link to='/'>
+                  <img className='pl-[80px] pt-[10px]' src={logo} alt='logo'/>
+                </Link>
+            {open && <HeaderLinksMobile className=''/>}    
         </nav>
     </div>
-    
   )
 }

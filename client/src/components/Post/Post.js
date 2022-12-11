@@ -3,6 +3,7 @@ import {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
 import PostCard from './PostCard'
+import Header from '../NavigationBar/Header'
 import ParentPostCard from './ParentPostCard'
 import UserCard from './UserCard'
 
@@ -57,36 +58,29 @@ export default function Posts() {
     console.log("states before render", query)
 
     return (
-        <div className='flex items-center 
-        w-full
-        gap-[20px] min-h-[100vh] p-[40px] 
-        flex-col'>
-            {
-                query[0]?._id
-                ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
-                :query[1]?._id
-                ?<UserCard user={query[0]}/>
-                :<></>
-            }
+        <div>
+            <Header />
+                <div className='flex items-center 
+                w-full
+                gap-[20px] min-h-[100vh] p-[40px] 
+                flex-col'>
+                    <textarea className="" rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
+                        Enter your post here...
+                    </textarea>
+                    {
+                        text
+                            ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave("", text)}/>
+                            :<>Type something into text area to Post</>
+                    }
 
-            <button onClick={()=>setQuery([{},{}])}>Home</button>
-            
-            <textarea className="" rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
-                Enter your post here...
-            </textarea>
-            {
-                text
-                    ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave("", text)}/>
-                    :<>Type something into text area to Post</>
-            }
+                    {
+                        posts?.length ?
+                            posts.map((item => <PostCard key={item._id} post={item} cb={handleSave}/>))
+                            :
+                            'No posts to show'
+                    }
 
-            {
-                posts?.length ?
-                    posts.map((item => <PostCard key={item._id} post={item} cb={handleSave} 
-                        showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>))
-                    :
-                    'No posts to show'
-             }
 
+                </div>
         </div>
 )}
