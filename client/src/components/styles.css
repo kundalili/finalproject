@@ -1,3 +1,4 @@
+
 .App2 {
     font-family: sans-serif;
     text-align: center;
@@ -8,6 +9,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
+
   }
   
   .card {

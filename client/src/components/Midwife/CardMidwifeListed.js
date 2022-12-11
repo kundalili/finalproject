@@ -1,14 +1,17 @@
 import React from 'react'
 import { AppContext } from '../Context'
 import { useState, useContext } from 'react';
+import {BiMessageRoundedAdd} from 'react-icons/bi'
 
 export default function CardMidwifeListed({data, availability}) {
 
   return (
 <>
-        <div className='w-[350px]'>
-            <h2 className='text-[1.5rem] p-[20px] text-left bg-vividBlue text-white font-bold rounded-t-lg'>Midwife: {data.name}</h2>
-
+        <div className='w-min'>
+          <div className='flex justify-between p-[10px] items-center bg-vividBlue rounded-t-lg'>
+            <h2 className='text-[1.5rem] p-[10px]  text-white font-bold '>Midwife: {data.name}</h2>
+            <BiMessageRoundedAdd className='text-white text-4xl'/>
+          </div>
               <div className='bg-white rounded-b-lg p-[20px]'>
 
                     {/* <h3 className='text-[1rem] p-[10px] text-left text-greyBlue pl-[15px] '>Name</h3>
