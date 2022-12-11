@@ -32,11 +32,7 @@ export default function CitySelect(query) {
       console.log(err)
     }
  }
-// console.log('data is',data)
 
-// useEffect(() => {
-//   getUsersData()
-//  }, [])
  const handleSearch = async (e) => {
 
  e.preventDefault();
@@ -60,19 +56,17 @@ export default function CitySelect(query) {
                       <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
                       </button>
             </form>
-          <div className='flex flex-col justify-center items-center'>
-            <ul>
-              {data.length === 0 ? (
-                <li>
-                  No Data Found
-                </li>
-              )
-              :
-              (data.map((item, index) => (
-                <li className='m-[30px]' key={index}><CardMidwifeListed data={item} /></li>
-              )))}
-            </ul>
-          </div>
-    </div>
+            <div className='flex flex-col justify-center items-center'>
+              <ul>
+                {data.length === 0 ? (
+                    <li>
+                      No Data Found
+                    </li>) : 
+                    (data.map((item, index) => (
+                    <li className='m-[30px]' key={index}><CardMidwifeListed data={item} /></li>
+                      )))}
+              </ul>
+            </div>
+      </div>
   )
 }
