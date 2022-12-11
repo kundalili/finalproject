@@ -64,22 +64,36 @@ export default function Posts() {
                 w-full
                 gap-[20px] min-h-[100vh] p-[40px] 
                 flex-col'>
-                    <textarea className="" rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
-                        Enter your post here...
-                    </textarea>
+                    {  
+                        query[0]?._id
+                            ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
+                            :query[1]?._id
+                                ?<UserCard user={query[1]}/>
+                                :<></>
+                    } 
+                    {   
+                        !query[1]?._id
+                            ?<textarea className="border-2 border-slate-500 rounded-md w-[400px]  p-[20px]" 
+                                rows = "5" cols = "60" name = "posttext" value= {text} 
+                                onChange={(e)=>setText(e.target.value)}>
+                                Enter your post here...
+                            </textarea>
+                            :<></>
+                    }
                     {
-                        text
+                        query[1]?._id
+                        ? <button onClick={()=>setQuery([{},{}])}>Back To All Posts</button>
+                        :text
                             ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave("", text)}/>
                             :<>Type something into text area to Post</>
                     }
 
                     {
-                        posts?.length ?
-                            posts.map((item => <PostCard key={item._id} post={item} cb={handleSave}/>))
-                            :
-                            'No posts to show'
+                        posts?.length 
+                            ?posts.map((item => <PostCard key={item._id} post={item} cb={handleSave} 
+                                showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>))
+                            :'No posts to show'
                     }
-
 
                 </div>
         </div>

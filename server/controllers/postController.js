@@ -123,15 +123,17 @@ module.exports.like = async (req, res) => {
         }
         
         let postLiked = await Post.findById(req.body._id)
+        let post={}
         if (postLiked._id) {
             let i= postLiked.likes.find(a => a === userId)
             if (i) {
                 postLiked.likes.splice(i,1)
              } else postLiked.likes.push(userId)
-            postLiked= await Post.findByIdAndUpdate({_id:_id},{likes:postLiked.likes},{new: true}) 
+            post= await Post.findByIdAndUpdate({_id:_id},{likes:postLiked.likes},{new: true}) 
         }
 
-        res.send({success: true, data:postLiked})
+        console.log("post last state",post)
+        res.send({success: true, data:post})
 
     } catch (error) {
         console.log("Error: creating post", error.message)
