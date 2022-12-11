@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import magnifier from '../../assets/search.svg'
 
 // you should import `lodash` as a whole module
 //import lodash from "lodash";
@@ -67,18 +68,32 @@ export default function UserSelect(props) {
 
   console.log("data:",data)
   return (
-    <div className="wrapper w-[400px] h-[200px] bg-slate-200 ">
-      <div className="control">
+    <div className="wrapper w-[400px] h-[160px] bg-blue-100 ">
+      <div className="control flex ">
         <div className={`control ${isLoading ? 'is-loading' : ''}`}>
-          <input type="text" className="input" onChange={handleSearch} />
+        <form className='flex flex-row justify-center items-center pl-[15px] pt-[10px] mt-[10px]'
+                >
+                                    
+                    <input type="text" 
+                     onChange={handleSearch}
+                      className="w-[234px] h-[51px] placeholder-lightBlue text-center" 
+                      placeholder="Find a user"
+                    />
+                      <button type="submit" 
+                      className='ml-[-40px] mb-[30px]'
+                      >
+                      <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
+                      </button>
+            </form>
+          {/* <input type="text" className="input" onChange={handleSearch} /> */}
         </div>
         {data.length > 0 && !isLoading && (
-          <div className="list">
+          <div className="">
             {data.map((i, index) => (
-              <div
+              <div 
                 key={i._id}
                 onClick={() => selectItem(i)}
-                className="list-item"
+                className="flex justify-start items-start text-vividBlue font-xl pl-[80px] pt-[5px] flex-col"
               >
                 {i.username}
               </div>

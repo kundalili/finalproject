@@ -15,7 +15,7 @@ export default function MessageList(props) {
 
   console.log("🚀 Hello from Message Card, Props and global are :", item)
 
-  const bg = item?.from?._id!==state?.user?._id?"bg-lotionPink text-darkGray w-[350px] pr-[50px] ml-[150px] shadow ":"bg-white w-[350px] text-darkGray shadow"
+  const bg = item?.from?._id!==state?.user?._id?"bg-lotionPink text-darkGray w-[350px] pr-[50px]  shadow ":"bg-blue-100 w-[350px] text-darkGray ml-[300px] shadow"
 
   return (
 
@@ -38,7 +38,7 @@ export default function MessageList(props) {
           item?.from._id!==state?.user?._id
             ?
             <div className='flex justify-between items-center'>
-              <img src={item.tostatus?unread:read} alt='arrow' className='text-white mt-[10px] h-[18px]' onClick={(e)=>{markRead(item)}}/>
+              <img src={item.tostatus?unread:read} alt='arrow' className='text-white  mt-[10px] h-[18px]' onClick={(e)=>{markRead(item)}}/>
       
               <img src={arrow} alt='arrow' className='text-white mt-[10px] h-[18px]' onClick={(e)=>{newPost(item)}}/>
             </div>

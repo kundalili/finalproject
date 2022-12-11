@@ -24,13 +24,14 @@ display:none;
     width: 250px;
     background: #e7695b;
     border-radius: 0px 30px 30px 0px;
+    object-position: left;
+
 }
 .NavBar nav ul li {
     /* padding-left: 15%; */
 }
 .hamburger {
-  left: 400px;
-  color: #043bff;
+  color: #022969;
 
 }
 

@@ -19,7 +19,8 @@ module.exports = {
       'lotionPink':'#f7cfcc',
       'darkGray':'#3E3E3E',
       'softBlue':'#b4c5ff',
-      'greyBlue':'#4e6996'
+      'greyBlue':'#4e6996',
+      "rose":"#fce7e5"
       
   },},
  

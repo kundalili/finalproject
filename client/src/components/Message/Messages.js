@@ -137,10 +137,10 @@ export default function Messages (){
 
             <div>
                     <Header />
-                        <div className='flex flex-row'>
+                        <div className=' flex'>
 
                             <div >
-                                <div className='flex flex-col border-double' >
+                                <div className='flex' >
                                     <MessageCard user={state.user} msg={data.total} 
                                                 sendMessage={(user)=>setOtherUser(state.user._id)}  
                                                 getUserMessages={(user)=>setOtherUser(state.user._id)}/>
@@ -164,7 +164,7 @@ export default function Messages (){
                                 { 
                                     data?.msgList?.length>0  
                                         ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
-                                        :<div className='bg-vividBlue text-white text-center text-2xl shadow rounded-md p-[5px]'> {otherUser!==state.user._id?'Loading...':"No unread messages!"} </div>
+                                        :<div className='bg-blue-100 text-vividBlue text-center text-2xl shadow rounded-md p-[5px]'> {otherUser!==state.user._id?'Loading...':"No unread messages!"} </div>
                                 }  
                             </div>
                     </div>

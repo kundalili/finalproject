@@ -9,20 +9,13 @@ import magnifier from '../../assets/search.svg'
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import LogoutIcon from '@mui/icons-material/Logout'; */
 
-export default function HeaderLinks() {
+export default function HeaderLinksMobile() {
     const {state, dispatch} = useContext(AppContext)
   return (
     <div >
         <nav className="flex flex-wrap justify-center items-start gap-[10px] p-[10px]" > 
-                    {/* 
-                    HERE IS THE SEARCH FIELD
-                    <form className='flex flex-row pr-[50px]'>
-                            <input type="text" className="w-[180px] py-2.5 h-[40px] outline-none border-2 border-vividBlue rounded-full p-[10px] placeholder-lightBlue" placeholder="" />
-                            <button type="submit" className='ml-[-40px] mb-[30px]'>
-                                <img className="cursor-pointer inline-block absolute object-cover" src={magnifier} alt='magnifier'/>
-                            </button>
-                    </form> */}
-                        <Link to='/'><img className='' src={logo} alt='logo'/></Link>
+                   
+                        {/* <Link to='/'><img className='' src={logo} alt='logo'/></Link> */}
                         <Link to='/register' className='headerLink cursor-pointer font-bold'><div className=''>REGISTRATION</div></Link>
                         {
                             !state.user._id
