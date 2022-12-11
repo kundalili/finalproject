@@ -22,7 +22,7 @@ export default function CitySelect(query) {
     try {
 
       console.log('value is', value)
-      const response = await axios.post('/user/list', {city:value}, {name:value})
+      const response = await axios.post('/user/list', {city:value, type:0})
 
     
       console.log('response=', response.data)

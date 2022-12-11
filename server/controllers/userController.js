@@ -56,7 +56,7 @@ module.exports.list = async (req, res) => {
     
         if (_id) query._id=_id
         if (username) query.username={ $regex: username }
-        if (type) query.type=type
+        if (Number.isInteger(type)) query.type=type
         if (availability) query.availability={ $regex: availability }
         if (service) query.service={ $regex: service }
         if (city) query.city={ $regex: city }
