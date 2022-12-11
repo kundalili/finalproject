@@ -95,7 +95,11 @@ export default function UserSelect(props) {
                 onClick={() => selectItem(i)}
                 className="flex justify-start items-start text-vividBlue font-xl pl-[80px] pt-[5px] flex-col"
               >
-                {i.username}
+                <div className="flex flex-row" style={{zIndex:10000}}>
+                  <img className='rounded-full w-[50px] h-[50px] object-cover' 
+                      src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + i.photo} alt=''/>
+                  {i.username}
+                </div>
               </div>
             ))}
           </div>

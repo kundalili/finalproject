@@ -45,7 +45,7 @@ export default function MessageCard(props) {
             <div>
                 {
                     message
-                    ?<SendMessage  to={props.user._id} cb={handleMessage} />
+                    ?<SendMessage  to={props.user} cb={handleMessage} />
                     :<></>
                 }
 
