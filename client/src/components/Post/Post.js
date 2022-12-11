@@ -4,8 +4,10 @@ import axios from 'axios'
 import { AppContext } from '../Context'
 import PostCard from './PostCard'
 import Header from '../NavigationBar/Header'
+import ParentPostCard from './ParentPostCard'
+import UserCard from './UserCard'
 
-function Posts() {
+export default function Posts() {
 
     const {state} = useContext(AppContext)
 
@@ -13,19 +15,34 @@ function Posts() {
 
     const [text, setText] = useState('')
 
-    const [parentId, setParentId] = useState('')
-
+    const [query, setQuery] = useState([{},{}]) //[selectedPost, selectedUser]
+    
 
     useEffect(() => {
         getData()
-    }, [])
+        const interval = setInterval(() => {
+            // The logic of refreshing message info.
+            getData()
+          }, 180000);
+        
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        return () => clearInterval(interval);
+
+    }, [query])
 
     const getData = async () => {
-   
-        const response = await axios.get('/post/list', {parentId:""})
-        console.log("🚀 ~ post list from Mongo", response, parentId)
-        setPosts(response.data.posts)
+        const postquery={}
         
+        if (query[1]?._id) {
+            postquery.userId=query[1]._id
+        } else postquery.parentId= (query[0]?._id) ? (query[0]._id) : ("")
+
+        console.log("postUser, parentPost and ", {params:postquery})
+        
+        const response = await axios.post('/post/list', postquery)
+        console.log("🚀 ~ post list from MongoDB", response)
+        setPosts(response.data.posts)
     }
 
     const handleSave = async (parentId, text) => {
@@ -38,6 +55,7 @@ function Posts() {
         console.log(response)
     }
 
+    console.log("states before render", query)
 
     return (
         <div>
@@ -62,7 +80,7 @@ function Posts() {
                             'No posts to show'
                     }
 
+
                 </div>
         </div>
 )}
-export default Posts;

@@ -3,7 +3,7 @@ import {useState, useContext, useEffect} from 'react'
 import { CssBaseline } from '@mui/material'
 
 function Card(props) {
-    console.log("🚀 ~ Card", props)
+    console.log("🚀 ~Parent  Card", props)
     const [text, setText] = useState('')
     const [showNewPost, setShowNewPost] = useState(false)
 
@@ -28,9 +28,6 @@ function Card(props) {
             <hr />
             <p onClick={()=>props.showPost(props.post)}>
                 {props.post.text}  
-            </p>
-            <p >
-                Comments: {props.post.numberOfComments}  
             </p>
             <FaPlusCircle className='text-[1rem]' onClick={() => setShowNewPost(true)}/>
             {   

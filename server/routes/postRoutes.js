@@ -6,7 +6,7 @@ const postController = require('../controllers/postController')
 
 
 router.post('/add',auth, cloudinaryUpload.single('image'), postController.add)
-router.get('/list', auth, postController.list)
+router.post('/list', auth, postController.list)
 router.get('/populars', auth, postController.populars)
 router.delete('/delete', auth, postController.delete)
 router.post('/like', auth, postController.like)

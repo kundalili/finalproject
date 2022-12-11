@@ -27,7 +27,7 @@ export default function MessageList(props) {
               ?<p className='font-bold text-2xl'>{item?.from?.username}</p>
               :<></>
             }
-          <p >{item.date}</p>
+          <p size="-1">{Date(item.date)}</p>
       </div>
 
       <p className='text-2xl p-[10px]'>{item.text}</p>

@@ -12,24 +12,21 @@ import Header from '../NavigationBar/Header'
 export default function Messages (){
 
         const {state} = useContext(AppContext) //Global state for user
-     //   const [msggroup, setMsggroup] = useState([]) //Left side corresponderlist
-     //   const [msglist, setMsglist] = useState([]) //RightSide MessageList
-     //   const [msglistUser, setMsglistUser] = useState([]) //RightSide MessageList
+
         const [query] = useState({to:state.user._id, tostatus:0})
         const [groupQuery] = useState({userId:state.user._id}) // State to update rightList
         const [otherUser, setOtherUser] = useState(state.user._id)
-        const [modalOpen, setModalOpen] = useState(false)
+
         const [data, setData] = useState ({groupList:[], msgList:[], total:{from:0, to:0, unread:0}})
         
         
         useEffect(() => {
-            let interval;
-            loadDatas()
-/*             interval = setInterval(() => {
+             loadDatas()
+            const interval = setInterval(() => {
                 loadDatas()
                 // The logic of refreshing message info.
               }, 300000);
-             */
+            
             document.body.scrollTop = 0; // For Safari
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
             return () => clearInterval(interval);
