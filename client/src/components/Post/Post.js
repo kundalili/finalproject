@@ -3,6 +3,8 @@ import {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
 import PostCard from './PostCard'
+import ParentPostCard from './ParentPostCard'
+import UserCard from './UserCard'
 
 function Posts() {
 
@@ -12,19 +14,28 @@ function Posts() {
 
     const [text, setText] = useState('')
 
-    const [parentId, setParentId] = useState('')
-
+    const [query, setQuery] = useState([{},{}]) //[selectedPost, selectedUser]
+    
 
     useEffect(() => {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         getData()
-    }, [])
+
+    }, [query])
 
     const getData = async () => {
-   
-        const response = await axios.get('/post/list', {parentId:""})
-        console.log("🚀 ~ post list from Mongo", response, parentId)
-        setPosts(response.data.posts)
+        const postquery={}
         
+        if (query[1]?._id) {
+            postquery.userId=query[1]._id
+        } else postquery.parentId= (query[0]?._id) ? (query[0]._id) : ("")
+
+        console.log("postUser, parentPost and ", {params:postquery})
+        
+        const response = await axios.post('/post/list', postquery)
+        console.log("🚀 ~ post list from MongoDB", response)
+        setPosts(response.data.posts)
     }
 
     const handleSave = async (parentId, text) => {
@@ -37,12 +48,23 @@ function Posts() {
         console.log(response)
     }
 
+    console.log("states before render", query)
 
     return (
         <div className='flex items-center 
         w-full
         gap-[20px] min-h-[100vh] p-[40px] 
         flex-col'>
+            {
+                query[0]?._id
+                ?<ParentPostCard post={query[0]}/>
+                :query[1]?._id
+                ?<UserCard user={query[0]}/>
+                :<></>
+            }
+
+            <button onClick={()=>setQuery([{},{}])}>Home</button>
+            
             <textarea className="" rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
                 Enter your post here...
             </textarea>
@@ -54,7 +76,8 @@ function Posts() {
 
             {
                 posts?.length ?
-                    posts.map((item => <PostCard key={item._id} post={item} cb={handleSave}/>))
+                    posts.map((item => <PostCard key={item._id} post={item} cb={handleSave} 
+                        showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>))
                     :
                     'No posts to show'
              }
