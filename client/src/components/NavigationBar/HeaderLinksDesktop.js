@@ -2,12 +2,8 @@ import React from 'react'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AppContext } from '../Context'
-
 import logo from '../../assets/ina_blue.svg'
-/* import menu from '../../assets/menu.svg'
-import magnifier from '../../assets/search.svg'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
-import LogoutIcon from '@mui/icons-material/Logout'; */
+
 
 export default function HeaderLinksDesktop() {
     const {state, dispatch} = useContext(AppContext)

@@ -22,7 +22,7 @@ export default function HeaderMobile() {
 
   const hamburgerIcon = <img src={menu} 
             alt=""
-            className='hamburger left-7 top-5 pr-[120px]
+            className='hamburger left-7 top-5 pr-[125px]
             cursor-pointer absolute' 
             onClick={() => setOpen(!open)}
                 />
