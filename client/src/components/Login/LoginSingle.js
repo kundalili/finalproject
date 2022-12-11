@@ -68,7 +68,7 @@ export default function Login_Single(props) {
         <div className='flex justify-center items-center gap-[10px]'>
             <input className='h-[68px] w-[300px] text-center placeholder-softBlue text-xl' placeholder='Email/Username' value={data.username} onChange={e => setData({...data, username: e.target.value})} id="outlined-basic" label="Username" variant="none" />
         </div>
-        <input className='h-[68px] w-[300px] text-center placeholder-softBlue text-xl'
+        <input type="password" className='h-[68px] w-[300px] text-center placeholder-softBlue text-xl'
         placeholder='Password' value={data.password} onChange={e => setData({...data, password: e.target.value})} label="Password"  />
         <button  type="submit" onClick={handleLogin}
                     className='cursor-pointer 
