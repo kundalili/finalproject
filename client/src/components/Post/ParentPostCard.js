@@ -29,9 +29,6 @@ function Card(props) {
             <p onClick={()=>props.showPost(props.post)}>
                 {props.post.text}  
             </p>
-            <p >
-                Comments: {props.post.numberOfComments}  
-            </p>
             <FaPlusCircle className='text-[1rem]' onClick={() => setShowNewPost(true)}/>
             {   
                 showNewPost

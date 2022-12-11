@@ -35,12 +35,15 @@ module.exports.add = async (req, res) => {
 module.exports.list = async (req, res) => {
 
     let parentId = req.body.parentId;
+    let userId = req.body.userId;
     
+    let query ={}
+    if (!userId) {
+         query = (parentId)
+        ?{parentId:parentId}
+        :{parentId:""}
+    } else query.userId=userId
 
-    let query = (parentId)
-                ?{parentId:parentId}
-                :{parentId:""}
-    console.log("query:", query)
 
     try{
         const posts = await Post.find(query)
@@ -51,7 +54,7 @@ module.exports.list = async (req, res) => {
                                         .sort({ date: -1 })  
 
 
-        console.log("post list and query ", posts, req.body)
+       // console.log("post list and query ", posts, req.body)
        
         res.send({success: true, posts})
        }
