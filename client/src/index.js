@@ -35,6 +35,9 @@ root.render(
                                 <Route element={<LoginLayout />} />
                                 <Route path='/register' element={<Registration />} />
                                 <Route path='/login' element={<LoginSingle />} />
+                                <Route path='/loginmid' element={<LoginSingle />} />
+                                <Route path='/loginpreg' element={<LoginSingle />} />
+
                                 <Route path='/registermid' element={<RegistrationMidwife />} />
                                 <Route path='/registerpreg' element={<RegistrationPregnant />} />
                                 <Route path='/emailconfirm/:token' element={<EmailConfirm />} />

@@ -5,6 +5,8 @@ import facebook from '../assets/facebook.svg'
 import instagram from '../assets/instagram.svg'
 import blog from '../assets/blogger.svg'
 import bg_dot from '../assets/background_dot.png'
+import { SocialIcon } from 'react-social-icons';
+
 
 
 export default function Footer() {
@@ -38,17 +40,22 @@ export default function Footer() {
                             </div>
                             
                             <div className='flex justify-center items-center'>
-                                  <div>
-                                      <img className='socialIcon absolute z-2 w-[50px] mt-[130px]'src={facebook} alt='logo'/>
-                                  </div>
+                                  <a className='socialBtn '>
+                                      <img className='socialIcon absolute z-2 w-[50px] mt-[130px] hover:text-red'src={facebook} alt='logo'/>
+                                  </a>
                                   
-                                  <div>
+                                <a className='socialBtn'>
                                       <img className='socialIcon absolute z-2 w-[50px] mt-[130px] ml-[60px]'src={instagram} alt='logo'/>
-                                  </div>
+                                      </a>
                                   
-                                  <div>
+                                <a className='socialBtn'>
                                       <img className='socialIcon absolute z-2 w-[50px] mt-[130px] ml-[-60px]'src={blog} alt='logo'/>
-                                  </div>
+                                  </a>
+                                  <div className=' absolute z-2  text-white mt-[400px]'>All rights are reserved</div>
+                                  <div className=' absolute z-2 text-white mt-[440px]'>Made by Oktay & Patricia</div>
+                                  <div className=' absolute z-2 text-white mt-[580px]'>WDTP#010 2022</div>
+                                    
+
                         
                           </div>
                    

@@ -66,7 +66,7 @@ export default function UserSelect(props) {
 
   console.log("data:",data)
   return (
-    <div className="w-[350px] h-[100px] bg-blue-100 rounded-md shadow ml-28 ">
+    <div className="w-[350px] h-[100px] bg-blue-100 rounded-md shadow">
       <div className=" ">
         <div className="flex justify-center items-center">
         <div className={`control ${isLoading ? 'is-loading' : ''}`}>
@@ -96,7 +96,7 @@ export default function UserSelect(props) {
                 onClick={() => selectItem(i)}
                 className="flex justify-start items-start text-vividBlue font-xl pl-[80px] border-2 border-white rounded-md pt-[5px]"
               >
-                <div className="flex flex-row" style={{zIndex:10000}}>
+                <div className="flex flex-row justify-center items-start gap-[10px]" style={{zIndex:10000}}>
                   <img className='rounded-full w-[50px] h-[50px] object-cover' 
                       src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + i.photo} alt=''/>
                   {i.username}

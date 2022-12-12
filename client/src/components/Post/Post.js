@@ -74,7 +74,7 @@ export default function Posts() {
                     {   
                         !query[1]?._id
                             ?<textarea className="border-2 border-slate-500 rounded-md w-[400px]  p-[20px]"
-                                placeholder='Type your post here' 
+                                placeholder='Type your post' 
                                 rows = "3" cols = "60" name = "posttext" value= {text} 
                                 onChange={(e)=>setText(e.target.value)}>
                                 Enter your post here...
