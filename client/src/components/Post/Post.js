@@ -60,11 +60,11 @@ export default function Posts() {
     return (
         <div>
             <Header />
-                <div className='flex items-center 
+                <div className='flex items-center bg-blue-50 
                 w-full
                 gap-[20px] min-h-[100vh] p-[40px] 
                 flex-col'>
-                    {  
+                 {  
                         query[0]?._id
                             ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
                             :query[1]?._id
@@ -73,8 +73,9 @@ export default function Posts() {
                     } 
                     {   
                         !query[1]?._id
-                            ?<textarea className="border-2 border-slate-500 rounded-md w-[400px]  p-[20px]" 
-                                rows = "5" cols = "60" name = "posttext" value= {text} 
+                            ?<textarea className="border-2 border-slate-500 rounded-md w-[400px]  p-[20px]"
+                                placeholder='Type your post here' 
+                                rows = "3" cols = "60" name = "posttext" value= {text} 
                                 onChange={(e)=>setText(e.target.value)}>
                                 Enter your post here...
                             </textarea>
@@ -82,10 +83,39 @@ export default function Posts() {
                     }
                     {
                         query[1]?._id
-                        ? <button onClick={()=>setQuery([{},{}])}>Back To All Posts</button>
+                        ? <button className='cursor-pointer 
+                        border-2 border-vividBlue 
+                        text-vividBlue 
+                        font-semibold 
+                        hover:border-2
+                        text-center w-[212px] 
+                        h-[34px] 
+                        outline-none 
+                        rounded-full 
+                        hover:text-white
+                        hover:bg-vividBlue 
+                        hover:border-vividBlue
+                        shadow'
+                        onClick={()=>setQuery([{},{}])}>Back To All Posts</button>
                         :text
-                            ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave("", text)}/>
-                            :<>Type something into text area to Post</>
+                        
+                        ? <button className='cursor-pointer 
+                            border-2 border-vividBlue 
+                            text-vividBlue 
+                            font-semibold 
+                            hover:border-2
+                            text-center w-[212px] 
+                            h-[34px] 
+                            outline-none 
+                            rounded-full 
+                            hover:text-white
+                            hover:bg-vividBlue 
+                            hover:border-vividBlue
+                            shadow ' 
+                            onClick={() => handleSave("", text)}>
+                                Share your thoughts
+                            </button>
+                            :<div className='text-l text-vividBlue'></div>
                     }
 
                     {

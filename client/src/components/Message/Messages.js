@@ -138,16 +138,16 @@ export default function Messages (props){
                     <Header />
 
 
-                        <div className=' flex'>
+                        <div className='flex justify-start bg-blue-50'>
 
                             <div >
-                                <div className='flex' >
+                                <div className='flex ' >
                                     <MessageCard user={state.user} msg={data.total} 
                                                 sendMessage={()=>setOtherUser(state.user)}  
                                                 getUserMessages={()=>setOtherUser(state.user)}/>
                                 </div>
 
-                                <div className= 'border-solid'>
+                                <div className= ''>
                                 { 
                                     data?.groupList.map(item =><MessageCard 
                                                 key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
@@ -156,17 +156,19 @@ export default function Messages (props){
                                 }
                                 </div>
                             </div>
+                            
                            
-                            <div className='flex w-full gap-[20px] min-h-[100vh] p-[40px] flex-col'>
-                                {    
-                                    otherUser._id!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
-                                                    :<UserSelect cb={(user)=>setOtherUser(user)}/>
-                                }
+                            <div className='gap-[20px] flex justify-start flex-col min-h-[100vh] p-[20px]'>
+                             
                                 { 
                                     data?.msgList?.length>0  
                                         ?data.msgList.map(item => <MessageList key={item._id} item={item} markRead={handleRead} newPost={newPost}/>)
-                                        :<div className='bg-blue-100 text-vividBlue text-center text-2xl shadow rounded-md p-[5px]'> {otherUser._id!==state.user._id?'Loading...':"No unread messages!"} </div>
+                                        :<div className='bg-blue-100 text-vividBlue text-center text-2xl shadow rounded-md p-[5px] mb-[20px] ml-[120px]'> {otherUser._id!==state.user._id?'Loading...':"No unread messages!"} </div>
                                 }  
+                                   {    
+                                    otherUser._id!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
+                                                    :<UserSelect cb={(user)=>setOtherUser(user)}/>
+                                }
                             </div>
                     </div>
             </div>
