@@ -47,16 +47,14 @@ function Card(props) {
                     src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
                     <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
                 </div>
-
-                </div>
                 <p>{isoToDate(props.post.date)}</p>   
               </div>
             </div>
             <hr />
-            <p className="text-xl" 
+            <div className="text-xl cursor-pointer" 
             onClick={()=>props.showPost(props.post)}>
                 {props.post.text}  
-            </p>
+            </div>
           
             <div className="flex justify-between items-center" >  
           
@@ -69,11 +67,11 @@ function Card(props) {
                 }
                   <div className='flex justify-start items-center gap-[5px]'>
                 <p >{props.post.numberOfComments}</p>
-                <TfiComment className='cursor-pointer'/>
+                <TfiComment className='cursor-pointer ' onClick={() => setShowNewPost(true)}/>
             </div>
                
             </div> 
-                <FaPlusCircle className='text-[1rem] cursor-pointer' onClick={() => setShowNewPost(true)}/>
+                {/* <FaPlusCircle className='text-[1rem] cursor-pointer' onClick={() => setShowNewPost(true)}/> */}
 
             </div>
             {   

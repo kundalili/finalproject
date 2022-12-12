@@ -88,15 +88,15 @@ export default function UserSelect(props) {
         </div>
         </div> 
         {data.length > 0 && !isLoading && (
-          <div className="bg-lotionPink ">
+          <div className="bg-lotionPink absolute">
             {data.map((i, index) => (
               <div className="p-[10px] m-[10px]">
               <li 
                 key={i._id}
                 onClick={() => selectItem(i)}
-                className="flex justify-start items-start text-vividBlue font-xl pl-[80px] border-2 border-white rounded-md pt-[5px]"
+                className="flex justify-start items-center text-vividBlue font-xl m-[50] border-2 border-white rounded-md pt-[5px] w-[300px]"
               >
-                <div className="flex flex-row justify-center items-start gap-[10px]" style={{zIndex:10000}}>
+                <div className="flex flex-row justify-center gap-[10px]" >
                   <img className='rounded-full w-[50px] h-[50px] object-cover' 
                       src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + i.photo} alt=''/>
                   {i.username}
