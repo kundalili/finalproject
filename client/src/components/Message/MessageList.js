@@ -17,6 +17,12 @@ export default function MessageList(props) {
 
   const bg = item?.from?._id!==state?.user?._id?"bg-lotionPink text-darkGray w-[350px] pr-[50px]  shadow ":"bg-blue-100 w-[350px] text-darkGray ml-[300px] shadow"
 
+  function isoToDate (date) {
+   let d = new Date(date)
+   return   (d.toDateString() + " " + d.getHours() + ":"+ d.getMinutes())
+
+  }
+
   return (
 
     <div className={'rounded-xl p-[20px] '+ bg}>
@@ -27,7 +33,7 @@ export default function MessageList(props) {
               ?<p className='font-bold text-2xl'>{item?.from?.username}</p>
               :<></>
             }
-          <p size="-1">{Date(item.date)}</p>
+          <p size="-1">{isoToDate(item.date)}</p>
       </div>
 
       <p className='text-2xl p-[10px] text-vividBlue'>{item.text}</p>

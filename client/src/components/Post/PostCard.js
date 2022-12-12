@@ -27,23 +27,31 @@ function Card(props) {
         if (res.data.success) setLike([!like[0], res.data.data.likes.length])
     } 
     
+    function isoToDate (date) {
+        let d = new Date(date)
+        return   (d.toDateString() + " " + d.getHours() + ":"+ d.getMinutes())
+     
+       }
 
     console.log("like render",like)
 
     return (
+
         <div className='flex flex-col gap-[20px] border-2 bg-blue-100 text-vividBlue rounded-md w-[500px] p-[20px]'>
             
             <div>
-                <div className='flex justify-between items-center'>
+              <div className='flex justify-between items-center'>
+                {props.post.userId.username} - {isoToDate(props.post.date)}
                 <div className='flex justify-start items-center pl-[10px]'>
-                <img 
-                    onClick={()=>props.userPosts(props.post.userId)}
-                    className='rounded-full w-[50px] h-[50px] object-cover' 
-                    src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
-                    <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
+                
+                  <img 
+                      onClick={()=>props.userPosts(props.post.userId)}
+                      className='rounded-full w-[50px] h-[50px] object-cover' 
+                      src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
+                  <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
                 </div>
                 <p>{props.post.date}</p>   
-                </div>
+              </div>
             </div>
             <hr />
             <p className="text-xl" 
