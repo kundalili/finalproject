@@ -26,13 +26,18 @@ function Card(props) {
         if (res.data.success) setLike([!like[0], res.data.data.likes.length])
     } 
     
+    function isoToDate (date) {
+        let d = new Date(date)
+        return   (d.toDateString() + " " + d.getHours() + ":"+ d.getMinutes())
+     
+       }
 
     console.log("like render",like)
 
     return (
         <div className='flex flex-col gap-[20px] border-2 border-slate-500 rounded-md w-[400px]  p-[20px]'>
             <div className='flex '>
-                {props.post.userId.username} - {props.post.date}       
+                {props.post.userId.username} - {isoToDate(props.post.date)}       
                 <img 
                     onClick={()=>props.userPosts(props.post.userId)}
                     className='rounded-full w-[50px] h-[50px] object-cover' 
