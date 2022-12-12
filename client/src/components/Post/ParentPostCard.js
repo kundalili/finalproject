@@ -15,15 +15,23 @@ function Card(props) {
         setText("")
     }
 
-    
+    function isoToDate (date) {
+        let d = new Date(date)
+        return   (d.toDateString() + " " + d.getHours() + ":"+ d.getMinutes())
+     
+       }
+
     return (
         <div className='flex flex-col gap-[20px] border-2 bg-blue-100 text-vividBlue rounded-md w-[500px] p-[20px]'>
-            <div className='flex '>
-                {props.post.userId.username} - {props.post.date}       
-                <img 
-                    onClick={()=>props.userPosts(props.post.userId)}
-                    className='rounded-full w-[50px] h-[50px] object-cover' 
-                    src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
+            <div className='flex justify-between'>
+                <div className="flex flex-row">
+                    {props.post.userId.username}       
+                    <img 
+                        onClick={()=>props.userPosts(props.post.userId)}
+                        className='rounded-full w-[50px] h-[50px] object-cover' 
+                        src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
+                </div>
+                {isoToDate( props.post.date)}
             </div>
             <hr />
             <p onClick={()=>props.showPost(props.post)}>
