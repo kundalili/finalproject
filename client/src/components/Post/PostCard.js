@@ -41,7 +41,6 @@ function Card(props) {
             
             <div>
               <div className='flex justify-between items-center'>
-                {props.post.userId.username} - {isoToDate(props.post.date)}
                 <div className='flex justify-start items-center pl-[10px]'>
                 
                   <img 
@@ -50,7 +49,7 @@ function Card(props) {
                       src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
                   <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
                 </div>
-                <p>{props.post.date}</p>   
+                <p>{isoToDate(props.post.date)}</p>   
               </div>
             </div>
             <hr />
