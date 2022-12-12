@@ -41,13 +41,14 @@ export default function SendMessage(props) {
                             <img 
                                 className='rounded-full w-[30px] h-[30px] object-cover' 
                                 src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.to.photo} alt=''/>
-                            <span >{props.to.username}</span>
+                            <span className='text-vividBlue' >{props.to.username}</span>
                         </div>
                         <label className='flex items-center p-[10px]'>
                         <textarea  
+                            
                             rows="6" 
                             cols="70"
-                            className='resize-none p-[20px]' 
+                            className='resize-none rounded-md p-[20px]' 
                             placeholder='Type your messages'
                             value={text}
                             onChange={e => setText(e.target.value)}

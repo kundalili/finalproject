@@ -66,10 +66,11 @@ export default function UserSelect(props) {
 
   console.log("data:",data)
   return (
-    <div className="wrapper w-[400px] h-[160px] bg-blue-100 ">
-      <div className="control flex ">
+    <div className="w-[350px] h-[100px] bg-blue-100 rounded-md shadow ml-28 ">
+      <div className=" ">
+        <div className="flex justify-center items-center">
         <div className={`control ${isLoading ? 'is-loading' : ''}`}>
-        <form className='flex flex-row justify-center items-center pl-[15px] pt-[10px] mt-[10px]'
+        <form className='flex justify-center items-center p-[15px]  mt-[10px]'
                 >
                                     
                     <input type="text" 
@@ -85,19 +86,22 @@ export default function UserSelect(props) {
             </form>
           {/* <input type="text" className="input" onChange={handleSearch} /> */}
         </div>
+        </div> 
         {data.length > 0 && !isLoading && (
-          <div className="">
+          <div className="bg-lotionPink ">
             {data.map((i, index) => (
-              <div 
+              <div className="p-[10px] m-[10px]">
+              <li 
                 key={i._id}
                 onClick={() => selectItem(i)}
-                className="flex justify-start items-start text-vividBlue font-xl pl-[80px] pt-[5px] flex-col"
+                className="flex justify-start items-start text-vividBlue font-xl pl-[80px] border-2 border-white rounded-md pt-[5px]"
               >
                 <div className="flex flex-row" style={{zIndex:10000}}>
                   <img className='rounded-full w-[50px] h-[50px] object-cover' 
                       src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + i.photo} alt=''/>
                   {i.username}
                 </div>
+              </li>
               </div>
             ))}
           </div>

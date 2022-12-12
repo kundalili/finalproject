@@ -10,7 +10,7 @@ export default function Header() {
  return (
    <div>
        <nav className='NavBar'>
-         {/* <HeaderMobile /> */}
+         <HeaderMobile />
          <HeaderDesktop />
        </nav>
    </div>
