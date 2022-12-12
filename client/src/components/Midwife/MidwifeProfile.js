@@ -10,10 +10,11 @@ import Services from './Services';
 import profileImg from '../../assets/midwife.jpeg'
 import Availability from './Availability'
 import Header from '../NavigationBar/Header';
+import { useNavigate } from 'react-router-dom'
 
 const FormData = require('form-data')
 
-const ITEM_HEIGHT = 148;
+const ITEM_HEIGHT = 1482;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
   PaperProps: {
@@ -27,7 +28,10 @@ const MenuProps = {
 
 export default function Profile({availability}) {
 
-
+  const navigate = useNavigate()
+  const goBack = () =>{
+    navigate(-1) 
+  }
   // STATES
   
   const {state, dispatch} = useContext(AppContext)
