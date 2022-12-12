@@ -17,7 +17,7 @@ function Card(props) {
 
     
     return (
-        <div className='flex flex-col gap-[20px] border-2 border-slate-500 rounded-md w-[400px]  p-[20px]'>
+        <div className='flex flex-col gap-[20px] border-2 bg-blue-100 text-vividBlue rounded-md w-[500px] p-[20px]'>
             <div className='flex '>
                 {props.post.userId.username} - {props.post.date}       
                 <img 
@@ -33,12 +33,29 @@ function Card(props) {
             {   
                 showNewPost
                 ?<div> 
-                    <textarea className="" rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
+                    <textarea 
+                    className="form-control
+                    px-3
+                    py-1.5
+                    text-base
+                    font-normal
+                    text-vividBlue
+                    bg-white bg-clip-padding
+                    border border-solid border-gray-300
+                    rounded
+                    transition
+                    ease-in-out
+                    m-0
+                    focus:text-vividBlue 
+                    focus:bg-white 
+                    focus:border-vividBlue focus:outline-none" 
+                    rows = "5" name = "posttext" 
+                    value= {text} onChange={(e)=>setText(e.target.value)}>
                         Enter your post here...
                     </textarea>
                     {
                         text
-                            ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave()}/>
+                            ?<FaPlusCircle className='text-[2rem] cursor-pointer' onClick={() => handleSave()}/>
                             :<>Type something into text area to Post</>
                     }
                 </div>

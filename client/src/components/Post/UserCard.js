@@ -6,6 +6,8 @@ import {BsBoxArrowUp} from 'react-icons/bs'
 import {BsBoxArrowInDown} from 'react-icons/bs'
 import {TbSend} from 'react-icons/tb'
 import SendMessage from '../Message/SendMessage'
+import {BiMessageRoundedAdd} from 'react-icons/bi'
+
 
 
 
@@ -23,9 +25,9 @@ export default function MessageCard(props) {
     }
 
     return (
-        <div className={'flex flex-col gap-[20px] rounded-md w-[300px] shadow p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-vividBlue":'bg-coral text-')}>
+        <div className={'flex flex-col gap-[20px] rounded-md w-[300px] shadow p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-lotionPink":'bg-blue-100')}>
             <div className='flex justify-between items-center'>
-                <div className='flex gap-[20px] text-3xl text-white' onClick={()=>props.getUserMessages(props.user)}>
+                <div className='flex gap-[20px] text-3xl text-vividBlue' onClick={()=>props.getUserMessages(props.user)}>
                     <div>  
                         <img 
                             className='rounded-full w-[50px] h-[50px] object-cover' 
@@ -37,7 +39,7 @@ export default function MessageCard(props) {
                 <div className='flex justify-between items-center'>
                     {
                         props.user._id!==state.user._id
-                            ?<div className='text-3xl text-white' onClick={()=>(setMessage(true))}><BiMessageAdd/></div>
+                            ?<div className='text-4xl text-vividBlue' onClick={()=>(setMessage(true))}><BiMessageRoundedAdd/></div>
                             :<></>
                     }
                 </div>

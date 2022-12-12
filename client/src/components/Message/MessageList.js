@@ -27,7 +27,7 @@ export default function MessageList(props) {
 
     <div className={'rounded-xl p-[20px] '+ bg}>
 
-      <div className=' gap-[20px] p-[10px]'>
+      <div className=' gap-[20px] p-[10px] text-vividBlue'>
           {
             item?.from?._id!==state?.user?._id
               ?<p className='font-bold text-2xl'>{item?.from?.username}</p>
@@ -36,7 +36,7 @@ export default function MessageList(props) {
           <p size="-1">{isoToDate(item.date)}</p>
       </div>
 
-      <p className='text-2xl p-[10px]'>{item.text}</p>
+      <p className='text-2xl p-[10px] text-vividBlue'>{item.text}</p>
 
       <hr></hr>
       

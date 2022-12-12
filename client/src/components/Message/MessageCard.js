@@ -17,9 +17,9 @@ export default function MessageCard(props) {
     const {state} = useContext(AppContext)
 
     return (
-        <div className={'flex flex-col gap-[20px] rounded-md w-[300px] shadow p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-vividBlue":'bg-coral text-')}>
+        <div className={'flex flex-col gap-[20px] rounded-md w-[300px] shadow p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-blue-100":'bg-lotionPink text-')}>
             <div className='flex justify-between items-center'>
-                <div className='flex gap-[20px] text-3xl text-white' onClick={()=>props.getUserMessages(props.user)}>
+                <div className='flex gap-[20px] text-3xl text-vividBlue' onClick={()=>props.getUserMessages(props.user)}>
                     <div>  
                         <img 
                             className='rounded-full w-[50px] h-[50px] object-cover' 
@@ -29,28 +29,28 @@ export default function MessageCard(props) {
                 </div>
 
                 <div className='flex justify-between items-center'>
-                    <div className='text-3xl text-white' onClick={()=>props.sendMessage(props.user)}><BiMessageAdd/></div>
+                    <div className='text-3xl text-vividBlue' onClick={()=>props.sendMessage(props.user)}><BiMessageAdd/></div>
                 </div>
                 </div>
             <div className='flex flex-row justify-around'>
-                    <div className='flex flex-col justify-between items-center  text-white'>
-                        <div className='flex justify-between w-[50px] gap-[5px] text-3xl text-white'> 
+                    <div className='flex flex-col justify-between items-center  text-vividBlue'>
+                        <div className='flex justify-between w-[50px] gap-[5px] text-3xl text-vividBlue'> 
                           <BsBoxArrowInDown/>
-                          <span className='text-xl pt-[10px] text-white'>{props.msg.from}</span>
+                          <span className='text-xl pt-[10px] text-vividBlue'>{props.msg.from}</span>
                         </div>
                         <p>Inbox</p>
                     </div>
-                    <div className='flex flex-col justify-between items-center  text-white'>
-                        <div className='flex justify-between w-[50px] gap-[5px] text-3xl text-white'> 
+                    <div className='flex flex-col justify-between items-center  text-vividBlue'>
+                        <div className='flex justify-between w-[50px] gap-[5px] text-3xl text-vividBlue'> 
                             <BsBoxArrowUp/> 
-                            <span className='text-xl pt-[10px] text-white'>{props?.msg?.to}</span>
+                            <span className='text-xl pt-[10px] text-vividBlue'>{props?.msg?.to}</span>
                         </div>
                         <p>Sent</p>
                     </div>
-                    <div className='flex flex-col justify-between items-center  text-white'>
-                        <div className='flex justify-between w-[50px] gap-[5px] pt-[5px] text-3xl text-white'> 
+                    <div className='flex flex-col justify-between items-center  text-vividBlue'>
+                        <div className='flex justify-between w-[50px] gap-[5px] pt-[5px] text-3xl text-vividBlue'> 
                             <BsEnvelope/> 
-                            <span className='text-xl pt-[10px] text-white'>{props?.msg?.unread}</span>
+                            <span className='text-xl pt-[10px] text-vividBlue'>{props?.msg?.unread}</span>
                         </div>
                         <p>Unread</p>
                     </div>
