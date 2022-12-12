@@ -33,7 +33,7 @@ export default function MessageCard(props) {
                     </div>
                     </div>
                 <div className='flex flex-row justify-around'>
-                        <div className='flex flex-col justify-between items-center  text-vividBlue'>
+                        {/* <div className='flex flex-col justify-between items-center  text-vividBlue'>
                             <div className='flex justify-between w-[50px] gap-[5px] text-3xl text-vividBlue'> 
                                 <BsBoxArrowInDown className='cursor-pointer'/>
                                 <span className='text-xl pt-[10px] text-vividBlue'>{props.msg.from}</span>
@@ -46,7 +46,7 @@ export default function MessageCard(props) {
                                 <span className='text-xl pt-[10px] text-vividBlue'>{props?.msg?.to}</span>
                             </div>
                             <p>Sent</p>
-                        </div>
+                        </div> */}
                         {/* <div className='flex flex-col justify-between items-center  text-vividBlue'>
                             <div className='flex justify-between w-[50px] gap-[5px] pt-[5px] text-3xl text-vividBlue'> 
                                 <BsEnvelope className='cursor-pointer'/> 
