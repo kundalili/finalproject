@@ -27,6 +27,11 @@ function Card(props) {
         if (res.data.success) setLike([!like[0], res.data.data.likes.length])
     } 
     
+    function isoToDate (date) {
+        let d = new Date(date)
+        return   (d.toDateString() + " " + d.getHours() + ":"+ d.getMinutes())
+     
+       }
 
     console.log("like render",like)
 
@@ -42,8 +47,10 @@ function Card(props) {
                     src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
                     <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
                 </div>
-                <p>{props.post.date}</p>   
+
                 </div>
+                <p>{isoToDate(props.post.date)}</p>   
+              </div>
             </div>
             <hr />
             <p className="text-xl" 
