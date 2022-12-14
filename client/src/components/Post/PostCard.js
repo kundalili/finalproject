@@ -77,13 +77,13 @@ function Card(props) {
             {   
                 showNewPost
                 ?<div> 
-                    <textarea className="" rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
-                        Enter your post here...
+                    <textarea className="w-full p-[10px] placeholder-slate-300" 
+                    placeholder='Enter your post here...' rows = "5" cols = "60" name = "posttext" value= {text} onChange={(e)=>setText(e.target.value)}>
                     </textarea>
                     {
                         text
                             ?<FaPlusCircle className='text-[2rem]' onClick={() => handleSave()}/>
-                            :<p>Type something into text area to Post</p>
+                            :<p></p>
                     }
                 </div>
                 :<></>

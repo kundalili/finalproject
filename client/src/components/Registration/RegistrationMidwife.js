@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 import Header from '../NavigationBar/Header';
 import RegistrationBtnMidwife from './RegistrationBtnMidwife';
 import register from '../../assets/register.png'
+import './../../App.css'
+
 
 export default function RegistrationMidwife() {
     const {dispatch} = useContext(AppContext)
@@ -37,13 +39,10 @@ export default function RegistrationMidwife() {
     <div>
 
           <Header />
-          <div className='flex justify-end items-center' >
-                <div style={{ backgroundImage:`url(${register})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
-                          height: '45vh', width: '100vw'}}>
-                </div>        
-                <h2 className="text-3xl font-bold italic w-[164px] 
-                  h-[148px] text-white pt-[10px] absolute 
-                  mr-[20px] text-left top-[270px]">You are a midwife?
+          <div className='registrationMid flex justify-center items-end' >
+       
+                <h2 className="text-4xl bg-vividBlue  font-bold italic text-white p-[20px] absolute 
+                  text-center">You are a midwife?
                 </h2>
           </div>  
               <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col bg-lotionPink'>   

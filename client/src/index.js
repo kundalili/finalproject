@@ -15,7 +15,6 @@ import PregnantProfile from './components/Pregnant/PregnantProfile';
 import RegistrationMidwife from './components/Registration/RegistrationMidwife';
 import RegistrationPregnant from './components/Registration/RegistrationPregnant';
 import LoginSingle from './components/Login/LoginSingle'
-
 import EmailConfirm from './components/EmailConfirm'
 import ForgotPass from './components/ForgotPass'
 import ChangePass from './components/ChangePass'

@@ -175,7 +175,7 @@ const handleImageChange = (e) => {
                                     <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                                     placeholder='' value={data.password} 
                                     onChange={e => setData({...data, password: e.target.value})} 
-                                    id="outlined-basic" label="Password" variant="standard" />
+                               id="outlined-basic" label="Password" variant="standard" />
                                 </div>
 
                                 {/*NAME*/}
@@ -198,12 +198,14 @@ const handleImageChange = (e) => {
 
                                   {/*CITY*/}
                                   <City selectedCity={selectedCity} setSelectedCity={setSelectedCity}
-                                                            onChange={e => setData({...data, city: e.target.value})}/>
+                                                            onChange={e => setData({...data, city: e.target.value.split(',')
+                                                        })}/>
 
                                 {/* LANGUAGE */}
 
                                 <Language spokenLanguage={spokenLanguage} setSpokenLanguage={setSpokenLanguage}
-                                                      onChange={e => setData({...data, language: e.target.value})} />
+                                                      onChange={e => setData({...data, language: e.target.value.split(',')
+                                                    })} />
                                         
 
                                     {/* SELECT IMAGE */}

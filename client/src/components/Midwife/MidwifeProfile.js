@@ -114,15 +114,13 @@ console.log("data is at the beginning", data)
       response = await axios.patch('/user/profile', formdata, config)
       if (response._id) setData(response)
     }
-    else {
+
       const mydata = {};
       formdata.forEach((value, key) => (mydata[key] = value))
       console.log("updating mydata", mydata)
       response = await axios.patch('/user/edit', mydata)
       setData(response)
-    }
-  
-
+    
     console.log("🚀 updated datas are", response)
 
     if (response.data.success) {
@@ -212,24 +210,28 @@ console.log("data is at the beginning", data)
                               
                                                                   {/* SERVICES */}
                                                                   <Services myService={myService} setMyService={setMyService}
-                                                                    onChange={e => setData({...data, service: e.target.value})} />
+                                                                    onChange={e => setData({...data, service: e.target.value.split(',')
+                                                                  })} />
                                                                 <div>
                                                               
                                                             </div>
 
                                                             {/*CITY*/}
                                                         <City selectedCity={selectedCity} setSelectedCity={setSelectedCity}
-                                                            onChange={e => setData({...data, city: e.target.value})}/>
+                                                            onChange={e => setData({...data, city: e.target.value.split(',')
+                                                          })}/>
                                                           
                                                           {/* Availability */}
 
                                                     <Availability myavailability={myavailability} setMyavailability={setMyavailability}
-                                                    onChange={e => setData({...data, availability: e.target.value})}/>
+                                                    onChange={e => setData({...data, availability: e.target.value.split(',')
+                                                  })}/>
                                                    
                                                     {/* LANGUAGE */}
 
                                                 <Language spokenLanguage={spokenLanguage} setSpokenLanguage={setSpokenLanguage}
-                                                      onChange={e => setData({...data, language: e.target.value})} />
+                                                      onChange={e => setData({...data, language: e.target.value.split(',')
+                                                    })} />
                                                       
                                                       {/* ABOUT */}
 

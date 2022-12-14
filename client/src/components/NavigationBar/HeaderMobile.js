@@ -30,7 +30,7 @@ export default function HeaderMobile() {
   return (
 
     <div>
-        <nav className='MobileNavigation flex pb-[30px] bg-coral h-[80px]'>
+        <nav className='MobileNavigation flex pb-[30px h-[80px]'>
             {open ? closeIcon : hamburgerIcon}
                 <Link to='/'>
                   <img className='pl-[80px] pt-[10px]' src={logo} alt='logo'/>

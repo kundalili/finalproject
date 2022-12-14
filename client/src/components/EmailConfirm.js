@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import axios from 'axios'
 import {useEffect} from 'react'
+import bgDotted from './../assets/background_dot.png'
 
 function EmailConfirm(props) {
     
@@ -27,12 +28,18 @@ function EmailConfirm(props) {
     }, [])
 
     return (
+
+        <div className=" emailConfirm w-full text-4xl text-vividBlue flex justify-center items-center p-[100px]">
         <div>
-            Thank you for registering
+            <p className="text-center">Thank you for registering</p>
+            <p>Please wait while verifying your email</p>   
+
+        </div>      
+            {/* <p className="text-center">Thank you for registering</p>
             <br />
-            Please wait while verifying your email
-            <br />
-            Your token {token}
+            <p>Please wait while verifying your email</p>
+            <br /> */}
+            {/* Your token {token} */}
         </div>
     );
 }
