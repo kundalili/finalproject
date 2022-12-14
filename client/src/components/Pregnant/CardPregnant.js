@@ -26,11 +26,11 @@ export default function CardPregnant() {
                     <hr className='my-2 mx-auto w-48 h-1 bg-lotionPink rounded border-0'></hr>
 
                     <h3 className='text-[1.5rem] p-[10px] text-left  text-lotionPink pl-[15px]'>City</h3>    
-                    <h3 className='font-bold text-[1.5rem] text-white pl-[15px] '>{data.city}</h3>
+                    <h3 className='font-bold text-[1.5rem] text-white pl-[15px] '>{data.city.toString()}</h3>
                     <hr className='my-2 mx-auto w-48 h-1 bg-lotionPink rounded border-0'></hr>
 
                     <h3 className='text-[1.5rem] p-[10px] text-left  text-lotionPink pl-[15px]'>Languages</h3>
-                    <h3 className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.language}</h3>
+                    <h3 className='font-bold text-[1.5rem] text-white pl-[15px]'>{data.language.toString()}</h3>
                     <hr className='my-2 mx-auto w-48 h-1 bg-lotionPink rounded border-0'></hr>
 
                     <h3 className='text-[1.5rem] p-[10px] text-left  text-lotionPink pl-[15px]'>About </h3>

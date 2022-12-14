@@ -49,8 +49,8 @@ const userSchema = new Schema({
     },
 
     city: {
-        type: String,
-        default:""
+        type: Array,
+        default:[]
     },
 
     language: {

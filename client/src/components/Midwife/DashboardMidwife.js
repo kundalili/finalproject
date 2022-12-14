@@ -1,6 +1,5 @@
 import React from 'react'
 import Header from '../NavigationBar/Header'
-import { Link } from 'react-router-dom'
 import { AppContext } from '../Context'
 import MidwifeProfile from './MidwifeProfile'
 import { useState, useContext } from 'react';
@@ -13,7 +12,13 @@ import ButtonMidwife from '../Buttons/ButtonMidwife';
 export default function InformationForMidwifes({imgUrl}) {
   const {state, dispatch} = useContext(AppContext)
   const [data, setData] = useState({...state.user})
+  const [editMode, setEditMode] = useState(false)
 
+  function handleSave(edited, data){
+    console.log("data from profile", edited, data)
+    setEditMode(false)
+    
+  }
 
   return (
         <div>
@@ -25,8 +30,13 @@ export default function InformationForMidwifes({imgUrl}) {
                             <h2 className='text-[2rem] p-[10px] text-left font-bold text-vividBlue'>Welcome {data.name}!</h2>
                         </div>
                         <div className='flex flex-col'>
-                            <CardMidwife/>
-                            <ButtonMidwife />
+                            {editMode
+                                ?<MidwifeProfile cb={handleSave}/>
+                                :<div>                          
+                                    <CardMidwife/>
+                                    <ButtonMidwife cb={(e)=>setEditMode(e)}/>
+                                </div>
+                            }
                         </div>
                   </div>
               </div>

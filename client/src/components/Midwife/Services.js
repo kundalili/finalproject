@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
-import { Select, MenuItem, OutlinedInput,FormControl, InputLabel, Checkbox, ListItemText }  from '@mui/material'
-
+import  React from 'react';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -13,7 +18,7 @@ const MenuProps = {
   },
 };
 
-const services = [
+const names = [
   'Prenatal examinations',
   'Postpartum care',
   'Breastfeeding- and nutrition-advicey',
@@ -25,42 +30,39 @@ const services = [
   'Scream- and sleep-counseling'
 ];
 
-export default function Services({myService, setMyService}) {
+export default function Services({data, cb}) {
 
+  console.log("service data", data)
 
-
-  const handleChangeService = (event) => {
-    const {
-      target: { value },
+  const handleChange = (event) => {
+    const {target: { value }
     } = event;
-   setMyService(typeof value === 'string' ? value.split(',') : value,)
-  }
+    console.log("changed value",value)
+    cb(value);
+  };
 
   return (
-        <div>
-            <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
-
-              <InputLabel id="demo-multiple-name-label">Services</InputLabel>
-
-                  <Select
-                    labelId="demo-multiple-name-label"
-                    id="demo-multiple-name"
-                    multiple
-                    value={myService}
-                    onChange={handleChangeService}
-                    label="Services"
-                    renderValue={(selected) => selected.join(', ')}
-                    MenuProps={MenuProps}>
-                    {services.map((services) => (
-                        <MenuItem
-                            key={services}
-                            value={services}>
-                            <Checkbox checked={myService.indexOf(services) > -1} />
-                            <ListItemText primary={services} />
-                        </MenuItem>
-                    ))}
-                  </Select>
-            </FormControl>
-        </div>
-);
+    <div>
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={data}
+          onChange={handleChange}
+          input={<OutlinedInput label="Services" />}
+          renderValue={(selected) => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={data.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+  );
 }

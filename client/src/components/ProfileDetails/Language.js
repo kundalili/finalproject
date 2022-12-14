@@ -1,6 +1,11 @@
-import React, { useState } from 'react'
-import { Select, MenuItem, OutlinedInput,FormControl, InputLabel, Checkbox, ListItemText }  from '@mui/material'
-
+import  React from 'react';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -13,8 +18,7 @@ const MenuProps = {
   },
 };
 
-
-const languages = [
+const names = [
   'German',
   'English',
   'Turkish',
@@ -29,45 +33,42 @@ const languages = [
   'Chinese'
 ];
 
-export default function Language({spokenLanguage, setSpokenLanguage}) {
+export default function Languages({data, cb}) {
 
+  console.log("lang data", data)
 
-
-  const handleChangeLanguage = (event) => {
+  const handleChange = (event) => {
     const {
       target: { value },
     } = event;
-    setSpokenLanguage( typeof value === 'string' ? value.split(',') : value,
-    )
-  }
+    cb(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
 
-  
   return (
     <div>
-    <FormControl variant="standard" sx={{ m: 1, width: 300 }}>
-      <InputLabel id="demo-multiple-name-label">Languages</InputLabel>
-      <Select
-        labelId="demo-multiple-name-label"
-        id="demo-multiple-name"
-        multiple
-        value={spokenLanguage}
-        onChange={handleChangeLanguage}
-        label="Language"
-        renderValue={(selected) => selected.join(', ')}
-        MenuProps={MenuProps}
-      >
-        {languages.map((language) => (
-          <MenuItem
-            key={language}
-            value={language}
-          >
-            <Checkbox checked={spokenLanguage.indexOf(language) > -1} />
-              <ListItemText primary={language} />
-          
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
-  </div>
-);
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={data}
+          onChange={handleChange}
+          input={<OutlinedInput label="Language" />}
+          renderValue={(selected) => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={data.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </div>
+  );
 }

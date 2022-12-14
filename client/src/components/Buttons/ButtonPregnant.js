@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-export default function Button() {
+export default function Button({cb}) {
   return (
     <div>
        <div className='flex flex-col justify-center items-center p-[60px]'>              
@@ -47,8 +47,9 @@ export default function Button() {
                 </Link>
                 </div>
                 <div className='editprofileBtn pb-[40px] flex flex-col'>
-                    <Link to='/profilepreg' className='cursor-pointer font-bold'>
-                    <button  type="submit"
+                    <button  
+                            onClick={()=>cb(true)}
+                            type="submit"
                             className='cursor-pointer 
                             border-2 border-vividBlue 
                             text-vividBlue 
@@ -64,7 +65,7 @@ export default function Button() {
                             shadow'>
                             Edit Profile
                     </button>
-                        </Link>
+
                 </div>
                 <div className='pb-[40px] logoutBtn'>
                 <Link to='/logout' className='cursor-pointer font-bold'>
