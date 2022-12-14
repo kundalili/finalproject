@@ -3,9 +3,9 @@ module.exports = (template) => {
     switch (template) {
 
         case ('register'):
-            return 'Welcome to xxx app ✔'
+            return 'You have just started an exciting journey with INA! ❤️ ❤️'
         case ('forgotpassword'):
-            return 'Your instructions to change password for xxx app'
+            return 'Your instructions to change password for INA app'
         default:
             return
     }

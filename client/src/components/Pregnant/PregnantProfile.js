@@ -113,6 +113,7 @@ export default function PregnantProfile({cb}) {
                                   onChange={e => setData({...data, username: e.target.value})}
                                   id="standard-basic"  label="Username" variant="standard" />
                     </div>
+
                             
                       {/* NAME */}
                       <div className='flex justify-center items-center'>
@@ -124,10 +125,12 @@ export default function PregnantProfile({cb}) {
                                               
 
                       <div className='flex justify-center items-center'>
+
                                     <TextField id="outlined-basic" label="Due date" variant="standard" 
                                     value={data.duedate} 
                                     onChange={e => setData({...data, duedate: e.target.value})}
                                     />
+
                         </div>
                       
 
@@ -203,6 +206,7 @@ export default function PregnantProfile({cb}) {
         </div>
     </div>
   </>                   
+
   )
 }
 

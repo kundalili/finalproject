@@ -29,9 +29,15 @@ export default function HeaderLinksMobile() {
                                         className='headerLink cursor-pointer font-bold' to='/'>LOGOUT</Link>
                                 :<></>
                         }
+                        {
+                            state?.user?.type===0
+                                ?<Link to='/infomid' className='headerLink cursor-pointer font-bold'>PROFILE</Link>
+                                : state?.user?.type===1
+                            
+                                ?<Link to='/infopreg' className='headerLink cursor-pointer font-bold'>PROFILE</Link>
+                                : <></>
+                        }
                                         
-                        <Link className='headerLink cursor-pointer font-bold' to='/'>
-                        <div className='headerLink cursor-pointer font-bold'>FAQ</div></Link> 
                         <Link className='headerLink cursor-pointer font-bold' to='/'>  
                     <div className='headerLink cursor-pointer font-bold'>CONTACT</div></Link> 
         </nav>

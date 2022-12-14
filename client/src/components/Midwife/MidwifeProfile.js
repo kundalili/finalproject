@@ -72,6 +72,7 @@ export default function Profile({cb}) {
       formdata.set('image', file)
       console.log("formdata", formdata)
       response = await axios.patch('/user/profile', formdata, config)
+
       console.log("photo uploaded", response)
       delete data.photo
     }
@@ -83,6 +84,7 @@ export default function Profile({cb}) {
       
       cb(true, response)
   
+
 
     console.log("🚀 updated datas are", response)
 
@@ -110,6 +112,7 @@ export default function Profile({cb}) {
             <div className='flex justify-center items-center'>
                 <div className='flex justify-center items-center gap-[20px] flex-col mt-[30px] w-min p-[30px] shadow bg-white'>
                     <div className='flex justify-center items-center'>
+
                         <TextField className='border-2 border-slate-500 p-[5px] w-[200px] h-[40px]'
                                   placeholder='' value={data.username} 
                                   onChange={e => setData({...data, username: e.target.value})}
@@ -130,6 +133,7 @@ export default function Profile({cb}) {
                           value={data.since} 
                           onChange={e => setData({...data, since: e.target.value})}/>
                       </div>
+
                       
                       {/* SERVICES */}
                       <Services data={data.service}

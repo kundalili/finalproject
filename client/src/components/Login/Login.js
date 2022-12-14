@@ -1,9 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import './../../App.css'
+import selfcare from './../../assets/selfcare.jpeg'
+
 export default function Login() {
   return (
-    <div> 
-        <div className='flex flex-col justify-center items-center my-[30px]'>
+    <div className='login'> 
+     <div>
+            <img src={selfcare} alt='couple'></img>
+        </div>
+        <div className='flex bg-stone flex-col justify-center items-center my-[30px]'>
             <form className=''>
                 <Link to='/loginpreg'>
                 <button  type="submit"
