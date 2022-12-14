@@ -138,7 +138,7 @@ export default function Messages (props){
                     <Header />
 
 
-                        <div className='lg:flex lg:flex-row lg:justify-start sm:flex sm:flex-col bg-blue-50'>
+                        <div className='lg:flex lg:flex-row lg:justify-start sm:flex sm:flex-col bg-darkBlue'>
 
                             <div className='m-[20px]' >
                                 <div className='flex' >
@@ -158,7 +158,7 @@ export default function Messages (props){
                             </div>
                             
                            
-                            <div className='gap-[20px] flex lg:justify-start sm:justify-center flex-col min-h-[100vh] p-[40px] bg-white m-[20px]'>
+                            <div className='gap-[20px] flex lg:justify-start lg:items-start sm:items-center item sm:justify-center  flex-col min-h-[100vh] lg:p-[40px] bg-blue-50 rounded-md shadow lg:m-[20px] sm:p-[20px]'>
                             {    
                                     otherUser._id!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
                                                     :<UserSelect cb={(user)=>setOtherUser(user)}/>

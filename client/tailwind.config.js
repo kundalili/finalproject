@@ -24,7 +24,8 @@ module.exports = {
       "darkRed":"#e8e2e4",
       "stone":"#e8e2e4",
       "lightStone":"#d0cbcd",
-      "darkStone":"#8B8788"
+      "darkStone":"#8B8788",
+      "darkBlue":"#203354"
 
       
   },},

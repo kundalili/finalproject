@@ -15,7 +15,7 @@ export default function MessageList(props) {
 
   console.log("🚀 Hello from Message Card, Props and global are :", item)
 
-  const bg = item?.from?._id!==state?.user?._id?"bg-lotionPink text-darkGray w-[350px] pr-[50px]  shadow ":"bg-blue-100 w-[350px] text-darkGray ml-[300px] shadow"
+  const bg = item?.from?._id!==state?.user?._id?"bg-lotionPink text-darkGray w-[350px] lg:pr-[50px] shadow ":"bg-blue-100 w-[350px] text-darkGray lg:ml-[300px] sm:m-[20px] shadow"
 
   function isoToDate (date) {
    let d = new Date(date)
@@ -27,7 +27,7 @@ export default function MessageList(props) {
 
     <div className={'rounded-xl p-[20px] '+ bg}>
 
-      <div className=' gap-[20px] p-[10px] text-vividBlue'>
+      <div className='flex justify-between items-center gap-[20px] p-[10px] text-vividBlue'>
           {
             item?.from?._id!==state?.user?._id
               ?<p className='font-bold text-2xl'>{item?.from?.username}</p>

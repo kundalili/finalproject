@@ -66,16 +66,15 @@ export default function UserSelect(props) {
 
   console.log("data:",data)
   return (
-    <div className="w-[350px] h-[100px] bg-blue-100 rounded-md shadow">
-      <div className=" ">
+    <div className="lg:w-[350px] sm:w-[250px] h-[100px] bg-blue-100 rounded-md shadow">
         <div className="flex justify-center items-center">
         <div className={`control ${isLoading ? 'is-loading' : ''}`}>
-        <form className='flex justify-center items-center p-[15px]  mt-[10px]'
+            <form className='flex justify-center items-center p-[15px] mr-[25px]  mt-[10px]'
                 >
                                     
                     <input type="text" 
                      onChange={handleSearch}
-                      className="w-[234px] h-[51px] placeholder-vividBlue text-center" 
+                      className="w-[234px] h-[51px] placeholder-vividBlue text-center flex items-center justify-center" 
                       placeholder="Find a user"
                     />
                       <button type="submit" 
@@ -106,7 +105,6 @@ export default function UserSelect(props) {
             ))}
           </div>
         )}
-      </div>
       <div className="list is-hoverable" />
     </div>
   );
