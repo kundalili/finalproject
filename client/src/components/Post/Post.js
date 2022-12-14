@@ -66,10 +66,9 @@ export default function Posts() {
                 <div>
                     <Populars setQuery={setQuery}/>
                 </div>
-                <div className='postThread flex items-center bg-blue-50 
-                w-full
-                gap-[20px] min-h-[100vh] p-[40px] 
-                flex-col'>
+                 <div className='postThread flex items-center bg-darkBlue 
+                gap-[20px] p-[40px] flex-col'>
+
                  {  
                         query[0]?._id
                             ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
@@ -79,7 +78,7 @@ export default function Posts() {
                     } 
                     {   
                         !query[1]?._id
-                            ?<textarea className="border-2 border-slate-500 rounded-md w-[400px]  p-[20px]"
+                            ?<textarea className="rounded-md w-full p-[20px]"
                                 placeholder='Type your post' 
                                 rows = "3" cols = "60" name = "posttext" value= {text} 
                                 onChange={(e)=>setText(e.target.value)}>

@@ -39,16 +39,18 @@ function Card(props) {
         <div className='flex flex-col gap-[20px] border-2 bg-blue-100  text-vividBlue rounded-md lg:w-[500px] sm:w-[300px] p-[20px]'>
             
             <div>
-                <div className='flex justify-between items-center '>
-                <div className='flex justify-start items-center pl-[10px]'>
-                <img 
-                    onClick={()=>props.userPosts(props.post.userId)}
-                    className='rounded-full w-[50px] h-[50px] object-cover cursor-pointer' 
-                    src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
-                    <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
+                <div className='flex justify-start items-center '>
+                    <div className='flex justify-start items-center pl-[10px]'>
+                    <img 
+                        onClick={()=>props.userPosts(props.post.userId)}
+                        className='rounded-full w-[60px] h-[60px] object-cover cursor-pointer' 
+                        src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
+                        <div className='flex flex-col gap-[10px]'>
+                            <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>
+                            <p className='text-m p-[10px]'>{isoToDate(props.post.date)}</p>   
+                        </div>
+                    </div>
                 </div>
-                <p>{isoToDate(props.post.date)}</p>   
-              </div>
             </div>
             <hr />
             <div className="text-xl cursor-pointer" 
@@ -56,21 +58,24 @@ function Card(props) {
                 {props.post.text}  
             </div>
           
-            <div className="flex justify-between items-center" >  
-          
-            <div className='flex justify-center items-center gap-[5px]'> 
-            <span>{like[1]}</span>
-                {
-                    like[0]
-                    ?<AiFillLike className='text-[1rem] cursor-pointer' onClick={() => handleLike()}/>
-                    :<AiOutlineLike className='text-[1rem] cursor-pointer' onClick={() => handleLike()}/>
-                }
-                  <div className='flex justify-start items-center gap-[5px]'>
-                <p >{props.post.numberOfComments}</p>
-                <TfiComment className='cursor-pointer ' onClick={() => setShowNewPost(true)}/>
-            </div>
-               
-            </div> 
+            <div className="flex justify-between items-center gap-[5px]" >  
+                <div className='flex justify-start items-center'>
+                    <div className='flex justify-center items-center gap-[5px]'>
+                    <span>{like[1]}</span>
+                        {
+                            like[0]
+                            ?<AiFillLike className='text-[1rem] cursor-pointer' onClick={() => handleLike()}/>
+                            :<AiOutlineLike className='text-[1rem] cursor-pointer' onClick={() => handleLike()}/>
+                        }
+                    </div>
+                    <div>
+                        <div className='flex justify-start items-center gap-[5px]'>
+                        <p >{props.post.numberOfComments}</p>
+                        <TfiComment className='cursor-pointer ' onClick={() => setShowNewPost(true)}/>
+                        </div>
+                    </div>
+                </div>
+
                 {/* <FaPlusCircle className='text-[1rem] cursor-pointer' onClick={() => setShowNewPost(true)}/> */}
 
             </div>
