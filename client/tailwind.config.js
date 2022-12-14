@@ -4,10 +4,9 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    
     extend: {   
-      // backgroundImage: {
-      //   'mother': "url('./src/assets/header.png')",
-      // },
+    
       colors: {
       transparent: 'transparent',
       current: 'currentColor',
