@@ -4,8 +4,10 @@ import { useContext } from 'react'
 import { AppContext } from '../Context'
 
 
-export default function Button() {
-        const {state, dispatch} = useContext(AppContext)
+
+export default function Button({cb}) {
+
+const {state, dispatch} = useContext(AppContext)
 
   return (
     <div>
@@ -51,8 +53,9 @@ export default function Button() {
                 </Link>
                 </div>
                 <div className='editprofileBtn pb-[40px] flex flex-col'>
-                    <Link to='/profilepreg' className='cursor-pointer font-bold'>
-                    <button  type="submit"
+                    <button  
+                            onClick={()=>cb(true)}
+                            type="submit"
                             className='cursor-pointer 
                             border-2 border-vividBlue 
                             text-vividBlue 
@@ -68,7 +71,7 @@ export default function Button() {
                             shadow'>
                             Edit Profile
                     </button>
-                        </Link>
+
                 </div>
                 <button className='cursor-pointer 
                             border-2 border-vividBlue 

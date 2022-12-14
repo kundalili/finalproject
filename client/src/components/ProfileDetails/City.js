@@ -1,8 +1,24 @@
-import React, { useState, useContext } from 'react'
-import { TextField, Select,MenuItem, InputLabel, Button, Box, FormLabel, FormControl, FormGroup, FormControlLabel, FormHelperText, Checkbox, alignProperty, TextareaAutosize }  from '@mui/material'
-import { AppContext } from '../Context'
+import  React from 'react';
+import OutlinedInput from '@mui/material/OutlinedInput';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import Checkbox from '@mui/material/Checkbox';
 
-const city = [
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
+
+const names = [
   'Berlin',
   'Hamburg',
   'München',
@@ -18,47 +34,44 @@ const city = [
   'Nürnberg',
   'Leipzig',
   'Dresden'
-
 ];
 
-export default function City({selectedCity, setSelectedCity}) {
+export default function City({data, cb}) {
 
+  console.log("city data", data)
 
-  const handleChange = (e) => {
-    setSelectedCity(e.target.value);
-    console.log("🚀 ~ file: City.js:26 ~ City ~ selectedCity", setSelectedCity)
-
+  const handleChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    cb(
+      // On autofill we get a stringified value.
+      typeof value === 'string' ? value.split(',') : value,
+    );
   };
 
   return (
     <div>
-      <div>
-      <FormControl variant="standard" sx={{ m: 1, width: 200 }}>
-      <InputLabel id="demo-multiple-name-label">City</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={selectedCity}
-              label="City"
-                    onChange={handleChange}>
-                    <MenuItem value='Berlin'>Berlin</MenuItem>
-                    <MenuItem value='Hamburg'>Hamburg</MenuItem>
-                    <MenuItem value={'München'}>München</MenuItem>
-                    <MenuItem value={'Köln'}>Köln</MenuItem>
-                    <MenuItem value={'Frankfurt am Main'}>Frankfurt am Main</MenuItem>
-                    <MenuItem value={'Stuttgart'}>Stuttgart</MenuItem>
-                    <MenuItem value={'Düsseldorf'}>Düsseldorf</MenuItem>
-                    <MenuItem value={'Leipzig'}>Leipzig</MenuItem>
-                    <MenuItem value={'München'}>München</MenuItem>
-                    <MenuItem value={'München'}>München</MenuItem>
-                    <MenuItem value={'Bremen'}>Essen</MenuItem>
-                    <MenuItem value={'Dresden'}>Dresden</MenuItem>
-                    <MenuItem value={'Hannover'}>Hannover</MenuItem>
-                    <MenuItem value={'Duisburg'}>Duisburg</MenuItem>
-              </Select>
-        </FormControl>
-      </div>
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+        <Select
+          labelId="demo-multiple-checkbox-label"
+          id="demo-multiple-checkbox"
+          multiple
+          value={data}
+          onChange={handleChange}
+          input={<OutlinedInput label="City" />}
+          renderValue={(selected) => selected.join(', ')}
+          MenuProps={MenuProps}
+        >
+          {names.map((name) => (
+            <MenuItem key={name} value={name}>
+              <Checkbox checked={data.indexOf(name) > -1} />
+              <ListItemText primary={name} />
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
     </div>
-  )
+  );
 }
-
