@@ -22,7 +22,7 @@ function Card(props) {
        }
 
     return (
-        <div className='flex flex-col gap-[20px] border-2 bg-blue-100 text-vividBlue rounded-md w-[500px] p-[20px]'>
+        <div className='flex flex-col gap-[20px] border-2 bg-blue-100 text-vividBlue rounded-md lg:w-[500px] sm:w-[300px] p-[20px]'>
             <div className='flex justify-between'>
                 <div className="flex flex-row">
                     {props.post.userId.username}       

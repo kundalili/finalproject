@@ -60,7 +60,7 @@ export default function Posts() {
     return (
         <div>
             <Header />
-                <div className='flex items-center bg-blue-50 
+                <div className='postThread flex items-center bg-blue-50 
                 w-full
                 gap-[20px] min-h-[100vh] p-[40px] 
                 flex-col'>
@@ -100,17 +100,14 @@ export default function Posts() {
                         :text
                         
                         ? <button className='cursor-pointer 
-                            border-2 border-vividBlue 
-                            text-vividBlue 
+                            border-2 bg-blue-100 
+                            text-darkBlue
                             font-semibold 
-                            hover:border-2
                             text-center w-[212px] 
-                            h-[34px] 
+                            h-[68px] 
                             outline-none 
-                            rounded-full 
-                            hover:text-white
-                            hover:bg-vividBlue 
-                            hover:border-vividBlue
+                            rounded-full
+                            hover:bg-coral
                             shadow ' 
                             onClick={() => handleSave("", text)}>
                                 Share your thoughts

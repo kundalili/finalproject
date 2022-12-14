@@ -30,13 +30,13 @@ export default function SendMessage(props) {
 
 
     return (
-        <div className='w-full p-[20px] rounded-md   flex flex-row justify-center items-center'>
+        <div className='w-full p-[20px] rounded-md flex flex-row justify-center items-center'>
             {
                 (users.to===users.from)
                     ?<div>
                         <p>Can not send to itself</p>
                     </div>
-                    :<div className='flex flex-col bg-blue-100 rounded-md shadow p-[20px]'>
+                    :<div className='flex flex-col bg-blue-100 rounded-md shadow sm:p-[0px] lg:p-[20px]'>
                         <div className='flex flex-row justify-start items-center'>    
                             <img 
                                 className='rounded-full w-[30px] h-[30px] object-cover m-[10px]' 
@@ -48,7 +48,7 @@ export default function SendMessage(props) {
                             
                             rows="6" 
                             cols="50"
-                            className='resize-none rounded-md p-[20px]' 
+                            className='resize-none rounded-md  lg:p-[20px] sm:p-[0px] sm:pl-[80px] sm:pr-[80px] lg:pl-[0px] lg:pr-[0px]' 
                             placeholder='Type your messages'
                             value={text}
                             onChange={e => setText(e.target.value)}

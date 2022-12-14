@@ -17,7 +17,7 @@ export default function MessageCard(props) {
 
     return (
         <div className=''>
-            <div className={'flex flex-col gap-[20px] rounded-md w-[300px] shadow p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-blue-100":'bg-lotionPink text-')}>
+            <div className={'flex flex-col gap-[20px] rounded-md w-[300px] shadow p-[20px] m-[20px] '.concat((props.user._id===state.user._id)? "bg-blue-100":'bg-lotionPink')}>
                 <div className='flex justify-between items-center'>
                     <div className='flex gap-[20px] text-2xl text-vividBlue' onClick={()=>props.getUserMessages(props.user)}>
                         <div>  
