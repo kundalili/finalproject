@@ -138,16 +138,16 @@ export default function Messages (props){
                     <Header />
 
 
-                        <div className='flex justify-start bg-blue-50'>
+                        <div className='lg:flex lg:flex-row lg:justify-start sm:flex sm:flex-col bg-blue-50'>
 
                             <div className='m-[20px]' >
-                                <div className='flex ' >
+                                <div className='flex' >
                                     <MessageCard user={state.user} msg={data.total} 
                                                 sendMessage={()=>setOtherUser(state.user)}  
                                                 getUserMessages={()=>setOtherUser(state.user)}/>
                                 </div>
 
-                                <div className= ''>
+                                <div className= 'flex flex-col sm:justify-start sm:item-start'>
                                 { 
                                     data?.groupList.map(item =><MessageCard 
                                                 key={item._id} user={item} msg={{from:item.from, to:item.to, unread:item.unread} } 
@@ -158,7 +158,7 @@ export default function Messages (props){
                             </div>
                             
                            
-                            <div className='gap-[20px] flex justify-start flex-col min-h-[100vh] p-[40px] bg-white m-[20px]'>
+                            <div className='gap-[20px] flex lg:justify-start sm:justify-center flex-col min-h-[100vh] p-[40px] bg-white m-[20px]'>
                             {    
                                     otherUser._id!==state.user._id?<SendMessage  to={otherUser} cb={handleMessage} />
                                                     :<UserSelect cb={(user)=>setOtherUser(user)}/>

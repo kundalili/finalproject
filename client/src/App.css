@@ -1,13 +1,62 @@
 .newsletter {
-
 background-color:rgba(231, 105, 91, 0.32)
 }
 
-div .slogan {
+.emailConfirm {
+background-image: url('./assets/background_dot.png');
+background-repeat: repeat;
+background-size: cover;
+}
+
+.register {
+background-image: url('./assets/register.png');
+background-repeat: repeat;
+background-size: cover;
+}
+
+.body {
+background-image: url('./assets/bluehair.png');
+background-repeat: no-repeat;
+background-size: cover;
+height:50vh;
+width:100vw;
 
 }
 
-.socialBtn:hover {
-background: red;
+.footer {
+background-image: url('./assets/yoga.png');
+background-repeat: no-repeat;
+background-size: cover;
+height:800px;
+background-position: center;
 }
 
+.registrationMid {
+background-image: url('./assets/together.jpeg');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+height:45vh;
+width:100vw;
+}
+
+.login {
+background-image: url('./assets/selfcare.jpeg');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: top;
+height:130vh;
+width:100vw;
+}
+@media only screen and (max-width: 600px) {
+
+    .login  {
+        background-image: url('./assets/selfcare.jpeg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: top;
+        height:80vh;
+        width:100vw;
+          
+    }
+}

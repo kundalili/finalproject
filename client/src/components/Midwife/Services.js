@@ -18,6 +18,8 @@ const services = [
   'Postpartum care',
   'Breastfeeding- and nutrition-advicey',
   'Attending midwife',
+  'Home birth',
+  'Birth center',
   'Trauma processing',
   'Prenatal acupuncture',
   'Risk support',

@@ -1,8 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../Context'
 
 
 export default function Button() {
+        const {state, dispatch} = useContext(AppContext)
+
   return (
     <div>
        <div className='flex flex-col justify-center items-center p-[60px]'>              
@@ -27,7 +31,7 @@ export default function Button() {
                     </Link>
                 </div>
                 <div className=' blogBtn pb-[40px]'>
-                <Link to='/blog' className='cursor-pointer font-bold'>
+                <Link to='/post' className='cursor-pointer font-bold'>
                         <button  type="submit"
                             className='cursor-pointer 
                             border-2 border-vividBlue 
@@ -66,8 +70,27 @@ export default function Button() {
                     </button>
                         </Link>
                 </div>
-                <div className='pb-[40px] logoutBtn'>
-                <Link to='/logout' className='cursor-pointer font-bold'>
+                <button className='cursor-pointer 
+                            border-2 border-vividBlue 
+                            text-vividBlue 
+                            font-semibold 
+                            hover:border-2
+                            text-center w-[312px] 
+                            h-[68px] 
+                            outline-none 
+                            rounded-full 
+                            hover:text-white
+                            hover:bg-vividBlue 
+                            hover:border-vividBlue
+                            shadow'>
+                {
+                            state.user._id
+                                ?<Link onClick={()=>{dispatch({ type: 'login', payload: {}})}} 
+                                        className='headerLink cursor-pointer font-bold p-[10px]  hover:text-coral' to='/'>Logout</Link>
+                                :<></>
+                        }
+                </button>
+                {/* <Link to='/logout' className='cursor-pointer font-bold'>
                     <button  type="submit"
                             className='cursor-pointer 
                             border-2 border-vividBlue 
@@ -85,8 +108,7 @@ export default function Button() {
                             '>
                             Logout                
                     </button>            
-                </Link>
-                </div>
+                </Link> */}
             </div>
     </div>
   )

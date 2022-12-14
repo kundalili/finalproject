@@ -75,7 +75,7 @@ export default function UserSelect(props) {
                                     
                     <input type="text" 
                      onChange={handleSearch}
-                      className="w-[234px] h-[51px] placeholder-lightBlue text-center" 
+                      className="w-[234px] h-[51px] placeholder-vividBlue text-center" 
                       placeholder="Find a user"
                     />
                       <button type="submit" 

@@ -20,7 +20,12 @@ module.exports = {
       'darkGray':'#3E3E3E',
       'softBlue':'#b4c5ff',
       'greyBlue':'#4e6996',
-      "rose":"#fce7e5"
+      "rose":"#fce7e5",
+      "darkRed":"#e8e2e4",
+      "stone":"#e8e2e4",
+      "lightStone":"#d0cbcd",
+      "darkStone":"#8B8788"
+
       
   },},
  

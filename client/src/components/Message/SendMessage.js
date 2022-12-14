@@ -30,24 +30,24 @@ export default function SendMessage(props) {
 
 
     return (
-        <div className='w-[700px] p-[20px] rounded-md  bg-blue-100 flex flex-row'>
+        <div className='w-full p-[20px] rounded-md   flex flex-row justify-center items-center'>
             {
                 (users.to===users.from)
                     ?<div>
                         <p>Can not send to itself</p>
                     </div>
-                    :<div className='flex flex-col'>
-                        <div className='flex flex-row'>    
+                    :<div className='flex flex-col bg-blue-100 rounded-md shadow p-[20px]'>
+                        <div className='flex flex-row justify-start items-center'>    
                             <img 
-                                className='rounded-full w-[30px] h-[30px] object-cover' 
+                                className='rounded-full w-[30px] h-[30px] object-cover m-[10px]' 
                                 src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.to.photo} alt=''/>
                             <span className='text-vividBlue' >{props.to.username}</span>
                         </div>
-                        <label className='flex items-center p-[10px]'>
+                        <label className='flex items-center justify-center p-[10px]'>
                         <textarea  
                             
                             rows="6" 
-                            cols="70"
+                            cols="50"
                             className='resize-none rounded-md p-[20px]' 
                             placeholder='Type your messages'
                             value={text}

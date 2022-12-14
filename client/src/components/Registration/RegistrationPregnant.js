@@ -7,7 +7,8 @@ import axios from 'axios'
 import { Link } from 'react-router-dom';
 import Header from '../NavigationBar/Header';
 import register from '../../assets/register.png'
-import searching from '../../assets/istockphoto-1205456753-1024x1024.jpg'
+import './../../App.css'
+
 
 
 export default function RegistrationPregnant() {
@@ -33,18 +34,16 @@ export default function RegistrationPregnant() {
             })
             navigate('/login')
         } else alert(response.data.error)
-    }
+    } 
   return (
     <>
         <Header />
-              <div className='flex justify-end items-center' >
-                <img src={register} alt='' className='w-[100vw]'/>
-                  {/* <div className='' style={{ backgroundImage:`url(${searching})`,backgroundRepeat:"no-repeat", backgroundSize:"cover",
-                      height: '70vh', width: '120vw'}}></div>         */}
-                        <h2 className="text-3xl font-bold italic w-[164px] h-[148px] text-white pt-[10px] absolute mr-[20px] text-left top-[270px]">
-                            Are you looking for a midwife?
-                        </h2>
-              </div>  
+        <div className='registrationMid flex justify-center items-end' >
+       
+              <h2 className="text-4xl bg-vividBlue  font-bold italic text-white p-[20px] absolute 
+                text-center">Are you looking for a midwife?
+              </h2>
+          </div>  
               <div className='flex p-[20px] gap-[20px] justify-center items-center flex-col bg-lotionPink'> 
           
                     <h1 className='text-[2rem] p-[10px] text-center text-vividBlue'>

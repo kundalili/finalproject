@@ -36,7 +36,7 @@ export default function MessageList(props) {
           <p size="-1">{isoToDate(item.date)}</p>
       </div>
 
-      <p className='text-2xl p-[10px] text-vividBlue'>{item.text}</p>
+      <p className='text-2xl p-[10px] text-vividBlue selection:bg-coral selection:text-darkRed'>{item.text}</p>
 
       <hr></hr>
       

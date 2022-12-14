@@ -1,9 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import couple from './../../assets/couple.png'
+import './../../App.css' 
+import Header from './../NavigationBar/Header'
 
 export default function Registration() {
   return (
-    <div> 
+    <div className=""> 
+        <Header />
+        <div>
+            <img src={couple} alt='couple'></img>
+        </div>
         <div className='flex flex-col justify-center items-center my-[30px]'>
             <form className=''>
                 <Link to='/registerpreg'>
