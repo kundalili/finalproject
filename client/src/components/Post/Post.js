@@ -6,6 +6,7 @@ import PostCard from './PostCard'
 import Header from '../NavigationBar/Header'
 import ParentPostCard from './ParentPostCard'
 import UserCard from './UserCard'
+import Populars from './Populars'
 
 export default function Posts() {
 
@@ -60,8 +61,14 @@ export default function Posts() {
     return (
         <div>
             <Header />
-                <div className='postThread flex items-center bg-darkBlue 
+
+            <div className='flex flex-col'>
+                <div>
+                    <Populars setQuery={setQuery}/>
+                </div>
+                 <div className='postThread flex items-center bg-darkBlue 
                 gap-[20px] p-[40px] flex-col'>
+
                  {  
                         query[0]?._id
                             ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
@@ -121,5 +128,6 @@ export default function Posts() {
                     }
 
                 </div>
+            </div>
         </div>
 )}
