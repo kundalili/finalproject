@@ -36,10 +36,8 @@ function Card(props) {
     console.log("like render",like)
 
     return (
-        <div className='flex flex-col gap-[20px] border-2 bg-blue-100  text-vividBlue rounded-md w-[500px] p-[20px]'>
-            
-            <div>
-                <div className='flex justify-start items-center '>
+        <div className='flex flex-col gap-[20px] bg-lotionPink border-8 border-darkBlue text-vividBlue rounded-md w-[500px] p-[20px]'>
+                <div className='flex justify-start items-center'>
                     <div className='flex justify-start items-center pl-[10px]'>
                     <img 
                         onClick={()=>props.userPosts(props.post.userId)}
@@ -51,7 +49,6 @@ function Card(props) {
                         </div>
                     </div>
                 </div>
-            </div>
             <hr />
             <div className="text-xl cursor-pointer" 
             onClick={()=>props.showPost(props.post)}>

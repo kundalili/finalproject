@@ -60,8 +60,12 @@ export default function CitySelect(query) {
             <div className='flex flex-col justify-center items-center'>
               <ul>
                 {data.length === 0 ? (
-                    <li>
-                      No Data Found
+                    <li className="text-xl text-vividBlue p-[30px] text-center">
+                      No midwife in your city 😔 
+                      <br/>
+                      Call your insurance and tell them that you can’t find a midwife.
+                      <br/>
+                      <a href="https://www.unsere-hebammen.de/mitmachen/unterversorgung-melden/" target="_blank" className="text-center text-xl font-bold p-[30px]">Sign this Petition</a>
                     </li>) : 
                     (data.map((item, index) => (
                     <li className='m-[30px]' key={index}><CardMidwifeListed data={item} /></li>

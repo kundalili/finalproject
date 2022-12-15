@@ -23,7 +23,7 @@ export default function InformationForMidwifes({imgUrl}) {
   return (
         <div>
             <Header />
-            <div className='flex flex-col justify-center items-center bg-softBlue '>
+            <div className='flex flex-col justify-center items-center pt-[20px] bg-softBlue '>
                   <div>
                         <div className='flex justify-center items-center p-[30px]'>
                             <img className='w-[150px] h-[150px] rounded-full object-cover' src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + state.user.photo} alt=''></img>
