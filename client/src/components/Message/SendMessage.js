@@ -48,14 +48,14 @@ export default function SendMessage(props) {
                             
                             rows="6" 
                             cols="50"
-                            className='resize-none rounded-md  lg:p-[20px] sm:p-[0px] sm:pl-[80px] sm:pr-[80px] lg:pl-[0px] lg:pr-[0px]' 
+                            className='resize-none rounded-md  lg:p-[20px] p-[0px] pl-[80px] pr-[80px] lg:pl-[0px] lg:pr-[0px] sm:w-[300px] lg:w-[600px]' 
                             placeholder='Type your messages'
                             value={text}
                             onChange={e => setText(e.target.value)}
                         />
 
                         </label>
-                        <div className='flex justify-center items-center gap-[30px]'>
+                        <div className='flex justify-center items-center p-[20px] gap-[30px]'>
                             <button  
                                     onClick={handleSave}
                                     type="submit"

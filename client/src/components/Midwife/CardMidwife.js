@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppContext } from '../Context'
 import { useState, useContext } from 'react';
+import './../../App.css'
 
 export default function CardMidwife({availability}) {
 
@@ -9,7 +10,7 @@ export default function CardMidwife({availability}) {
 
   return (
 <>
-        <div className='w-[500px]'>
+        <div className='midwifeCard w-[390px] m-[20px] lg:w-[600px]'>
             <h2 className='text-[2rem] p-[20px] text-left bg-vividBlue text-white  shadow rounded-t-lg'>My Profile</h2>
 
               <div className='bg-coral shadow rounded-b-lg p-[20px]'>

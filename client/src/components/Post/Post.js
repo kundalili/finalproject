@@ -61,14 +61,13 @@ export default function Posts() {
     return (
         <div>
             <Header />
-
-            <div className='flex flex-col'>
-                <div>
+            <div className='flex flex-row justify-around bg-darkBlue'>
+                <div className='p-[40px] flex flex-col gap-[20px]'>
+                <h2 className='bg-coral text-4xl rounded-md p-[20px] text-vividBlue text-center font-bold italic'>MOST POPULAR POSTS</h2>
                     <Populars setQuery={setQuery}/>
                 </div>
-                 <div className='postThread flex items-center bg-darkBlue 
+                <div className='postThread flex items-center bg-darkBlue 
                 gap-[20px] p-[40px] flex-col'>
-
                  {  
                         query[0]?._id
                             ?<ParentPostCard post={query[0]} showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>
@@ -76,9 +75,11 @@ export default function Posts() {
                                 ?<UserCard user={query[1]}/>
                                 :<></>
                     } 
+                                    <h2 className='bg-lightBlue w-[500px] text-4xl rounded-md p-[20px] text-vividBlue text-center font-bold italic'>ADD A NEW POST</h2>
+
                     {   
                         !query[1]?._id
-                            ?<textarea className="rounded-md w-full p-[20px]"
+                            ?<textarea className="border-2 border-slate-500 p-[20px] rounded-md w-[400px]"
                                 placeholder='Type your post' 
                                 rows = "3" cols = "60" name = "posttext" value= {text} 
                                 onChange={(e)=>setText(e.target.value)}>
@@ -105,17 +106,18 @@ export default function Posts() {
                         :text
                         
                         ? <button className='cursor-pointer 
-                            border-2 bg-blue-100 
+                            bg-lightBlue
                             text-darkBlue
                             font-semibold 
                             text-center w-[212px] 
                             h-[68px] 
                             outline-none 
                             rounded-full
+                            text-xl
                             hover:bg-coral
                             shadow ' 
                             onClick={() => handleSave("", text)}>
-                                Share your thoughts
+                                SHARE
                             </button>
                             :<div className='text-l text-vividBlue'></div>
                     }

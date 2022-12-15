@@ -2,7 +2,7 @@ import {FaPlusCircle} from 'react-icons/fa'
 import {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 import { AppContext } from '../Context'
-import PostCard from './PostCard'
+import PopularCards from './PopularCards'
 
 
 export default function Populars({setQuery}) {
@@ -42,7 +42,7 @@ export default function Populars({setQuery}) {
 
         {
             posts?.length 
-                ?posts.map((item => <PostCard key={item._id} post={item} cb={handleSave} 
+                ?posts.map((item => <PopularCards  key={item._id} post={item} cb={handleSave} 
                     showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>))
                 :'No posts to show'
         }
