@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = (token, template) => {
 
     switch (template) {

@@ -19,7 +19,7 @@ app.use('/message', require('./routes/messageRoutes'))
 app.use('/post', require('./routes/postRoutes'))
 
 
-
+app.use(express.static('client/build'));
 const port = process.env.PORT || 5001
 app.listen(port, () => console.log('Server Started',port))
 
