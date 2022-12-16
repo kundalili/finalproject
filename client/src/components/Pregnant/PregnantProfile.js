@@ -101,9 +101,6 @@ export default function PregnantProfile({cb}) {
       <>        
 
         <div className='bg-softBlue'>
-            <div className='flex justify-center items-center p-[30px]'>
-                  <div className='text-[2rem] p-[10px] text-center font-bold text-vividBlue'>My Midwife Profile</div>
-            </div>
             <div className='flex justify-center items-center'>
                 <div className='flex justify-center items-center gap-[20px] flex-col mt-[30px] w-min p-[30px] shadow bg-white'>
                     <div className='flex justify-center items-center'>
@@ -142,7 +139,19 @@ export default function PregnantProfile({cb}) {
                       {/* LANGUAGE */}
                       <Language data={data.language}
                           cb={e => setData({...data, language: e})} />
-                                              
+                        {/* ABOUT */}
+                      <div className='text-[1.5rem]'>About me</div>
+
+                      <div className='flex justify-center items-center'>
+                            <TextareaAutosize
+                                  className='text-[1rem] text-center italic'
+                                  aria-label="minimum height"
+                                  minRows={10}
+                                  placeholder="Tell me more about you..."
+                                  style={{ width: 350 }}
+                                  value={data.about} 
+                                  onChange={e => setData({...data, about: e.target.value})}/>
+                      </div>                      
                       {/* SELECT IMAGE */}
                                   
                       <label className='cursor-pointer 
@@ -169,7 +178,7 @@ export default function PregnantProfile({cb}) {
               </div>
               
               {/* SAVE BUTTON */}
-              <div className='flex justify-center items-center p-[30px]'> 
+              <div className='flex flex-col justify-center gap-[30px] items-center p-[30px]'> 
                     <button onClick={handleSave} type="submit"
                             className='cursor-pointer 
                             border-2 border-vividBlue 

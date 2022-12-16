@@ -191,7 +191,7 @@ export default function Profile({cb}) {
               </div>
               
               {/* SAVE BUTTON */}
-              <div className='flex justify-center items-center p-[30px]'> 
+              <div className='flex flex-col gap-[30px] justify-center items-center p-[30px]'> 
                     <button onClick={handleSave} type="submit"
                             className='cursor-pointer 
                             border-2 border-vividBlue 
@@ -207,8 +207,8 @@ export default function Profile({cb}) {
                             hover:border-vividBlue
                             shadow'>
                             Update Profile                
-              </button>   
-              <button onClick={()=>cb(false,data)} type="submit"
+                      </button>   
+                      <button onClick={()=>cb(false,data)} type="submit"
                       className='cursor-pointer 
                       border-2 border-vividBlue 
                       text-vividBlue 
@@ -223,7 +223,7 @@ export default function Profile({cb}) {
                       hover:border-vividBlue
                       shadow'>
                       Cancel                
-              </button>  
+                    </button>  
         </div>
     </div>
   </>                   

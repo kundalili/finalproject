@@ -47,7 +47,7 @@ export default function CitySelect(query) {
                   onSubmit = {handleSearch}>
                                     
                     <input type="text" 
-                      className="w-[312px] h-[68px] outline-none placeholder-lightBlue text-center" 
+                      className="w-[312px] h-[68px] outline-none placeholder-vividBlue text-l text-center" 
                       placeholder="Type your city"
                       onChange={(e) => setValue(e.target.value)} 
                     />

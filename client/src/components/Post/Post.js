@@ -62,10 +62,7 @@ export default function Posts() {
         <div>
             <Header />
             <div className='flex flex-row justify-around bg-darkBlue'>
-                <div className='p-[40px] flex flex-col gap-[20px]'>
-                <h2 className='bg-coral text-4xl rounded-md p-[20px] text-vividBlue text-center font-bold italic'>MOST POPULAR POSTS</h2>
-                    <Populars setQuery={setQuery}/>
-                </div>
+               
                 <div className='postThread flex items-center bg-darkBlue 
                 gap-[20px] p-[40px] flex-col'>
                  {  
@@ -75,8 +72,6 @@ export default function Posts() {
                                 ?<UserCard user={query[1]}/>
                                 :<></>
                     } 
-                                    <h2 className='bg-lightBlue w-[500px] text-4xl rounded-md p-[20px] text-vividBlue text-center font-bold italic'>ADD A NEW POST</h2>
-
                     {   
                         !query[1]?._id
                             ?<textarea className="border-2 border-slate-500 p-[20px] rounded-md w-[400px]"
@@ -90,17 +85,14 @@ export default function Posts() {
                     {
                         query[1]?._id
                         ? <button className='cursor-pointer 
-                        border-2 border-vividBlue 
+                        bg-lotionPink 
                         text-vividBlue 
                         font-semibold 
-                        hover:border-2
                         text-center w-[212px] 
-                        h-[34px] 
+                        h-[68px] 
                         outline-none 
                         rounded-full 
-                        hover:text-white
-                        hover:bg-vividBlue 
-                        hover:border-vividBlue
+                        hover:bg-lightBlue
                         shadow'
                         onClick={()=>setQuery([{},{}])}>Back To All Posts</button>
                         :text
@@ -128,7 +120,12 @@ export default function Posts() {
                                 showPost={(item)=>{setQuery([item, {}])}} userPosts={(item)=>setQuery([{},item])}/>))
                             :'No posts to show'
                     }
+                    
 
+                </div>
+                <div className='p-[40px] flex flex-col items-center gap-[20px]'>
+                <h2 className='bg-coral text-4xl rounded-md p-[20px] text-vividBlue text-center font-bold italic'>MOST POPULAR POSTS</h2>
+                    <Populars setQuery={setQuery}/>
                 </div>
             </div>
         </div>
