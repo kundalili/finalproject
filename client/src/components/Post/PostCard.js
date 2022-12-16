@@ -36,14 +36,14 @@ function Card(props) {
     console.log("like render",like)
 
     return (
-        <div className='flex flex-col gap-[20px] border-2 bg-blue-100  text-vividBlue rounded-md w-[500px] p-[20px]'>
+        <div className='flex flex-col gap-[20px] border-2 bg-blue-100  text-vividBlue rounded-md w-[700px] p-[20px]'>
             
             <div>
                 <div className='flex justify-start items-center '>
                     <div className='flex justify-start items-center pl-[10px]'>
                     <img 
                         onClick={()=>props.userPosts(props.post.userId)}
-                        className='rounded-full w-[60px] h-[60px] object-cover cursor-pointer' 
+                        className='rounded-full w-[80px] h-[80px] object-cover cursor-pointer' 
                         src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.post.userId.photo} alt=''/>
                         <div className='flex flex-col gap-[10px]'>
                             <p className='pl-[10px] text-2xl'>{props.post.userId.username} </p>

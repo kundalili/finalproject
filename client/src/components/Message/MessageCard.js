@@ -22,7 +22,7 @@ export default function MessageCard(props) {
                     <div className='flex gap-[20px] text-2xl text-vividBlue' onClick={()=>props.getUserMessages(props.user)}>
                         <div>  
                             <img 
-                                className='rounded-full w-[50px] h-[50px] object-cover cursor-pointer' 
+                                className='rounded-full w-[60px] h-[60px] object-cover cursor-pointer' 
                                 src={'https://res.cloudinary.com/dn2tg1qut/image/upload/v1670253170/' + props.user.photo} alt=''/>
                         </div> 
                         <p>{props.user.username}</p>
